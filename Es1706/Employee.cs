@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Es1706
 {
     // Cosa è un dipendente?
-    // Un dipendente è caratterizzato da un nome, un cognome, una matricola, un reparto e uno stipendo percepito.
+    // Un dipendente è caratterizzato da un nome, un cognome, una matricola,
+    // un reparto e uno stipendo percepito.
 
     /// <summary>
     /// Definizione di Dipendente.

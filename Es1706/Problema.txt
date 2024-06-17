@@ -17,6 +17,7 @@ Cosa una "sequenza di caratteri"? una sequenza di caratteri è una stringa!
 Cosa deve essere in grado di fare il nostro atleta?
 Un atleta deve essere in grado di <raccontare> le informazioni su se stesso.
 
+UML
 +------ Atleta --------+
 |  nome        string  |
 |  cognome     string  |
@@ -33,8 +34,8 @@ class Atleta {
 	string sport;
 // properties della classe
 	public string Nome { get { return nome; } set { this.nome = value; } }
-	public string getNome() { return nome; }
-	public void setNome(string value) { this.nome = value; }
+	-> public string getNome() { return nome; }
+	-> public void setNome(string value) { this.nome = value; }
 // metodi della classe
 	public void Descriviti() {
 		Console.WriteLine(nome);

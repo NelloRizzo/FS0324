@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Es1706
 {
-    // Un[atleta] è uno sportivo, identificato da[un nome] e[un cognome], che gareggia in [un tipo di sport].
+    // Un [atleta] è uno sportivo, identificato da [un nome] e [un cognome],
+    // che gareggia in [un tipo di sport].
     // Cosa si intende per "nome"? e per "cognome"? e per tipo di sport?
     // un nome è una sequenza di caratteri, idem per il cognome e per lo sport...
     // Cosa una "sequenza di caratteri"? una sequenza di caratteri è una stringa!
