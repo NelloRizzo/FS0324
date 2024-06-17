@@ -10,20 +10,24 @@
             athlete.Sport = "Olimpiadi di Matematica";
             athlete.ShowMe();
 
-            Employee paperino = new Employee();
-            paperino.FirstName = "Paolino";
-            paperino.LastName = "Paperino";
-            paperino.Id = "17171717";
-            paperino.Salary = 1000;
-            paperino.Department = "Pulizie";
+            Employee paperino = new Employee()
+            { // lista di inizializzazione
+                FirstName = "Paolino",
+                LastName = "Paperino",
+                Id = "17171717",
+                Salary = 1000,
+                Department = "Pulizie"
+            };
             paperino.ShowMe();
 
-            Employee topolino = new Employee();
-            topolino.FirstName = "Mickey";
-            topolino.LastName = "Mouse";
-            topolino.Id = "007";
-            topolino.Salary = 10000;
-            topolino.Department = "Investigazioni";
+            Employee topolino = new() // tipo implicito dopo la new (il tipo viene dedotto dal tipo della variabile)
+            {
+                FirstName = "Mickey",
+                LastName = "Mouse",
+                Id = "007",
+                Salary = 10000,
+                Department = "Investigazioni"
+            };
             topolino.ShowMe();
         }
     }
