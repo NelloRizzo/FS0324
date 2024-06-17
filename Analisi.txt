@@ -1,0 +1,54 @@
+1) Creare una console application e sviluppare le diverse classi in C#, contenenti diverse proprietà e metodi.
+
+Successivamente, nel corpo del metodo principale del programma, dichiarare alcune istanze di ogni oggetto e farle stampare a schermo in una console.
+
+- Atleta
+- Dipendendente
+- Animale
+- Veicolo
+
+// Atleta
+Cosa intendiamo nel nostro "mondo" per "atleta"?
+Un [atleta] è uno sportivo, identificato da [un nome] e [un cognome], che gareggia in [un tipo di sport].
+Cosa si intende per "nome"? e per "cognome"? e per tipo di sport?
+un nome è una sequenza di caratteri, idem per il cognome e per lo sport...
+Cosa una "sequenza di caratteri"? una sequenza di caratteri è una stringa!
+
+Cosa deve essere in grado di fare il nostro atleta?
+Un atleta deve essere in grado di <raccontare> le informazioni su se stesso.
+
++------ Atleta --------+
+|  nome        string  |
+|  cognome     string  |
+|  sport       string  |
++----------------------+
+| descriviti() void    | 
++----------------------+
+
+
+class Atleta {
+// attributi della classe
+	string nome;
+	string cognome;
+	string sport;
+// properties della classe
+	public string Nome { get { return nome; } set { this.nome = value; } }
+	public string getNome() { return nome; }
+	public void setNome(string value) { this.nome = value; }
+// metodi della classe
+	public void Descriviti() {
+		Console.WriteLine(nome);
+		Console.WriteLine(cognome);
+		Console.WriteLine(sport);
+		Console.WriteLine("Mi chiamo " + nome + " " + cognome + " e pratico " + sport);
+	}
+}
+class Program {
+	public static void Main(string[] args) {
+		Atleta a = new Atleta();
+		a.Nome = "Archimede";
+		a.Cognome = "Pitagorico";
+		a.Sport = "Gare di Matematica";
+		a.Descriviti();
+	}
+}
