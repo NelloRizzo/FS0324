@@ -2,10 +2,6 @@
 {
     internal class Person
     {
-        private string firstName;
-        private string lastName;
-        private int age;
-
         public Person() { }
         public Person(string firstName, string lastName, int age)
         {
@@ -20,9 +16,16 @@
             LastName = lastName;
         }
 
+        private string firstName;
         public string FirstName { get { return firstName; } set { firstName = value; } }
+
+        private string lastName;
         public string LastName { get { return lastName; } set { lastName = value; } }
-        public int Age { get { return age; } set { age = value; } }
+
+        public string FullName { get { return firstName + " " + lastName; } }
+
+        // riassume in un'unica riga la creazione del campo privato e della proprietà di accesso
+        public int Age { get; set; }
 
         public string Description()
         {

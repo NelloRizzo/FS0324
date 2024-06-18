@@ -8,8 +8,8 @@
             {
                 new Person("Paperon","De' Paperoni", 80),
                 new Person("Paperino", "Paolino"),
-                new Person{ Age = 16, FirstName="Qui", LastName = ""},
-                new Person{ Age = 16, FirstName="Quo", LastName = ""},
+                new Person(age: 55, lastName: "Pitagorico", firstName: "Archimede"),
+                new Person(){ Age = 16, FirstName="Quo", LastName = ""},
                 new() { Age = 16, FirstName="Qua", LastName = ""},
             };
             for (int i = 0; i < people.Length; i++)
