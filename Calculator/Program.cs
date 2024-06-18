@@ -20,7 +20,7 @@
             Console.WriteLine(c.Accumulator); // l'accumulatore vale 0 all'inizio
             c.Sub(10); // sottraggo 10 -> accumulatore = -10
             c.Mul(-2); // moltiplico per -2 -> accumulatore = 20 (-10 * -2)
-            Console.WriteLine(c.Accumulator); 
+            Console.WriteLine(c.Accumulator);
         }
     }
 }

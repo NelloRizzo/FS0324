@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Es1706
+﻿namespace Es1706
 {
     // Un [atleta] è uno sportivo, identificato da [un nome] e [un cognome],
     // che gareggia in [un tipo di sport].

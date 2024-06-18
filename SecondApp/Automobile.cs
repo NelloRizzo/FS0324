@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SecondApp
+﻿namespace SecondApp
 {
     // class -> in OOP è il contenitore di un'informazione complessa
     // cioè composta da tante informazioni elementari ognuna delle quali

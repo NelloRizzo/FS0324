@@ -7,7 +7,7 @@
             NumbersTranslator translator = new NumbersTranslator();
             Console.WriteLine(translator.Translate(0));
             Console.WriteLine(translator.Translate(-10));
-            for(int i = 1; i < 100; i++)
+            for (int i = 1; i < 100; i++)
             {
                 Console.WriteLine(translator.Translate(i));
             }

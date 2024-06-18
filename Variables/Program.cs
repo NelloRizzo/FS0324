@@ -29,8 +29,8 @@
             Console.WriteLine(10 < 5 || 7 > 2); // || = OR -> True se ALMENO UNO DEGLI operandi è TRUE!
             Console.WriteLine(!(10 < 5)); // ! = not -> inverte il valore di un'espressione booleana
 
-            Console.WriteLine(10 < 5 && 7 < 2 || 5 < 6); 
-            Console.WriteLine(10 < 5 && (7 < 2 || 5 < 6)); 
+            Console.WriteLine(10 < 5 && 7 < 2 || 5 < 6);
+            Console.WriteLine(10 < 5 && (7 < 2 || 5 < 6));
 
         }
     }

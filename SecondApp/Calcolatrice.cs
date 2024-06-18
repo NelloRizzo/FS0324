@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SecondApp
+﻿namespace SecondApp
 {
     internal class Calcolatrice
     {
@@ -22,7 +16,7 @@ namespace SecondApp
 
         public decimal AccumulatoreInvertito()
         {
-            return 1/accumulatore;
+            return 1 / accumulatore;
         }
     }
 }

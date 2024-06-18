@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Es1706
+﻿namespace Es1706
 {
     // Cosa è un dipendente?
     // Un dipendente è caratterizzato da un nome, un cognome, una matricola,
