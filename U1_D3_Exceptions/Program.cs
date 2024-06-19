@@ -11,7 +11,8 @@
                 int r = a / b;
                 Console.WriteLine(r);
             }
-            catch {
+            catch
+            {
                 Console.WriteLine("Ops... si è verificato un errore");
             }
             Console.WriteLine("Fine.");

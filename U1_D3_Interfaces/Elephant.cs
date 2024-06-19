@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace U1_D3_Interfaces
+﻿namespace U1_D3_Interfaces
 {
-    internal class Elephant:Animal
+    internal class Elephant : Animal
     {
         public Elephant() { Kind = "Elefante"; }
 

@@ -33,7 +33,7 @@
             paperino.DescribeNotVirtual();
             paperino.Describe();
             Vip pico = new Vip { Name = "Pico de' Paperis", Title = "prof." };
-            pico.DescribeNotVirtual();    
+            pico.DescribeNotVirtual();
             pico.Describe();
             HandlePerson(paperino);
             HandlePerson(pico);
