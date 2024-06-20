@@ -9,10 +9,15 @@ namespace WebFormsSample
 {
     public partial class _Default : Page
     {
+        // Evento eseguito ogni volta che la pagina è stata caricata sul server
         protected void Page_Load(object sender, EventArgs e)
         {
+            // IsPostBack vale true se si sta rispondendo ad un evento di pagina
             if (!Page.IsPostBack)
             {
+                // lblStatus è un'etichetta presente sulla pagina
+                // la proprietà Text visualizza il contenuto dell'etichetta
+                // L'etichetta (Label) viene renderizzata come <span>
                 lblStatus.Text = "Primo caricamento della pagina (dopo la richiesta get del browser)<br/>";
             }
             else
@@ -24,6 +29,11 @@ namespace WebFormsSample
 
         protected void ExecuteOperation(object sender, EventArgs e)
         {
+            // txtFirst è la prima casella di testo (TextBox)
+            // txtSecond è la seconda casella di testo
+            // la proprietà Text di una casella di testo contiene ciò che l'utente ha digitato
+            // TryParse tenta di convertire una stringa (Text) nel tipo numerico (decimal)
+            // se la conversione va a buon fine mette il valore nella variabile first
             if (decimal.TryParse(txtFirst.Text, out decimal first) && decimal.TryParse(txtSecond.Text, out decimal second) ){
                 switch (cbOperation.SelectedIndex)
                 {

@@ -1,8 +1,10 @@
-﻿@model WebMvcSample.Controllers.Models.CalculateModel
+﻿@*Dichiarazione del tipo di dato passato come modello per la vista*@
+@model WebMvcSample.Controllers.Models.CalculateModel
 @{
     ViewBag.Title = "Calculate";
 }
 
 <h2>Risultato</h2>
 
+@*La chiocciola provoca in queste istruzioni la stampa dei valori associati ai campi del modello*@
 <span>@Model.First</span> <span>@Model.Operation</span> <span>@Model.Second</span> <span>=</span> <span>@Model.Result</span>
