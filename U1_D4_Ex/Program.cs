@@ -47,12 +47,13 @@
         static char Menu()
         {
             string[] items = ["Login", "Logout", "Verifica", "Elenco accessi", "Esci"];
-            Console.WriteLine("===============OPERAZIONI==============");
+            string title = " OPERAZIONI ".PadLeft(25, '=').PadRight(42, '=');
+            Console.WriteLine(title);
             for (int i = 0; i < items.Length; i++)
             {
                 Console.WriteLine($"{i + 1}.\t{items[i]}");
             }
-            Console.WriteLine("=======================================");
+            Console.WriteLine("".PadLeft(title.Length, '='));
             Console.Write("Scegli: ");
             return Choice();
         }
