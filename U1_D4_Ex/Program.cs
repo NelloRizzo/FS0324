@@ -49,6 +49,8 @@
         static char Menu()
         {
             string[] items = ["Login", "Logout", "Verifica", "Elenco accessi", "Esci"];
+            // PadLeft riempie la stringa con caratteri a sinistra fino a raggiungere la dimensione specificata
+            // PadRight riempie a destra
             string title = " OPERAZIONI ".PadLeft(25, '=').PadRight(42, '=');
             Console.WriteLine(title);
             for (int i = 0; i < items.Length; i++)
