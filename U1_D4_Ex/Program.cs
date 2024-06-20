@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.Intrinsics.X86;
-using System;
-
-namespace U1_D4_Ex
+﻿namespace U1_D4_Ex
 {
     //  TRACCIA DELL'ESERCIZIO:
     //  Creare una console application che riproponga un menu come quello proposto di seguito:
@@ -43,14 +39,49 @@ namespace U1_D4_Ex
                 answer = (char)c;
                 // il ciclo si ripete fino a che answer è >= 1 e <= 5
             } while (answer < '1' || answer > '5');
+            Console.ReadLine();
             // restituisce il valore letto
             return answer;
         }
+
+        static char Menu()
+        {
+            string[] items = ["Login", "Logout", "Verifica", "Elenco accessi", "Esci"];
+            Console.WriteLine("===============OPERAZIONI==============");
+            for (int i = 0; i < items.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}.\t{items[i]}");
+            }
+            Console.WriteLine("=======================================");
+            Console.Write("Scegli: ");
+            return Choice();
+        }
+
+        static User InputUser()
+        {
+            Console.Write("Username: "); string username = Console.ReadLine();
+            Console.Write("Password: "); string password = Console.ReadLine();
+            Console.Write("Conferma password: "); string confirm = Console.ReadLine();
+            return new User { Confirmation = confirm, Password = password, Username = username };
+        }
         static void Main(string[] args)
         {
-            Console.Write("Scrivi una scelta (1-5): ");
-            char c = Choice();
-            Console.WriteLine($"Hai scelto {c}");
+            //Console.Write("Scrivi una scelta (1-5): ");
+            //char c = Choice();
+            //Console.WriteLine($"Hai scelto {c}");
+            //DateTime dt = DateTime.Now;
+            char choice;
+            while ((choice = Menu()) != '5')
+            {
+                switch (choice)
+                {
+                    case '1': LoginManager.Login(InputUser()); break;
+                    case '2': LoginManager.Logout(); break;
+                    case '3': LoginManager.IsLoggedIn(); break;
+                    case '4': LoginManager.PrintLogin(); break;
+                }
+            }
+            Console.WriteLine("Fine applicazione");
         }
     }
 }
