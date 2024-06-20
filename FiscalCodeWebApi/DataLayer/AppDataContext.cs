@@ -24,7 +24,6 @@ namespace FiscalCodeWebApi.DataLayer
                         CadastralCode = fields[19],
                         IsCapital = fields[13][0] == '1',
                         Name = fields[5],
-                        //Province = new Province { Id = long.Parse(fields[2]), Acronym = fields[14], Name = fields[11] },
                         ProvinceId = long.Parse(fields[2]),
                     });
                 var provinces = File.ReadAllLines(@"CsvData\comuniitaliani.csv")

@@ -49,7 +49,7 @@
                 url: "api/provinces",
                 success: (data) => {
                     $(data).each((_, province) => {
-                        $("<option>").val(province.acronym).text(province.acronym).appendTo($("#provinces"))
+                        $("<option>").val(province.acronym).text(province.name).appendTo($("#provinces"))
                     })
                     loadCities(data[0].acronym)
                 },
@@ -69,7 +69,7 @@
                 error: (e) => console.log(e)
             })
         }
-        $(function () {
+        $(() => {
             loadProvinces();
             $("#provinces").change(() => {
                 loadCities($("#provinces").val())
