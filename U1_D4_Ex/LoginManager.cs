@@ -19,7 +19,7 @@
         public static void PrintLogin()
         {
             Console.WriteLine("Ultimi login dell'utente:");
-            for (int i = 0; i < lastLoginCount; i++)
+            for (int i = lastLoginCount - 1; i >= 0; i--)
             {
                 Console.WriteLine($"{i + 1}\t{lastLogin[i]}");
             }
@@ -33,7 +33,7 @@
             }
             if (user.Password == user.Confirmation)
             {
-                LoggedUser = new User { Confirmation = user.Confirmation, Password = user.Password, Username = user.Username};
+                LoggedUser = new User { Confirmation = user.Confirmation, Password = user.Password, Username = user.Username };
                 RegisterLogin();
                 Console.WriteLine($"Utente {LoggedUser.Username} autenticato");
                 return true;
@@ -60,7 +60,7 @@
                 Console.WriteLine("Nessun utente autenticato");
                 return false;
             }
-            Console.WriteLine($"Utente autenticato alle ore {lastLogin[lastLoginCount]:T} del {lastLogin[lastLoginCount]:D}");
+            Console.WriteLine($"Utente autenticato alle ore {lastLogin[lastLoginCount - 1]:T} del {lastLogin[lastLoginCount - 1]:D}");
             return true;
         }
     }
