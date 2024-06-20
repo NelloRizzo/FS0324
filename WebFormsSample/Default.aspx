@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebFormsSample._Default" %>
-
+<%--ATTENZIONE: Premere F7 per visualizzare il codice--%>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label ID="lblStatus" runat="server"></asp:Label>
     <hr />

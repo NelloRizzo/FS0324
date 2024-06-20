@@ -11,26 +11,26 @@
 
 <form>
     <div class="row mb-2">
-        <div class="col-2"><label class="col-form-label">Nome</label></div>
-        <div class="col-10"><input class="form-control" id="firstName" required /></div>
+        <div class="col-md-2"><label class="col-form-label">Nome</label></div>
+        <div class="col-md-10"><input class="form-control" id="firstName" required /></div>
     </div>
     <div class="row mb-2">
-        <div class="col-2"><label class="col-form-label">Cognome</label></div>
-        <div class="col-10"><input class="form-control" id="lastName" required /></div>
+        <div class="col-md-2"><label class="col-form-label">Cognome</label></div>
+        <div class="col-md-10"><input class="form-control" id="lastName" required /></div>
     </div>
     <div class="row mb-2">
-        <div class="col-2"><label class="col-form-label">Data di nascita</label></div>
-        <div class="col-4"><input class="form-control" type="date" id="birthday" required /></div>
-        <div class="col-2"><label class="col-form-label">Sesso</label></div>
-        <div class="col-4">
+        <div class="col-md-2"><label class="col-form-label">Data di nascita</label></div>
+        <div class="col-md-4"><input class="form-control" type="date" id="birthday" required /></div>
+        <div class="col-md-2"><label class="col-form-label">Sesso</label></div>
+        <div class="col-md-4">
             <input class="form-check-inline" type="radio" name="gender" value="m" checked /><label class="col-form-label form-check-label me-2">M</label>
             <input class="form-check-inline" type="radio" name="gender" value="f" /><label class="col-form-label form-check-label">F</label>
         </div>
     </div>
     <div class="row mb-2">
-        <div class="col-2"><label class="col-form-label">Città di nascita</label></div>
-        <div class="col-2"><select class="form-select" id="provinces"></select></div>
-        <div class="col-8"><select class="form-select" id="cities" required></select></div>
+        <div class="col-md-2"><label class="col-form-label">Città di nascita</label></div>
+        <div class="col-md-3 col-sm-4"><select class="form-select" id="provinces"></select></div>
+        <div class="col-md-7 col-sm-8"><select class="form-select" id="cities" required></select></div>
     </div>
     <div class="row mb-2">
         <div class="col text-center"><button class="btn btn-primary" type="button" id="calc">Calcola</button></div>
