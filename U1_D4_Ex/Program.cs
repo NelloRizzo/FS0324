@@ -4,30 +4,31 @@ using System;
 
 namespace U1_D4_Ex
 {
-//  TRACCIA DELL'ESERCIZIO:
-//  Creare una console application che riproponga un menu come quello proposto di seguito:
+    //  TRACCIA DELL'ESERCIZIO:
+    //  Creare una console application che riproponga un menu come quello proposto di seguito:
 
-//	===============OPERAZIONI==============
-//	Scegli l'operazione da effettuare:
-//	1.: Login
-//	2.: Logout
-//	3.: Verifica ora e data di login
-//	4.: Lista degli accessi
-//	5.: Esci
-//	========================================
-//  L'esercizio deve poter simulare l'attività di login di un utente, ed in particolare:
-//  - L'operazione di login deve richiedere una username, una password ed una conferma password.
-//      Solo se la username è stata inserita e le password coincidono, l'utente verrà autenticato,
-//  - L'operazione di logout deve consentire di dimenticare l'utente autenticato.
-//      Se si richiede il logout quando un utente non è loggato,
-//      il sistema deve riproporre un messaggio di errore,
-//  - L'operazione di verifica deve riportare la data e l'ora di quando è stato effettuato il login
-//      dell'utente. Nel caso in cui venisse richiamato il metodo ma nessun utente risulta autenticato,
-//      il sistema deve riproporre un messaggio di errore.
-//  - La lista degli accessi deve riportare la lista storica dei login dell'utente.
-    
-//  Affinché l'esercizio venga svolto im modo corretto, deve essere implementata una classe statica
-//  'Utente' che comprenda metodi e proprietà anch'esse statiche.
+    //	===============OPERAZIONI==============
+    //	Scegli l'operazione da effettuare:
+    //	1.: Login
+    //	2.: Logout
+    //	3.: Verifica ora e data di login
+    //	4.: Lista degli accessi
+    //	5.: Esci
+    //	========================================
+    //  L'esercizio deve poter simulare l'attività di login di un utente, ed in particolare:
+    //  - L'operazione di login deve richiedere una username, una password ed una conferma password.
+    //      Solo se la username è stata inserita e le password coincidono, l'utente verrà autenticato,
+    //  - L'operazione di logout deve consentire di dimenticare l'utente autenticato.
+    //      Se si richiede il logout quando un utente non è loggato,
+    //      il sistema deve riproporre un messaggio di errore,
+    //  - L'operazione di verifica deve riportare la data e l'ora di quando è stato effettuato il login
+    //      dell'utente. Nel caso in cui venisse richiamato il metodo ma nessun utente risulta autenticato,
+    //      il sistema deve riproporre un messaggio di errore.
+    //  - La lista degli accessi deve riportare la lista storica degli ultimi 10 accessi
+    //      all'interno di un array di 10 elementi.
+
+    //  Affinché l'esercizio venga svolto im modo corretto, deve essere implementata una classe statica
+    //  'Utente' che comprenda metodi e proprietà anch'esse statiche.
     internal class Program
     {
         static char Choice()
