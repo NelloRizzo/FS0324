@@ -39,6 +39,8 @@
                 answer = (char)c;
                 // il ciclo si ripete fino a che answer è >= 1 e <= 5
             } while (answer < '1' || answer > '5');
+            // scarta il ritorno a capo perché la Read() lo lascia in ingresso e quindi la prossima ReadLine() fallirebbe perché
+            // troverebbe come primo carattere proprio il ritorno a capo!!!
             Console.ReadLine();
             // restituisce il valore letto
             return answer;
