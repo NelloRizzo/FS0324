@@ -1,0 +1,99 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Benvenuto</h1>
+    <p>Calcola qui il tuo codice fiscale</p>
+</div>
+
+<form>
+    <div class="row mb-2">
+        <div class="col-2"><label class="col-form-label">Nome</label></div>
+        <div class="col-10"><input class="form-control" id="firstName" required /></div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2"><label class="col-form-label">Cognome</label></div>
+        <div class="col-10"><input class="form-control" id="lastName" required /></div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2"><label class="col-form-label">Data di nascita</label></div>
+        <div class="col-4"><input class="form-control" type="date" id="birthday" required /></div>
+        <div class="col-2"><label class="col-form-label">Sesso</label></div>
+        <div class="col-4">
+            <input class="form-check-inline" type="radio" name="gender" value="m" checked /><label class="col-form-label form-check-label me-2">M</label>
+            <input class="form-check-inline" type="radio" name="gender" value="f" /><label class="col-form-label form-check-label">F</label>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2"><label class="col-form-label">Città di nascita</label></div>
+        <div class="col-2"><select class="form-select" id="provinces"></select></div>
+        <div class="col-8"><select class="form-select" id="cities" required></select></div>
+    </div>
+    <div class="row mb-2">
+        <div class="col text-center"><button class="btn btn-primary" type="button" id="calc">Calcola</button></div>
+    </div>
+</form>
+<div class="row">
+    <div class="text-center font-monospace display-6" id="fiscal-code"></div>
+</div>
+
+@section Scripts {
+    <script>
+        function loadProvinces() {
+            $("#provinces").empty()
+            $.ajax({
+                method: "get",
+                url: "api/provinces",
+                success: (data) => {
+                    $(data).each((_, province) => {
+                        $("<option>").val(province.acronym).text(province.acronym).appendTo($("#provinces"))
+                    })
+                    loadCities(data[0].acronym)
+                },
+                error: (e) => console.log(e)
+            })
+        }
+        function loadCities(acronym) {
+            $("#cities").empty()
+            $.ajax({
+                method: "get",
+                url: `api/cities/${acronym}`,
+                success: (data) => {
+                    $(data).each((_, city) => {
+                        $("<option>").val(city.id).text(city.name).appendTo($("#cities"))
+                    })
+                },
+                error: (e) => console.log(e)
+            })
+        }
+        $(function () {
+            loadProvinces();
+            $("#provinces").change(() => {
+                loadCities($("#provinces").val())
+            })
+            $("#calc").click(() => {
+                let data = {
+                    'firstName': $("#firstName").val(),
+                    'lastName': $("#lastName").val(),
+                    'birthday': $("#birthday").val(),
+                    'gender': $("input[name='gender']").val(),
+                    'birthCity': $("#cities").val()
+                }
+                console.log(data)
+                $.ajax({
+                    contentType: "application/json; charset=utf-8",
+                    method: "post",
+                    data: JSON.stringify(data),
+                    url: 'api/fiscalcode',
+                    success: (data) => {
+                        $("#fiscal-code").text(data.fiscalCode)
+                    },
+                    error: (e) => console.log(e)
+                })
+            })
+        })
+    </script>
+}
