@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace Contest
 {
     internal class Program
     {
         /// <summary>
-        /// Stampa tutti i numeri primi da <code>2</code> fino al numero specificato nel parametro <code>upperBound</code>.
+        /// Stampa tutti i numeri primi da <strong>2</strong> fino al numero specificato nel parametro <strong>upperBound</strong>.
         /// </summary>
         /// <param name="upperBound">Limite superiore dell'intervallo da considerare per l'estrazione dei numeri primi.</param>
         private static void Primes(int upperBound)

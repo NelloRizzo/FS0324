@@ -30,7 +30,8 @@ namespace WebFormsSample
             // la proprietà Text di una casella di testo contiene ciò che l'utente ha digitato
             // TryParse tenta di convertire una stringa (Text) nel tipo numerico (decimal)
             // se la conversione va a buon fine mette il valore nella variabile first
-            if (decimal.TryParse(txtFirst.Text, out decimal first) && decimal.TryParse(txtSecond.Text, out decimal second) ){
+            if (decimal.TryParse(txtFirst.Text, out decimal first) && decimal.TryParse(txtSecond.Text, out decimal second))
+            {
                 switch (cbOperation.SelectedIndex)
                 {
                     case 0: first += second; break;
