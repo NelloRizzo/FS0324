@@ -44,8 +44,7 @@
         /// <summary>
         /// Mostra a video le informazioni sull'atleta.
         /// </summary>
-        public void ShowMe()
-        {
+        public void ShowMe() {
             Console.WriteLine($"Hello, i'm {FirstName} {LastName} and i train for {Sport}!");
         }
     }

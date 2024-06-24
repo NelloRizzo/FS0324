@@ -4,13 +4,11 @@
     internal class Cantante : Personaggio, CapaceDiFareRumore
     {
         public string Canzone { get; set; }
-        public void Canta()
-        {
+        public void Canta() {
             Console.WriteLine(Canzone);
         }
 
-        public void FaiRumore()
-        {
+        public void FaiRumore() {
             Canta();
         }
     }

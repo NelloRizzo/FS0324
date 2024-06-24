@@ -27,8 +27,7 @@
     //  'Utente' che comprenda metodi e proprietà anch'esse statiche.
     internal class Program
     {
-        static char Choice()
-        {
+        static char Choice() {
             // answer è una variabile di tipo carattere singolo
             char answer;
             do // inizio il ciclo
@@ -46,15 +45,13 @@
             return answer;
         }
 
-        static char Menu()
-        {
+        static char Menu() {
             string[] items = ["Login", "Logout", "Verifica", "Elenco accessi", "Esci"];
             // PadLeft riempie la stringa con caratteri a sinistra fino a raggiungere la dimensione specificata
             // PadRight riempie a destra
             string title = " OPERAZIONI ".PadLeft(25, '=').PadRight(42, '=');
             Console.WriteLine(title);
-            for (int i = 0; i < items.Length; i++)
-            {
+            for (int i = 0; i < items.Length; i++) {
                 Console.WriteLine($"{i + 1}.\t{items[i]}");
             }
             Console.WriteLine("".PadLeft(title.Length, '='));
@@ -62,24 +59,20 @@
             return Choice();
         }
 
-        static User InputUser()
-        {
+        static User InputUser() {
             Console.Write("Username: "); string username = Console.ReadLine();
             Console.Write("Password: "); string password = Console.ReadLine();
             Console.Write("Conferma password: "); string confirm = Console.ReadLine();
             return new User { Confirmation = confirm, Password = password, Username = username };
         }
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             //Console.Write("Scrivi una scelta (1-5): ");
             //char c = Choice();
             //Console.WriteLine($"Hai scelto {c}");
             //DateTime dt = DateTime.Now;
             char choice;
-            while ((choice = Menu()) != '5')
-            {
-                switch (choice)
-                {
+            while ((choice = Menu()) != '5') {
+                switch (choice) {
                     case '1': LoginManager.Login(InputUser()); break;
                     case '2': LoginManager.Logout(); break;
                     case '3': LoginManager.IsLoggedIn(); break;

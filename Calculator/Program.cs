@@ -14,8 +14,7 @@
 
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             Calculator c = new Calculator(); // creo in memoria il calcolatore
             Console.WriteLine(c.Accumulator); // l'accumulatore vale 0 all'inizio
             c.Sub(10); // sottraggo 10 -> accumulatore = -10

@@ -2,21 +2,16 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             //int tabellina = 4;
             Console.Write("Quale tabellina vuoi? ");
-            if (int.TryParse(Console.ReadLine(), out int tabellina))
-            {
-                for (int n = 1; n < 11; n++)
-                {
+            if (int.TryParse(Console.ReadLine(), out int tabellina)) {
+                for (int n = 1; n < 11; n++) {
                     Console.Write(n);
-                    if (n % 2 == 0)
-                    {
+                    if (n % 2 == 0) {
                         Console.Write(" (numero pari) ");
                     }
-                    else
-                    {
+                    else {
                         Console.Write(" (numero dispari) ");
                     }
                     Console.Write(" per ");
@@ -25,8 +20,7 @@
                     Console.WriteLine(n * tabellina);
                 }
             }
-            else
-            {
+            else {
                 Console.WriteLine("Devi digitare un numero intero");
             }
         }

@@ -14,11 +14,9 @@ namespace FiscalCodeWebApi.Controllers
         private readonly ILogger<CitiesController> _logger = logger;
 
         [HttpPost]
-        public async Task<PersonalDataModelResponse> CalculateFiscalCode([FromBody] PersonalDataModelRequest model)
-        {
+        public async Task<PersonalDataModelResponse> CalculateFiscalCode([FromBody] PersonalDataModelRequest model) {
             _logger.LogInformation("Calculating fiscal code for {}", model);
-            string fc = _service.CalculateFiscalCode(new PersonalData
-            {
+            string fc = _service.CalculateFiscalCode(new PersonalData {
                 BirthCity = await _ctx.Cities.FindAsync(model.BirthCity) ?? throw new Exception("Città non trovata"),
                 BirthDay = DateOnly.FromDateTime(model.Birthday),
                 FirstName = model.FirstName,

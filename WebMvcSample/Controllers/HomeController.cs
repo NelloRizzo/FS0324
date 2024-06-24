@@ -7,22 +7,18 @@ namespace WebMvcSample.Controllers
     public class HomeController : Controller
     {
         // Azione Index, mostra solo la vista Views/Home/Index.cshtml
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             return View();
         }
         // Azione Calculate, risponde al submit del form nell'index
         // riceve in input ciò che l'utente ha inserito nel form
         // in un oggetto FormCollection che consente di accedere ai campi
         // attraverso una notazione con []
-        public ActionResult Calculate(FormCollection form)
-        {
+        public ActionResult Calculate(FormCollection form) {
             // form['first'] accede al campo del form <input name='first'>
-            if (decimal.TryParse(form["first"], out decimal first) && decimal.TryParse(form["second"], out decimal second))
-            {
+            if (decimal.TryParse(form["first"], out decimal first) && decimal.TryParse(form["second"], out decimal second)) {
                 decimal f = first;
-                switch (form["operation"])
-                {
+                switch (form["operation"]) {
                     case "+": first += second; break;
                     case "-": first -= second; break;
                     case "*": first *= second; break;
@@ -37,15 +33,13 @@ namespace WebMvcSample.Controllers
 
             return View("Index");
         }
-        public ActionResult About()
-        {
+        public ActionResult About() {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
-        {
+        public ActionResult Contact() {
             ViewBag.Message = "Your contact page.";
 
             return View();

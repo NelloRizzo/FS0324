@@ -2,8 +2,7 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             double stipendio = 1200;
             Console.WriteLine(stipendio);
             stipendio = stipendio * 1.2;

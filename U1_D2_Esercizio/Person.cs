@@ -3,15 +3,13 @@
     internal class Person
     {
         public Person() { }
-        public Person(string firstName, string lastName, int age)
-        {
+        public Person(string firstName, string lastName, int age) {
             FirstName = firstName;
             LastName = lastName;
             Age = age;
         }
 
-        public Person(string firstName, string lastName)
-        {
+        public Person(string firstName, string lastName) {
             FirstName = firstName;
             LastName = lastName;
         }
@@ -27,8 +25,7 @@
         // riassume in un'unica riga la creazione del campo privato e della proprietà di accesso
         public int Age { get; set; }
 
-        public string Description()
-        {
+        public string Description() {
             return $"Mi chiamo {FirstName} {LastName} ed ho {Age} anni.";
         }
     }

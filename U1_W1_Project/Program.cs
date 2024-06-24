@@ -7,8 +7,7 @@
         /// </summary>
         /// <param name="title">Titolo da presentare.</param>
         /// <param name="length">Lunghezza nella quale organizzare il titolo.</param>
-        private static void Frame(string title, int length = 80)
-        {
+        private static void Frame(string title, int length = 80) {
             title = $" {title.Trim()} ";
             // var -> serve ad indicare che il tipo di dato deve essere dedotto dall'espressione utilizzata per l'inizializzazione
             // ATTENZIONE: in questo caso il compilatore decide il tipo da assegnare alla variabile e questo tipo NON PUO' cambiare
@@ -29,8 +28,7 @@
         /// </summary>
         /// <param name="code">I primi 15 caratteri del codice fiscale.</param>
         /// <returns>Il carattere di controllo del codice fiscale.</returns>
-        private static char FiscalCodeCheckChar(string code)
-        {
+        private static char FiscalCodeCheckChar(string code) {
             return (char)Enumerable.Range('A', 26) // itero da 'A' a 'Z'
                                                    // e cerco il primo carattere che trovo
                 .FirstOrDefault(c => // tale che
@@ -44,20 +42,17 @@
         /// </summary>
         /// <param name="code">I primi 15 caratteri del codice fiscale.</param>
         /// <returns>Il codice fiscale completo.</returns>
-        private static string FiscalCode(string code)
-        {
+        private static string FiscalCode(string code) {
             // unisce i primi 15 caratteri con il codice di controllo
             return $"{code}{FiscalCodeCheckChar(code)}";
         }
 
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             // imposta l'output in console per visualizzare i caratteri internazionali (UTF-8) - altrimenti non visualizza il carattere €
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             // contribuente Paperon De' Paperoni
-            var t = new TaxPayer
-            {
+            var t = new TaxPayer {
                 Birthday = new DateOnly(1948, 2, 8),
                 City = "Paperopoli",
                 FirstName = "Paperon",
@@ -69,8 +64,7 @@
             Frame("CALCOLO DELL'IMPOSTA DA VERSARE");
             Console.WriteLine(t);
 
-            var m = new TaxPayer
-            {
+            var m = new TaxPayer {
                 Birthday = new DateOnly(1928, 5, 15),
                 City = "Topolinia",
                 FirstName = "Minnie",

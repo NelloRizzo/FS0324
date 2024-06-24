@@ -9,17 +9,14 @@ namespace FiscalCodeWebApi.DataLayer
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
 
-            try
-            {
+            try {
                 var cities = File.ReadAllLines(@"CsvData\comuniitaliani.csv")
                     .Skip(1)
                     .Select(l => l.Split(';'))
-                    .Select(fields => new City
-                    {
+                    .Select(fields => new City {
                         Id = long.Parse(fields[4]),
                         CadastralCode = fields[19],
                         IsCapital = fields[13][0] == '1',
@@ -35,8 +32,7 @@ namespace FiscalCodeWebApi.DataLayer
                 modelBuilder.Entity<Province>().HasData(provinces);
                 modelBuilder.Entity<City>().HasData(cities);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 _logger.LogError(ex, "Exception reading from file");
             }
         }

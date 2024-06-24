@@ -11,8 +11,7 @@ namespace FiscalCodeWebApi.Controllers
         private readonly ILogger<CitiesController> _logger = logger;
 
         [HttpGet]
-        public List<Province> GetProvincesList()
-        {
+        public List<Province> GetProvincesList() {
             _logger.LogInformation("Retrieving provinces list");
             return [.. _ctx.Provinces.OrderBy(p => p.Acronym)];
         }

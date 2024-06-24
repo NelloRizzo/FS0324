@@ -2,39 +2,33 @@
 {
     internal class NumbersTranslator
     {
-        public string Translate(int number)
-        {
+        public string Translate(int number) {
             // possiamo pensare a tre diversi casi iniziali:
             // 1. il numero è = 0
-            if (number == 0)
-            {
+            if (number == 0) {
                 // 1.1. allora restituisco direttamente "zero"
                 return "zero";
             }
             // 2. il numero è negativo
-            else if (number < 0)
-            {
+            else if (number < 0) {
                 // 2.1. allora restituisco la stringa "meno "
                 //      alla quale aggiungo la traduzione del numero cambiato di segno
                 return "meno " + //qualcosaltro
                                  TranslateNumber(-number);
             }
             // 3. il numero è positivo
-            else
-            {
+            else {
                 // 3.1. allora devo procedere alla traduzione effettiva...
                 return TranslateNumber(number); //qualcosaltro;
             }
         }
 
-        string TranslateNumber(int number)
-        {
+        string TranslateNumber(int number) {
             // se per caso il numero è 0 restituisco una stringa vuota...
             if (number == 0) return "";
             // qui sono sicuro che number > 0!!!
             // 1. se il numero è < 20
-            if (number < 20)
-            {
+            if (number < 20) {
                 // 1.1. non ho scelta: devo semplicemente scrivere la sua forma italiana
                 // 1.1.1. i numeri da 1 a 20 hanno un formato particolare:
                 string[] n = {"uno", "due","tre","quattro","cinque","sei","sette","otto",
@@ -43,8 +37,7 @@
                 return n[number - 1];
             }
             // 2. se il numero è < 100
-            else if (number < 100)
-            {
+            else if (number < 100) {
                 // 2.1. prendo le decine
                 int dec = number / 10;
                 // 2.2. prendo le unità

@@ -13,8 +13,7 @@ namespace WebFormsSample
 
         protected string SwitchUrl { get; private set; }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        protected void Page_Load(object sender, EventArgs e) {
             // Determine current view
             var isMobile = WebFormsFriendlyUrlResolver.IsMobileView(new HttpContextWrapper(Context));
             CurrentView = isMobile ? "Mobile" : "Desktop";
@@ -25,8 +24,7 @@ namespace WebFormsSample
             // Create switch URL from the route, e.g. ~/__FriendlyUrls_SwitchView/Mobile?ReturnUrl=/Page
             var switchViewRouteName = "AspNet.FriendlyUrls.SwitchView";
             var switchViewRoute = RouteTable.Routes[switchViewRouteName];
-            if (switchViewRoute == null)
-            {
+            if (switchViewRoute == null) {
                 // Friendly URLs is not enabled or the name of the switch view route is out of sync
                 this.Visible = false;
                 return;

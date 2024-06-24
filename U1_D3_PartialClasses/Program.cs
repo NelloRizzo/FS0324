@@ -2,17 +2,14 @@
 {
     internal class Program
     {
-        void Test()
-        {
+        void Test() {
             Console.WriteLine("Ciao");
         }
 
-        static void TestS()
-        {
+        static void TestS() {
             Console.WriteLine("Ciao");
         }
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             MyClass.StaticValue = 15;
             Console.WriteLine(MyClass.StaticValue);
 

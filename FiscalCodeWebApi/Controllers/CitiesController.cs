@@ -12,8 +12,7 @@ namespace FiscalCodeWebApi.Controllers
 
 
         [HttpGet("{acronym}")]
-        public List<City> GetCitiesList([FromRoute] string acronym)
-        {
+        public List<City> GetCitiesList([FromRoute] string acronym) {
             _logger.LogInformation("Retrieving cities by province acronym {}", acronym);
             return [.. _ctx.Cities.Where(c => c.Province!.Acronym == acronym).OrderBy(c => c.Name)];
         }

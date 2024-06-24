@@ -32,8 +32,7 @@ namespace System
         /// Questo si ottiene con la marcatura del metodo come <strong>static</strong> e la decorazione del parametro
         /// <strong>string <i>code</i></strong> con la parola chiave <strong>this</strong>.
         /// </remarks>
-        public static bool IsFiscalCode(this string code)
-        {
+        public static bool IsFiscalCode(this string code) {
             // mette in maiuscolo il codice da controllare
             code = code.ToUpper();
             // controlla se è scritto correttamente nella forma tramite regular expression
@@ -45,8 +44,7 @@ namespace System
             //            0  1  2  3  4  5   6   7   8   9
             int[] odds = [1, 0, 5, 7, 9, 13, 15, 17, 19, 21, 2, 4, 18, 20, 11, 3, 6, 8, 12, 14, 16, 10, 22, 25, 24, 23];
             var sum = 0;
-            for (var i = 0; i < 15; ++i)
-            {
+            for (var i = 0; i < 15; ++i) {
                 // se code[i] è una cifra (digit) calcola la differenza tra tale cifra e lo '0', altrimenti la differenza con la 'A'
                 // i caratteri sono interi codificati all'interno di una tabella: ad ogni carattere corrisponde un codice
                 // andando a sottrarre in questo modo, ottengo la posizione del carattere all'interno della propria famiglia (cifra o lettera)

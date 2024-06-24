@@ -2,8 +2,7 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             Person[] people =
             {
                 new Person("Paperon","De' Paperoni", 80),
@@ -12,8 +11,7 @@
                 new Person(){ Age = 16, FirstName="Quo", LastName = ""},
                 new() { Age = 16, FirstName="Qua", LastName = ""},
             };
-            for (int i = 0; i < people.Length; i++)
-            {
+            for (int i = 0; i < people.Length; i++) {
                 Console.WriteLine(people[i].Description());
             }
         }

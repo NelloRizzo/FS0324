@@ -15,8 +15,7 @@
 
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             double rad2 = Math.Sqrt(2);
             Console.WriteLine(rad2);
             TestSingleton t1 = TestSingleton.GetInstance();

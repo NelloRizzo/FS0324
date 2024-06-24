@@ -2,17 +2,14 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             int a = 10;
             int b = 0;
-            try
-            {
+            try {
                 int r = a / b;
                 Console.WriteLine(r);
             }
-            catch
-            {
+            catch {
                 Console.WriteLine("Ops... si è verificato un errore");
             }
             Console.WriteLine("Fine.");

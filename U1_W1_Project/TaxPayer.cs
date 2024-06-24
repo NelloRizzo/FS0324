@@ -51,8 +51,7 @@ namespace U1_W1_Project
         public required string FiscalCode
         {
             get { return fiscalCode; }
-            set
-            {
+            set {
                 // qui chiamo il metodo di estensione: value è una string e quindi possiederà il nuovo metodo che ho scritto
                 // sopra come estensione di una stringa
                 if (!value.IsFiscalCode()) // IsFiscalCode(value)
@@ -80,8 +79,7 @@ namespace U1_W1_Project
         public decimal Income
         {
             get { return income; }
-            set
-            {
+            set {
                 if (value <= 0)
                     // se il valore non è positivo lancio un'eccezione
                     throw new ArgumentException($"Il reddito deve essere positivo ({value})", nameof(Income));
@@ -94,8 +92,7 @@ namespace U1_W1_Project
         /// <remarks>Proprietà di sola lettura perché il suo valore dipende dal valore del reddito annuo.</remarks>
         public decimal Tax
         {
-            get
-            {
+            get {
                 if (Income <= 15000) return Income * .23m; // il modificatore m indica che .23 è di tipo decimal, altrimenti il compilatore lo gestirebbe come double
                 if (Income <= 28000) return 3450 + (Income - 15000) * .27m;
                 if (Income <= 55000) return 6960 + (Income - 28000) * .38m;
@@ -104,8 +101,7 @@ namespace U1_W1_Project
             }
         }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             // la concatenazione di stringhe è un'operazione "pesante" in memoria, perciò è meglio utilizzare strumenti appositi
             return new StringBuilder() // costruttore di stringhe attraverso operazioni successive senza appesantire la memoria
                 .Append("Contribuente: ").Append(FirstName).Append(' ').Append(LastName).AppendLine(",")

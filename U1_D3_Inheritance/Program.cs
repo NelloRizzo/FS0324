@@ -19,12 +19,10 @@
     }
     internal class Program
     {
-        static void GestisciVeicolo(Veicolo veicolo)
-        {
+        static void GestisciVeicolo(Veicolo veicolo) {
             Console.WriteLine($"Sono un veicolo a {veicolo.Ruote} ruote");
         }
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             Automobile a = new Automobile { Modello = "Ferrari", Ruote = 4 };
             Bicicletta b = new Bicicletta { Ruote = 2 };
             GestisciVeicolo(a);

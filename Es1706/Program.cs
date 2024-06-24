@@ -2,16 +2,14 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             Athlete athlete = new Athlete();
             athlete.FirstName = "Archimede";
             athlete.LastName = "Pitagorico";
             athlete.Sport = "Olimpiadi di Matematica";
             athlete.ShowMe();
 
-            Employee paperino = new Employee()
-            { // lista di inizializzazione
+            Employee paperino = new Employee() { // lista di inizializzazione
                 FirstName = "Paolino",
                 LastName = "Paperino",
                 Id = "17171717",

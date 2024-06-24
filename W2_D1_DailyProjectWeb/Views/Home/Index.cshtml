@@ -1,0 +1,49 @@
+﻿@using W2_D1_DailyProjectV1
+@model List<Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Menu</h1>
+</div>
+
+<div class="row">
+    <div class="offset-3 col-6">
+        <table class="table table-responsive">
+            @foreach (var product in Model) {
+                <tr>
+                    <td>
+                        @product.Name
+                        @if (product.Quantity > 0) {
+                            <span class="qty">@product.Quantity @product.MeasureUnit</span>
+                        }
+                    </td>
+                    <td class="price">@string.Format("{0:C}", product.UnitPrice)</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .qty {
+            font-family: monospace;
+        }
+
+            .qty::before {
+                content: '(';
+            }
+
+            .qty::after {
+                content: ')';
+            }
+
+        .price {
+            text-align: end;
+            font-family: monospace;
+            font-weight: bold;
+        }
+    </style>
+}

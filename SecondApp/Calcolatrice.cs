@@ -9,13 +9,11 @@
             get { return accumulatore; }
         }
 
-        public void Somma(decimal valore)
-        {
+        public void Somma(decimal valore) {
             accumulatore = accumulatore + valore;
         }
 
-        public decimal AccumulatoreInvertito()
-        {
+        public decimal AccumulatoreInvertito() {
             return 1 / accumulatore;
         }
     }

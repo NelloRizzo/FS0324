@@ -23,12 +23,10 @@
     {
         public override int Seed { get { return base.Seed; } set { if (value >= 0 && value < 4) base.Seed = value; else Console.WriteLine("ERRORE NEL SEME"); } }
         public override int Value { get { return base.Value; } set { if (value > 0 && value < 11) base.Value = value; else Console.WriteLine("ERRORE NEL VALORE"); } }
-        public override void Show()
-        {
+        public override void Show() {
             string[] semi = ["denari", "coppe", "spade", "bastoni"];
             if (Seed == 0 && Value == 7) Console.WriteLine("settebello");
-            switch (Value)
-            {
+            switch (Value) {
                 case 8: Console.Write("donna"); break;
                 case 9: Console.Write("cavallo"); break;
                 case 10: Console.Write("re"); break;
@@ -52,11 +50,9 @@
         // indice della prossima carta da estrarre
         private int currentCard = 0;
 
-        public Card Next()
-        {
+        public Card Next() {
             // se la prossima carta è interna all'array
-            if (currentCard < card.Length)
-            {
+            if (currentCard < card.Length) {
                 // restituisco la prossima carta
                 return card[currentCard++]; // e dopo incremento il contatore
             }
@@ -66,8 +62,7 @@
     }
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             //Card c = new Card { Seed = 1234, Value = -50 };
             //c.Show();
             NeapoleanCard nc = new NeapoleanCard { Seed = 3, Value = 8 };

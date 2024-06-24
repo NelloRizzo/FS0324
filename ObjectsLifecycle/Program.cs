@@ -8,8 +8,7 @@
 
         //public void setValue(int value) { this.value = value; }
 
-        public ValoreSemprePositivo()
-        {
+        public ValoreSemprePositivo() {
             Console.WriteLine("Costruttore della classe");
             value = 1;
         }
@@ -27,15 +26,13 @@
         public string nome;
         public string cognome;
 
-        public Test()
-        {
+        public Test() {
             Console.WriteLine("Costruttore senza parametri");
             nome = "Non assegnato";
             cognome = "Non assegnato";
         }
 
-        public Test(string nome, string cognome)
-        {
+        public Test(string nome, string cognome) {
             Console.WriteLine("Costruttore con due parametri di tipo string");
             this.nome = nome;
             this.cognome = cognome;
@@ -44,8 +41,7 @@
 
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             int x = 1;
             {
                 //int x = 2; // ERRORE: la variabile esiste già

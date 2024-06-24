@@ -2,8 +2,7 @@
 {
     class Veicolo
     {
-        public virtual void Spostati(int km)
-        {
+        public virtual void Spostati(int km) {
             Console.WriteLine($"Il veicolo sta percorrendo {km} km");
         }
     }
@@ -12,8 +11,7 @@
     {
         public int KmL { get; set; }
 
-        public override void Spostati(int km)
-        {
+        public override void Spostati(int km) {
             //Console.WriteLine($"Il veicolo percorre {km} km");
             base.Spostati(km);
             Console.WriteLine($"> Ho appena consumato {1.0 * km / KmL} litri di benzina");
@@ -26,12 +24,10 @@
     }
     internal class Program
     {
-        static void Movimento(Veicolo v)
-        {
+        static void Movimento(Veicolo v) {
             v.Spostati(30);
         }
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             Veicolo v = new Veicolo();
             Automobile a = new Automobile { KmL = 16 };
             Movimento(v);

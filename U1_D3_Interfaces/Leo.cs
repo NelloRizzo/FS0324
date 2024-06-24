@@ -4,8 +4,7 @@
     {
         public Leo() { Kind = "Leone"; }
 
-        public override void Bark()
-        {
+        public override void Bark() {
             Console.WriteLine("Sono un leone e ruggisco");
         }
     }

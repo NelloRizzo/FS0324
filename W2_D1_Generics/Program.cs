@@ -1,8 +1,7 @@
-﻿using System.Collections;
-
-namespace W2_D1_Generics
+﻿namespace W2_D1_Generics
 {
-    class MyValue : Object {
+    class MyValue : Object
+    {
         public required int Value { get; set; }
 
         public override string ToString() {
@@ -11,7 +10,8 @@ namespace W2_D1_Generics
         }
     }
 
-    class MyDerived : MyValue {
+    class MyDerived : MyValue
+    {
         public override string ToString() {
             return $"MyDerived(Value = {Value})";
         }
@@ -37,7 +37,7 @@ namespace W2_D1_Generics
             var numbers = new List<int>() { 1, 2, 3, 4, 5 };
             List<int> n = [321, 435, 24536, 35467, 3456, 74653];
 
-            var mines = new List<MyValue>() { 
+            var mines = new List<MyValue>() {
                 new MyValue { Value = 10 }, new MyValue { Value = 20 }, new MyValue { Value = 30 }, new MyDerived{ Value=100 } };
             foreach (var item in mines) {
                 Console.WriteLine(item);

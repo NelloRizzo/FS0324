@@ -2,26 +2,21 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             BankAccount a1 = new DebitBankAccount("Nello", 1200);
-            try
-            {
+            try {
                 BankAccount a2 = new BankAccount("Nello", 0);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Console.WriteLine(ex.Message);
             }
 
-            try
-            {
+            try {
                 a1.Deposit(500);
                 a1.Withdraw(1000);
                 a1.Withdraw(1000);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Console.WriteLine(ex.Message);
             }
         }

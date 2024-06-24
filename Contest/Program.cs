@@ -13,8 +13,7 @@ namespace Contest
         /// </remarks>
         /// <see cref="https://it.wikipedia.org/wiki/Crivello_di_Eratostene"/>
         /// <param name="upperBound">Limite superiore dell'intervallo da considerare per l'estrazione dei numeri primi.</param>
-        private static HashSet<int> Sieve(int upperBound)
-        {
+        private static HashSet<int> Sieve(int upperBound) {
             // un HashSet è un contenitore senza duplicati (Set)
             var result = new HashSet<int>();
             // un array di bit, molto più performante di un bool[] ed occupa 1 bit per ogni valore (il bool occupa 1 byte)
@@ -22,15 +21,13 @@ namespace Contest
             // perché l'algoritmo del crivello prevede che inizialmente tutti i numeri siano primi
             var primes = new BitArray(upperBound, true);
             // attraversa l'array
-            for (var i = 2; i < upperBound; i++)
-            {
+            for (var i = 2; i < upperBound; i++) {
                 // se nella posizione i c'è un numero primo
                 if (primes[i])
                     // tutti i multipli del numero NON sono primi
                     // i << 1 -> shift a destra di 1 bit (moltiplica per 2)
                     // notare l'incremento di j (che avanza con passo pari a i)
-                    for (var j = i << 1; j < upperBound; j += i)
-                    {
+                    for (var j = i << 1; j < upperBound; j += i) {
                         primes[j] = false;
                     }
             }
@@ -41,8 +38,7 @@ namespace Contest
             for (var i = 2; i < upperBound; i++) if (primes[i]) { result.Add(i); }
             return result;
         }
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             // un cronometro
             var sw = new Stopwatch();
             // registro le durate per fare una media 
@@ -53,8 +49,7 @@ namespace Contest
             var upperBound = 100000;
             // numero di esecuzioni delle quali fare la media
             var times = 1000;
-            for (var i = 0; i <= times; ++i)
-            {
+            for (var i = 0; i <= times; ++i) {
                 // attiva il cronometro
                 sw.Restart();
                 // esegue il metodo da misurare

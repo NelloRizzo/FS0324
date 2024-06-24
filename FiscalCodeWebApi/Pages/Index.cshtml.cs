@@ -9,13 +9,11 @@ namespace FiscalCodeWebApi.Pages
 
         public PersonalDataModelRequest PersonalData { get; set; } = new PersonalDataModelRequest { FirstName = "", LastName = "", BirthCity = 0 };
 
-        public IndexModel(ILogger<IndexModel> logger)
-        {
+        public IndexModel(ILogger<IndexModel> logger) {
             _logger = logger;
         }
 
-        public void OnGet()
-        {
+        public void OnGet() {
 
         }
     }

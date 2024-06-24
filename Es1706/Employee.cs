@@ -54,8 +54,7 @@
         /// <summary>
         /// Descrive il dipendente.
         /// </summary>
-        public void ShowMe()
-        {
+        public void ShowMe() {
             Console.WriteLine($"Ciao, sono {FirstName} {LastName}, matricola {Id}, lavoro nel reparto {Department} e percepisco {Salary} euro di stipendio.");
         }
 

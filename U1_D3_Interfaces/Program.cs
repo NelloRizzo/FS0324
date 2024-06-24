@@ -10,16 +10,13 @@
         //  emettiVerso() -> void
 
         //static void Zoo(Animal[] a)
-        static void Zoo(CapaceDiFareRumore[] a)
-        {
-            for (int i = 0; i < a.Length; i++)
-            {
+        static void Zoo(CapaceDiFareRumore[] a) {
+            for (int i = 0; i < a.Length; i++) {
                 //a[i].Bark();
                 a[i].FaiRumore();
             }
         }
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             Cantante gigi = new Cantante();
             gigi.Canzone = "Le domeniche d'agosto quanta neve che cadrà";
             gigi.Canta();

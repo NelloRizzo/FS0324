@@ -16,15 +16,12 @@
 
         public bool MotoreAcceso { get { return _motoreAcceso; } private set { _motoreAcceso = value; } }
 
-        public void Accensione()
-        {
-            if (MotoreAcceso)
-            {
+        public void Accensione() {
+            if (MotoreAcceso) {
                 Console.WriteLine("Il motore è acceso, quindi lo spengo ricordando di disattivare le funzionalità del veicolo connesse");
                 MotoreAcceso = false;
             }
-            else
-            {
+            else {
                 Console.WriteLine("Il motore è spento, predispongo il veicolo per l'accensione e lo accendo");
                 MotoreAcceso = true;
             }
@@ -32,8 +29,7 @@
     }
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             Person archimede = new Person { Name = "Archimede", Surname = "Pitagorico" };
             Console.WriteLine(archimede.FullName);
             Person pico = new Person { Name = "Pico", Surname = "De' Paperis" };

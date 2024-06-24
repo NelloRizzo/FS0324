@@ -22,13 +22,11 @@
 
     internal class Program
     {
-        static void HandlePerson(Person person)
-        {
+        static void HandlePerson(Person person) {
             person.DescribeNotVirtual();
             person.Describe();
         }
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             Person paperino = new Person { Name = "Paperino" };
             paperino.DescribeNotVirtual();
             paperino.Describe();
