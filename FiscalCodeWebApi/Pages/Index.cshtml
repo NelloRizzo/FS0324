@@ -42,6 +42,37 @@
 
 @section Scripts {
     <script>
+        console.log(nome)
+
+        var nome = "Pippo"
+
+        $(() => {
+            loadProvinces();
+            $("#provinces").change(() => {
+                loadCities($("#provinces").val())
+            })
+            $("#calc").click(() => {
+                let data = {
+                    'firstName': $("#firstName").val(),
+                    'lastName': $("#lastName").val(),
+                    'birthday': $("#birthday").val(),
+                    'gender': $("input[name='gender']").val(),
+                    'birthCity': $("#cities").val()
+                }
+                console.log(data)
+                $.ajax({
+                    contentType: "application/json; charset=utf-8",
+                    method: "post",
+                    data: JSON.stringify(data),
+                    url: 'api/fiscalcode',
+                    success: (data) => {
+                        $("#fiscal-code").text(data.fiscalCode)
+                    },
+                    error: (e) => console.log(e)
+                })
+            })
+        })
+
         function loadProvinces() {
             $("#provinces").empty()
             $.ajax({
@@ -69,31 +100,5 @@
                 error: (e) => console.log(e)
             })
         }
-        $(() => {
-            loadProvinces();
-            $("#provinces").change(() => {
-                loadCities($("#provinces").val())
-            })
-            $("#calc").click(() => {
-                let data = {
-                    'firstName': $("#firstName").val(),
-                    'lastName': $("#lastName").val(),
-                    'birthday': $("#birthday").val(),
-                    'gender': $("input[name='gender']").val(),
-                    'birthCity': $("#cities").val()
-                }
-                console.log(data)
-                $.ajax({
-                    contentType: "application/json; charset=utf-8",
-                    method: "post",
-                    data: JSON.stringify(data),
-                    url: 'api/fiscalcode',
-                    success: (data) => {
-                        $("#fiscal-code").text(data.fiscalCode)
-                    },
-                    error: (e) => console.log(e)
-                })
-            })
-        })
     </script>
 }

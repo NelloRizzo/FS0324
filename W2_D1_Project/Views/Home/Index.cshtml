@@ -1,0 +1,15 @@
+﻿@*
+    Dichiarazione del modello dati che la vista è in grado di presentare tramite
+    un oggetto che si chiama, all'interno della pagina "Model"
+*@
+@model List<PersonModel>
+
+<div class="text-center">
+    <h1 class="display-4">Elenco</h1>
+    <p>Sono stati trasferiti @Model.Count elementi.</p>
+</div>
+<ul>
+    @foreach (var item in Model) {
+        <li><span>@item.FirstName</span> <span>@item.LastName</span></li>
+    }
+</ul>
