@@ -1,0 +1,21 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Prodotti";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Prodotti</h1>
+</div>
+<div class="row">
+    <table class="table offset-2 col-8">
+        <tbody>
+            @foreach (var product in Model) {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Category.Name</td>
+                    <td><a class="btn btn-sm btn-success" asp-action="ProductCard" asp-route-id="@product.Id">Scheda Prodotto</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

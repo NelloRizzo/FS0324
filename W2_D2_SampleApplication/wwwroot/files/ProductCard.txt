@@ -1,0 +1,8 @@
+﻿++++++++++++++++ Dettaglio Prodotto ++++++++++++++++++
+
+Nome: #PRODOTTO
+Categoria: #CATEGORIA
+Descrizione:
+#DESCRIZIONE
+
+Grazie per aver acquistato il nostro prodotto. A presto!
