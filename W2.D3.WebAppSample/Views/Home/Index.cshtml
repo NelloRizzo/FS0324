@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+    int tabellina = 6;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Tabellina del @tabellina</h1>
+</div>
+
+<table>
+    @for (var i = 1; i < 11; ++i) {
+        <tr>
+            <td>@tabellina</td>
+            <td>&times;</td>
+            <td>@i</td>
+            <td>=</td>
+        @*
+        ERRORE perché l'espressione non sarebbe valutata completamente ma il Razor Engine stamperebbe solo il valore della variabile tabellina
+        <td>@tabellina * i</td>
+        *@
+            <td>@(tabellina * i)</td>
+        </tr>
+    }
+</table>
