@@ -9,7 +9,7 @@ internal class Program
         Console.WriteLine("Nome: {0}\nCognome: {1}",
             cv.Informazioni.Name, cv.Informazioni.Surname);
 
-        foreach(var e in cv.Impiego) {
+        foreach (var e in cv.Impiego) {
             Console.WriteLine("{2} - Dal {0} al {1}", e.Dal, e.Al, e.Azienda);
         }
     }

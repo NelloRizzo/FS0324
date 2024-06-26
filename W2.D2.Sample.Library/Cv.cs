@@ -1,10 +1,4 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.ConstrainedExecution;
-using System.Security.Claims;
-using System;
-
-namespace W2.D2.Sample.Library
+﻿namespace W2.D2.Sample.Library
 {
     // APPLICAZIONE CONSOLE PER LA GESTIONE DI CLASSI COMPLESSE
     // Sviluppare una console application che preveda la archiviazione del proprio CV

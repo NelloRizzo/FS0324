@@ -15,8 +15,8 @@ namespace W2.D3.WebAppSample.Models
         ]
         [Range(1, 10000)]
         public decimal Income { get; set; }
-        [Display(Name ="Sesso")]
-        public char Gender {  get; set; }
+        [Display(Name = "Sesso")]
+        public char Gender { get; set; }
 
     }
 }

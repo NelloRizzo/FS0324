@@ -26,6 +26,6 @@
         Increment(m);
         // effetto collaterale: side effect
         // il valore di m cambia perché My è Reference Type
-        Console.WriteLine("Dopo la chiamata al metodo Increment(My), m vale {0}", m); 
+        Console.WriteLine("Dopo la chiamata al metodo Increment(My), m vale {0}", m);
     }
 }

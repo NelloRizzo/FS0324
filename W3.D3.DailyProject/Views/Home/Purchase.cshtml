@@ -1,0 +1,49 @@
+﻿@using W3.D3.DailyProject.Entities
+@model W3.D3.DailyProject.Models.PurchaseViewModel
+
+@{
+    ViewData["Title"] = "Acquisto Biglietto";
+}
+
+<h1>Acquisto Biglietto</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Purchase">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <select asp-for="Type" class="form-select">
+                    <option value="@((int)TicketType.Normal)">Normale</option>
+                    <option value="@((int)TicketType.Reduced)">Ridotto</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomId" class="control-label"></label>
+                <select asp-for="RoomId" class="form-select" asp-items="Model.Rooms.Select(r => new SelectListItem{ Text = r.Name, Value = r.Id.ToString()})"></select>
+                <span asp-validation-for="RoomId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserFirstName" class="control-label"></label>
+                <input asp-for="UserFirstName" class="form-control" />
+                <span asp-validation-for="UserFirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserLastName" class="control-label"></label>
+                <input asp-for="UserLastName" class="form-control" />
+                <span asp-validation-for="UserLastName" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Procedi" class="btn btn-primary" />    
+                <a asp-action="Index" class="btn btn-secondary">Indietro</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

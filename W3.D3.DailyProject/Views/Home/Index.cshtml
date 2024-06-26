@@ -1,0 +1,53 @@
+﻿@using W3.D3.DailyProject.Entities
+@model IEnumerable<Statistics>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@functions {
+    // questa funzione restituisce una parte del nome di una classe per "colorare" l'output sulla base di un valore di percentuale
+    string GetAlertClass(int percentage) {
+        string[] classes = ["success", "warning", "danger"];
+        // i = 0 se la percentuale è < 25, 1 se minore di 75 altrimenti 2
+        var i = percentage < 25 ? 0 : percentage < 75 ? 1 : 2;
+        // restituisce l'opportuno valore prelevandolo dall'array
+        return classes[i];
+    }
+}
+<div class="text-center">
+    <h1 class="display-4">Multisala Odeon</h1>
+    <a asp-action="Purchase" class="btn btn-primary">Acquista Biglietto</a>
+</div>
+
+<div class="row mt-3">
+    <div class="col alert alert-info text-center">Totale biglietti acquistati: @Model.Select(s => s.Attendance).Sum()</div>
+</div>
+
+<div class="row mt-3">
+    @foreach (var statistics in Model) {
+        // la percentuale di occupazione della sala letta come un intero (int)
+        var p = (int)statistics.AttendancePercentage;
+        // recupera la stringa che rappresenta la colorazione dei controlli
+        var c = GetAlertClass(p);
+
+        <div class="card col-4 flex-column">
+            <div class="card-header">
+                <div class="progress">
+                    @* aggiunge l'ampiezza della progress bar (style = "width..."), la classe di background (bg-...) e i valori aria *@
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-@c" role="progressbar" style="width: @p%;" aria-valuenow="@p" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="card-title"><h6 class="display-6 text-center">@statistics.Room.Name</h6></div>
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <table class="table table-borderless m-auto">
+                        <tr><td>Capienza massima:</td><td class="text-end">@statistics.Room.MaxAttendance</td></tr>
+                        <tr><td>Biglietti normali:</td><td class="text-end">@statistics.NormalAttendance</td></tr>
+                        <tr><td>Biglietti ridotti:</td><td class="text-end">@statistics.ReducedAttendance</td></tr>
+                        <tr><td>Biglietti acquistati:</td><td class="text-end">@statistics.Attendance</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -52,7 +52,7 @@ namespace W2.D3.WebAppSample.Controllers
             var list = new List<Person>() {
                 new Person { FirstName = "Archimede", LastName="Pitagorico"},
                 new Person { FirstName = "Paperon", LastName="De' Paperoni"},
-                new Person{FirstName = "Pico", LastName = "De' Paperis"} 
+                new Person{FirstName = "Pico", LastName = "De' Paperis"}
             };
             return View(list);
         }

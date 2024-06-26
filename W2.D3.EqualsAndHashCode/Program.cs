@@ -31,7 +31,7 @@
         HashSet<int> hi = new HashSet<int> { 1, 2, 3, 4, 3, 2, 4, 5, 6, 3, 5 };
         foreach (var i in hi) { Console.WriteLine(i); }
 
-        HashSet<My> hm = new HashSet<My> { new My { Value = 3 }, new My { Value = 2 }, new My {Value = 3 } };
+        HashSet<My> hm = new HashSet<My> { new My { Value = 3 }, new My { Value = 2 }, new My { Value = 3 } };
         foreach (var i in hm) { Console.WriteLine(i); }
     }
 }
