@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace W2_D2_SampleApplication.Models
+﻿namespace W2_D2_SampleApplication.Models
 {
     public class Product
     {

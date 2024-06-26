@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting.Internal;
 using System.Diagnostics;
 using W2_D2_ControllersAndActions.Models;
 

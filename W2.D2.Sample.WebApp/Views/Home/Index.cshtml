@@ -1,0 +1,20 @@
+﻿@using W2.D2.Sample.Library
+@model Cv
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<a asp-action="Exp">Esperienza</a> | <a asp-action="Info">Info</a> | <a asp-action="Study">Studi</a>
+<div class="text-center">
+    <h1 class="display-4">Curriculum di @Model.Informazioni.Name @Model.Informazioni.Surname</h1>
+</div>
+@foreach(var s in Model.Studi) {
+    <div>
+        @s.Istituto dal @s.Dal al @s.Al
+    </div>
+}
+@foreach (var s in Model.Impiego) {
+    <div>
+        @s.Azienda dal @s.Dal al @s.Al
+    </div>
+}

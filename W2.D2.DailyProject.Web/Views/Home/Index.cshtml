@@ -1,0 +1,55 @@
+﻿@using W2.D2.DailyProject.Business.Models
+@model Curriculum
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Curriculum di @Model.PersonalData.FirstName @Model.PersonalData.LastName</h1>
+</div>
+
+<ul>
+    <li>
+        Informazioni Personali
+        <dl>
+            <dt>Nome:</dt>
+            <dd>@Model.PersonalData.FirstName</dd>
+            <dt>Cognome:</dt>
+            <dd>@Model.PersonalData.LastName</dd>
+            <dt>Email:</dt>
+            <dd><a href="mailto:@Model.PersonalData.Email">@Model.PersonalData.Email</a></dd>
+            <dt>Telefono:</dt>
+            <dd><a href="tel:@Model.PersonalData.Phone">@Model.PersonalData.Phone</a></dd>
+        </dl>
+    </li>
+    <li>
+        Studi e Formazione
+
+        @foreach (var study in Model.Studies.OrderByDescending(s => s.To)) {
+            <dl>
+                <dt>Istituto:</dt>
+                <dd>@study.Institute</dd>
+                <dt>Qualifica:</dt>
+                <dd>@study.Qualification</dd>
+                <dt>Tipo:</dt>
+                <dd>@study.Kind</dd>
+                <dd>@Html.DisplayFor(s => study, "TimedInfoView")</dd>
+            </dl>
+        }
+
+    </li>
+    <li>
+        Esperienze Professionali
+        @foreach (var exp in Model.Experiences.OrderByDescending(s => s.To)) {
+            <dl>
+                <dt>Presso:</dt>
+                <dd>@exp.Company</dd>
+                <dt>Tipo di Lavoro:</dt>
+                <dd>@exp.JobDescription</dd>
+                <dt>Compito:</dt>
+                <dd>@exp.Tasks</dd>
+                <dd>@Html.DisplayFor(s => exp, "TimedInfoView")</dd>
+            </dl>
+        }
+    </li>
+</ul>
