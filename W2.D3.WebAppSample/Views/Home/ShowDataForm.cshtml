@@ -1,0 +1,28 @@
+﻿@model Person
+@{
+}
+<div class="text-center">
+    <h1 class="display-4">Inserimento Dati</h1>
+</div>
+
+
+<form asp-action="HandleForm">
+    <fieldset>
+        <legend>Dati Anagrafici</legend>
+        <div>
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" />
+        </div>
+        <div>
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" />
+        </div>
+        <div>
+            <label asp-for="Income"></label>
+            <input asp-for="Income" />
+        </div>
+        <div>
+            <button>Invia Dati</button>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,21 @@
+﻿@model List<Person>
+@{
+}
+<div class="text-center display-4">Una Lista di Persone</div>
+
+@if (Model.Any()) { @* se ci sono elementi all'interno della lista *@
+    foreach(var person in Model) { @* attraverso la lista e li stampo in HTML *@
+        <div class="row">
+            <div class="offset-2 col-3">@person.FirstName</div>
+            <div class="col-3">@person.LastName</div>
+            <div class="col-3">@PersonFormat(person)</div>
+        </div>
+    }
+}
+else { @* se non ci sono elementi nella lista *@
+    <div class="row alert alert-danger">Non ci sono persone in lista</div>
+}
+
+@functions {
+    string PersonFormat(Person person) => $"{person.LastName} {person.FirstName[0]}. ({person.Gender})";
+}
