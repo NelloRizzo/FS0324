@@ -49,6 +49,11 @@ namespace W2.D3.WebAppSample.Controllers
 
         public IActionResult Lista() {
 
+            var list = new List<Person>() {
+                new Person { FirstName = "Archimede", LastName="Pitagorico"},
+                new Person { FirstName = "Paperon", LastName="De' Paperoni"},
+                new Person{FirstName = "Pico", LastName = "De' Paperis"} 
+            };
             return View(list);
         }
 
