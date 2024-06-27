@@ -9,6 +9,9 @@
 <div>
     <h4>Article</h4>
     <hr />
+    @if(ViewBag.Cover != null) {
+        <img src="@ViewBag.Cover" height="200" />
+    }
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
