@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Il Mio Nuovo Blog Asp.Net Core";
+
+    var dataAttuale = ViewData["DataAttuale"] as DateTime?; // ViewData["DataAttuale"] as Nullable<DateTime>
+    var dataVb = ViewBag.DataAttuale as DateTime?;
+    var dataTemp = TempData["DataAttuale"] as DateTime?;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div class="text-center">Sul server sono le ore @(dataAttuale?.ToLongTimeString() ?? "non previsto") di @dataAttuale?.ToLongDateString()</div>
+<div class="text-center">Sul server sono le ore @(dataVb?.ToLongTimeString() ?? "non previsto") di @dataVb?.ToLongDateString()</div>
+<div class="text-center">Sul server sono le ore @(dataTemp?.ToLongTimeString() ?? "non previsto") di @dataTemp?.ToLongDateString()</div>
+
+<div>@(ViewData["DataAttuale"] ?? "non presente")</div>
+<div>@(ViewBag.DataAttuale ?? "non presente")</div>
+<div>@(TempData["DataAttuale"] ?? "non presente")</div>

@@ -1,0 +1,25 @@
+﻿@using W2.D4.BlogWebApp.Entities
+@model IEnumerable<Article>
+@{
+    ViewData["Title"] = "Articoli";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Il Mio Blog</h1>
+    <p>Benvenuto sul mio nuovo blog.</p>
+</div>
+
+@if (Model.Any()) {
+    <div class="row">
+        <div class="offset-2 col-8">
+            <table class="table table-borderless">
+                @foreach(var article in Model) {
+                    <tr><td>@article.Title</td><td>@article.PublishedAt</td><td><a asp-action="Read" asp-route-id="@article.Id" >Leggi</a></td></tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+else {
+    <div class="row"><div class="col text-center alert alert-warning">Non ci sono ancora articoli.</div></div>
+}

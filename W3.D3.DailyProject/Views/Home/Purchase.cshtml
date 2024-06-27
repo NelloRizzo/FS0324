@@ -3,6 +3,8 @@
 
 @{
     ViewData["Title"] = "Acquisto Biglietto";
+
+    var rooms = ViewBag.Rooms as IEnumerable<Room>;
 }
 
 <h1>Acquisto Biglietto</h1>
@@ -21,8 +23,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="RoomId" class="control-label"></label>
-                <select asp-for="RoomId" class="form-select" asp-items="Model.Rooms.Select(r => new SelectListItem{ Text = r.Name, Value = r.Id.ToString()})"></select>
-                <span asp-validation-for="RoomId" class="text-danger"></span>
+                <select asp-for="RoomId" class="form-select" asp-items="rooms.Select(r => new SelectListItem{ Text = r.Name, Value = r.Id.ToString()})"></select>
+                @*                 <select asp-for="RoomId" class="form-select" asp-items="Model.Rooms.Select(r => new SelectListItem{ Text = r.Name, Value = r.Id.ToString()})"></select>*@                <span asp-validation-for="RoomId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UserFirstName" class="control-label"></label>
@@ -35,7 +37,7 @@
                 <span asp-validation-for="UserLastName" class="text-danger"></span>
             </div>
             <div class="form-group mt-2">
-                <input type="submit" value="Procedi" class="btn btn-primary" />    
+                <input type="submit" value="Procedi" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-secondary">Indietro</a>
             </div>
         </form>

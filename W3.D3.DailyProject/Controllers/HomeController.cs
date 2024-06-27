@@ -44,12 +44,11 @@ namespace W3.D3.DailyProject.Controllers
                 .Where(s => s.Attendance == s.Room.MaxAttendance)
                 // e prende la sala
                 .Select(s => s.Room);
+            // recupera solo le sale che hanno posti liberi
+            var rooms = _roomService.GetRooms().Where(r => !fullRooms.Contains(r)).OrderBy(r => r.Name);
             // passa i dati alla vista
-            return View(
-                new PurchaseViewModel {
-                    // trasferisce solo le sale che hanno posti liberi
-                    Rooms = _roomService.GetRooms().Where(r => !fullRooms.Contains(r)).OrderBy(r => r.Name)
-                });
+            ViewBag.Rooms = rooms;
+            return View(new PurchaseViewModel { Rooms = rooms });
         }
 
         /// <summary>
