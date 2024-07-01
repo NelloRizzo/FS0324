@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using W2.D4.BlogWebApp.Entities;
 using W2.D4.BlogWebApp.Models;
@@ -68,7 +69,6 @@ namespace W2.D4.BlogWebApp.Controllers
                 ViewBag.Cover = $"/images/{article.Id}.jpg";
             return View(article);
         }
-
         public IActionResult Comment(int id) {
             var article = _articleService.GetById(id);
             ViewBag.Article = article.Title;
