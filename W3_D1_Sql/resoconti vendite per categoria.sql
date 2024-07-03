@@ -4,7 +4,7 @@ WITH report AS ( -- CTE 1
 	SELECT AVG(Quantity * UnitPrice) AS GlobalAverage
 	FROM 
 		[Order Details]
-	)
+)
 , 
 grouped AS ( -- CTE 2
 	-- vendite per categoria
