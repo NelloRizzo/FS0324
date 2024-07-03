@@ -3,8 +3,8 @@ SELECT
 	CompanyName AS Cliente
 	, SUM(Quantity * UnitPrice) AS Spese
 FROM 
-	Orders o 
-		JOIN [Order Details] d ON o.OrderID = d.OrderID
-		JOIN Customers c ON o.CustomerID = c.CustomerID
+	Orders AS o 
+		JOIN [Order Details] AS d ON o.OrderID = d.OrderID
+		JOIN Customers AS c ON o.CustomerID = c.CustomerID
 GROUP BY 
 	c.CompanyName
