@@ -1,7 +1,14 @@
+using W3.D4.AdoWebApp.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services
+    .AddScoped<IArticleService, ArticleService>()
+    .AddScoped<ICommentService, CommentService>()
+    ;
 
 var app = builder.Build();
 

@@ -1,0 +1,25 @@
+﻿@model Article
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="row">
+    <div class="col text-center display-2">@Model.Title</div>
+</div>
+<div class="row">
+    <div class="offset-2 col-8 text-justify">
+        @Model.Content
+    </div>
+</div>
+<div class="row">
+    <div class="col text-end">
+        <a asp-action="Comment" asp-route-id="@Model.Id" class="btn btn-sm btn-success">Commenta</a>
+    </div>
+</div>
+@if (Model.Comments.Any()) {
+    <ul class="offset-2 col-8">
+        @foreach (var comment in Model.Comments) {
+            <li>@comment.Content</li>
+        }
+    </ul>
+}
