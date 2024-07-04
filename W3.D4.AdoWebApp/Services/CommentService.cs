@@ -6,7 +6,14 @@ namespace W3.D4.AdoWebApp.Services
 {
     public class CommentService : SqlServerServiceBase, ICommentService
     {
-        public CommentService(IConfiguration config) : base(config) { }
+        public CommentService(IConfiguration config) : base(config) {
+            //try {
+            //    CreateMetadata();
+            //}
+            //catch (Exception ex) {
+            //    Console.WriteLine(ex.Message);
+            //}
+        }
 
         public void DeleteComment(int commentId) {
             throw new NotImplementedException();

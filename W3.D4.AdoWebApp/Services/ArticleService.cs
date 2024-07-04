@@ -6,7 +6,14 @@ namespace W3.D4.AdoWebApp.Services
 {
     public class ArticleService : SqlServerServiceBase, IArticleService
     {
-        public ArticleService(IConfiguration config) : base(config) { }
+        public ArticleService(IConfiguration config) : base(config) {
+            //try {
+            //    CreateMetadata();
+            //}
+            //catch (Exception ex) {
+            //    Console.WriteLine(ex.Message);
+            //}
+        }
 
         public void DeleteArticle(int id) {
             // prepariamo il testo del comando
@@ -54,16 +61,16 @@ namespace W3.D4.AdoWebApp.Services
         }
 
         public IEnumerable<Article> GetArticles() {
-            var cmd = GetCommand("SELECT Id, Title, PublicationDate, Content FROM Articles");
-            var conn = GetConnection();
+            using var conn = GetConnection();
             conn.Open();
-            var reader = cmd.ExecuteReader();
+            using var cmd = GetCommand("SELECT Id, Title, PublicationDate, Content FROM Articles");
+            using var reader = cmd.ExecuteReader();
             var list = new List<Article>();
-            while(reader.Read())
+            while (reader.Read())
                 list.Add(Create(reader));
             conn.Close();
             return list;
-        }   
+        }
 
         public void UpdateArticle(int id, Article article) {
             throw new NotImplementedException();
@@ -73,7 +80,7 @@ namespace W3.D4.AdoWebApp.Services
             var cmd = GetCommand("INSERT INTO Articles(Title, Content) VALUES(@title, @content)");
             cmd.Parameters.Add(new SqlParameter("@title", article.Title));
             cmd.Parameters.Add(new SqlParameter("@content", article.Content));
-            var conn = GetConnection(); 
+            var conn = GetConnection();
             conn.Open();
             var result = cmd.ExecuteNonQuery();
             conn.Close();

@@ -15,6 +15,8 @@ namespace W3.D4.AdoWebApp.Controllers
             _logger = logger;
             _articleService = articleService;
             _commentService = commentService;
+
+            
         }
 
         public IActionResult Index() {
