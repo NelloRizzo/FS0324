@@ -1,0 +1,35 @@
+﻿@model IEnumerable<BuildWeek1.DataLayer.Entities.ImageEntity>
+
+@{
+    ViewData["Title"] = "Galleria";
+}
+
+<h1 class="text-center">Galleria</h1>
+
+<p>
+    <a asp-action="Create">Nuova Immagine</a>
+</p>
+<div class="d-flex flex-row p-2 flex-wrap">
+    @foreach (var item in Model) {
+        <div class="card m-3 flex-shrink-1">
+            <img class="card-img-top" alt="@item.Title" src="@Url.Action(action:"GetImage", controller:"Images",new { id = item.Id, height = 150 })" />
+            <div class="card-header text-center">
+                <div class="card-title">
+                    <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                </div>
+                <div class="card-subtitle">
+                    <a asp-action="ProductsDetails" asp-route-id="@item.Id">Dettagli</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </div>
+            </div>
+            <div class="card-footer">
+                <a asp-action="ProductsEdit" asp-route-id="@item.Id">Edit</a>
+                <a href="#" data-id="@item.Id">Elimina</a>
+            </div>
+        </div>
+    }
+</div>

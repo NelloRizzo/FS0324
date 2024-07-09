@@ -7,7 +7,9 @@ namespace BuildWeek1.DataLayer.Dao
     /// </summary>
     public interface IImageDao : IDao<ImageEntity>
     {
-        // interfaccia intenzionalmente vuota, perché al momento 
-        // i metodi sono solo quelli dell'interfaccia IDao
+        /// <summary>
+        /// Ottiene tutte le immagini.
+        /// </summary>
+        IEnumerable<ImageEntity> ReadAll();
     }
 }

@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] - BuildWeek1</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
+    @await RenderSectionAsync("Styles", required: false)
     <link rel="stylesheet" href="~/BuildWeek1.styles.css" asp-append-version="true" />
 </head>
 <body>

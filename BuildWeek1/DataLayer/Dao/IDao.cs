@@ -1,4 +1,5 @@
 ﻿using BuildWeek1.DataLayer.Entities;
+using System.Data.Common;
 
 namespace BuildWeek1.DataLayer.Dao
 {
@@ -8,6 +9,10 @@ namespace BuildWeek1.DataLayer.Dao
     /// <typeparam name="E">Tipo di entità gestita.</typeparam>
     public interface IDao<E> where E : BaseEntity
     {
+        /// <summary>
+        /// Ottiene l'accesso alla connessione con il database sottostante per esigenze particolari.
+        /// </summary>
+        DbConnection Database { get; }
         /// <summary>
         /// Inserimento.
         /// </summary>

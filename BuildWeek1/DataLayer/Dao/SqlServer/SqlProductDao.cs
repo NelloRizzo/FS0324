@@ -18,14 +18,14 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             "WHERE Id = @id";
         private const string DELETE_COMMAND = "DELETE FROM Products WHERE Id = @id";
         private const string SELECT_BY_ID_COMMAND = "SELECT Id, Title, Description, CoverId, Price FROM Products WHERE Id = @id";
-        private const string SELECT_ALL = "SELECT Id, Title, Description, CoverId, Price FROM Products";
+        private const string SELECT_ALL_COMMAND = "SELECT Id, Title, Description, CoverId, Price FROM Products";
         public SqlProductDao(IConfiguration configuration) : base(configuration) { }
 
         public IEnumerable<ProductEntity> ReadAll() {
             var result = new List<ProductEntity>();
             try {
                 EnsureConnectionOpened();
-                using var cmd = new SqlCommand(SELECT_ALL, _connection);
+                using var cmd = new SqlCommand(SELECT_ALL_COMMAND, _connection);
                 using var reader = cmd.ExecuteReader();
                 while (reader.Read()) result.Add(RowMap(reader));
             }

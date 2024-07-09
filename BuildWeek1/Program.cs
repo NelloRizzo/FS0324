@@ -9,14 +9,16 @@ builder.Services.AddControllersWithViews();
 
 // **********   Configurazione dei servizi di applicazione    **********
 builder.Services
-    // i DAO possono, in questo contesto, essere tranquillamente configurati come singleton
-    // perché non sono legati ad uno specifico utente
-    .AddSingleton<ICartItemDao, SqlCartItemDao>()
-    .AddSingleton<IImageDao, SqlImageDao>()
-    .AddSingleton<IProductDao, SqlProductDao>()
+    // poiché arrivano chiamate da parte dei client per il recupero delle immagini,
+    // i DAO sono legati alla singola richiesta, in maniera da poter effettuare contemporaneamente
+    // chiamate diverse allo stesso database (in regime di concorrenza, la connessione sarebbe inutilizzabile
+    // con l'inizializzazione Singleton, perché unica e acceduta contemporaneamente da più parti)
+    .AddScoped<ICartItemDao, SqlCartItemDao>()
+    .AddScoped<IImageDao, SqlImageDao>()
+    .AddScoped<IProductDao, SqlProductDao>()
 
     // la classe DbContext consente di gestire tramite un unico oggetto tutti i DAO
-    .AddSingleton<DbContext>()
+    .AddScoped<DbContext>()
     ;
 // ********** Fine configurazione dei servizi di applicazione **********
 

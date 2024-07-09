@@ -1,0 +1,95 @@
+﻿@model IEnumerable<BuildWeek1.DataLayer.Entities.ProductEntity>
+
+@{
+    ViewData["Title"] = "Gestione Prodotti";
+}
+
+<h1 class="text-center">Elenco Prodotti</h1>
+
+<p>
+    <a asp-action="Create">Nuovo Prodotto</a>
+</p>
+<div class="d-flex flex-row p-2 flex-wrap">
+    @foreach (var item in Model) {
+        <div class="card m-3 flex-shrink-1">
+            <img class="card-img-top" alt="@item.Title" src="@Url.Action(action:"GetImage", controller:"Images",new { id = item.CoverId, height = 100 })" />
+            <div class="card-header text-center">
+                <div class="card-title">
+                    <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                </div>
+                <div class="card-subtitle">
+                    <a asp-action="ProductsDetails" asp-route-id="@item.Id" class="btn btn-sm btn-info">
+                        <i class="bi bi-binoculars-fill" title="Dettagli"></i> <span class="d-none d-md-block">Dettagli</span>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    @string.Join("", item.Description.Take(200))
+                </div>
+                <div class="text-end">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="link-warning"><i class="bi bi-pencil-fill" title="Modifica"></i></a>
+                <a href="#" data-id="@item.Id" data-title="@item.Title" class="link-danger delete-link"><i class="bi bi-eraser-fill" title="Elimina"></i></a>
+            </div>
+        </div>
+    }
+</div>
+<div class="modal" tabindex="-1" id="delete-confirm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Conferma Eliminazione</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Vuoi davvero eliminare il prodotto <span class="product-title"></span>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="delete-btn">Elimina</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="success-toast">
+    <div class="toast-header">
+        <strong class="me-auto">Conferma Eliminazione</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body alert alert-success">
+        Il prodotto è stato eliminato.
+    </div>
+</div>
+@section Styles {
+    <style>
+        .product-title::before {
+            content: '&laquo;'
+        }
+
+        .product-title::after {
+            content: '&raquo;'
+        }
+    </style>
+}
+@section Scripts {
+    <script>
+        $(() => {
+            $(".delete-link").click(() => {
+                $(".product-title").text($(this).data('title'))
+                $("#delete-btn").data('id') = $(this).data('id')
+                $("#delete-confirm").modal();
+            })
+            $("#delete-btn").click(() => {
+                $.ajax({
+                    url: @Url.Action(action: "Delete", controller: "Products") + `{ $("#delete-btn").data('id')}`,
+                    method: 'delete',
+                    success: () => { $("#success-toast").show() }
+                })
+            })
+        })
+    </script>
+}

@@ -1,6 +1,7 @@
 ﻿using BuildWeek1.DataLayer.Entities;
 using BuildWeek1.DataLayer.Exceptions;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace BuildWeek1.DataLayer.Dao.SqlServer
@@ -15,6 +16,12 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         /// La connessione al database.
         /// </summary>
         protected readonly SqlConnection _connection;
+
+        /// <summary>
+        /// La connessione al database sottostante per consentire operazioni particolari e non previste.
+        /// </summary>
+        public DbConnection Database => _connection;
+
         /// <summary>
         /// Prepara il comando di INSERT.
         /// </summary>
@@ -128,7 +135,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
                 EnsureConnectionOpened();
                 using var cmd = PrepareSelect(id);
                 using var reader = cmd.ExecuteReader();
-                if (reader.Read()) return null;
+                if (!reader.Read()) return null;
 
                 return RowMap(reader);
             }

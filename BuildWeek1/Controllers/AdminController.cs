@@ -1,5 +1,4 @@
 ﻿using BuildWeek1.DataLayer;
-using BuildWeek1.DataLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildWeek1.Controllers
@@ -12,17 +11,5 @@ namespace BuildWeek1.Controllers
             return View();
         }
 
-        public IActionResult Products() {
-            return View(_dbContext.Products.ReadAll());
-        }
-
-        public IActionResult ProductsCreate() {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult ProductsCreate(ProductEntity model) {
-            _dbContext.Products.Create(model);
-            return RedirectToAction(nameof(Products));
-        }
     }
 }
