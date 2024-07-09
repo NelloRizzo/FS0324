@@ -12,7 +12,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             "INSERT INTO CartItems(CartId, ProductId, Quantity) VALUES(@cartId, @productId, @quantity)";
         private const string UPDATE_COMMAND = "UPDATE CartItems SET Quantity = @quantity WHERE Id = @id";
         private const string DELETE_COMMAND = "DELETE FROM CartItems WHERE Id = @id";
-        private const string SELECT_BY_CART_COMMAND = "SELECT Id, CartId, ProductId, Quantity FROM CartItems WHERE CartId = @cartId";
+        private const string SELECT_BY_ID_COMMAND = "SELECT Id, CartId, ProductId, Quantity FROM CartItems WHERE Id = @id";
         public SqlCartItemEntityDao(IConfiguration configuration) : base(configuration) { }
 
         protected override CartItemEntity Map(SqlDataReader reader) =>
@@ -38,7 +38,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         }
 
         protected override SqlCommand PrepareSelect(int id) {
-            var cmd = new SqlCommand(SELECT_BY_CART_COMMAND, _connection);
+            var cmd = new SqlCommand(SELECT_BY_ID_COMMAND, _connection);
             cmd.Parameters.AddWithValue("@id", id);
             return cmd;
         }
