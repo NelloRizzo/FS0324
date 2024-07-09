@@ -1,6 +1,6 @@
 ﻿using BuildWeek1.DataLayer.Entities;
 
-namespace BuildWeek1.DataLayer
+namespace BuildWeek1.DataLayer.Dao
 {
     /// <summary>
     /// Definizione delle operazioni CRUD verso il database.

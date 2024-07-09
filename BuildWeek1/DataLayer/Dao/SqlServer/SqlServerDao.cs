@@ -3,7 +3,7 @@ using BuildWeek1.DataLayer.Exceptions;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace BuildWeek1.DataLayer
+namespace BuildWeek1.DataLayer.Dao.SqlServer
 {
     /// <summary>
     /// Un Dao che usa i generics per gestire tutte le entità.
@@ -75,7 +75,7 @@ namespace BuildWeek1.DataLayer
         /// <summary>
         /// Rilascia le risorse gestite.
         /// </summary>
-        /// <see cref="System.IDisposable"/>
+        /// <see cref="IDisposable"/>
         public void Dispose() {
             _connection.Dispose();
             GC.SuppressFinalize(this);

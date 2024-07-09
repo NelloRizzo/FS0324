@@ -1,19 +1,19 @@
 ﻿using BuildWeek1.DataLayer.Entities;
 using System.Data.SqlClient;
 
-namespace BuildWeek1.DataLayer
+namespace BuildWeek1.DataLayer.Dao.SqlServer
 {
     /// <summary>
     /// Dao per la gestione delle righe del carrello.
     /// </summary>
-    public class CartItemEntityDao : SqlServerDao<CartItemEntity>
+    public class SqlCartItemEntityDao : SqlServerDao<CartItemEntity>, ICartItemEntityDao
     {
         private const string INSERT_COMMAND =
             "INSERT INTO CartItems(CartId, ProductId, Quantity) VALUES(@cartId, @productId, @quantity)";
         private const string UPDATE_COMMAND = "UPDATE CartItems SET Quantity = @quantity WHERE Id = @id";
         private const string DELETE_COMMAND = "DELETE FROM CartItems WHERE Id = @id";
         private const string SELECT_BY_CART_COMMAND = "SELECT Id, CartId, ProductId, Quantity FROM CartItems WHERE CartId = @cartId";
-        public CartItemEntityDao(IConfiguration configuration) : base(configuration) { }
+        public SqlCartItemEntityDao(IConfiguration configuration) : base(configuration) { }
 
         protected override CartItemEntity Map(SqlDataReader reader) =>
             new CartItemEntity {
@@ -38,11 +38,16 @@ namespace BuildWeek1.DataLayer
         }
 
         protected override SqlCommand PrepareSelect(int id) {
-            throw new NotImplementedException();
+            var cmd = new SqlCommand(SELECT_BY_CART_COMMAND, _connection);
+            cmd.Parameters.AddWithValue("@id", id);
+            return cmd;
         }
 
         protected override SqlCommand PrepareUpdate(int id, CartItemEntity entity) {
-            throw new NotImplementedException();
+            var cmd = new SqlCommand(UPDATE_COMMAND, _connection);
+            cmd.Parameters.AddWithValue("@quantity", entity.Quantity);
+            cmd.Parameters.AddWithValue("@id", id);
+            return cmd;
         }
     }
 }

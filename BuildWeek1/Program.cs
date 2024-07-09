@@ -1,7 +1,19 @@
+using BuildWeek1.DataLayer.Dao;
+using BuildWeek1.DataLayer.Dao.SqlServer;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// **********   Configurazione dei servizi di applicazione    **********
+builder.Services
+    // i DAO possono, in questo contesto, essere tranquillamente configurati come singleton
+    // perché non sono legati ad uno specifico utente
+    .AddSingleton<ICartItemEntityDao, SqlCartItemEntityDao>()
+    ;
+// ********** Fine configurazione dei servizi di applicazione **********
+
 
 var app = builder.Build();
 
