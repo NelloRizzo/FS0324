@@ -1,3 +1,4 @@
+using BuildWeek1.DataLayer;
 using BuildWeek1.DataLayer.Dao;
 using BuildWeek1.DataLayer.Dao.SqlServer;
 
@@ -10,7 +11,12 @@ builder.Services.AddControllersWithViews();
 builder.Services
     // i DAO possono, in questo contesto, essere tranquillamente configurati come singleton
     // perché non sono legati ad uno specifico utente
-    .AddSingleton<ICartItemEntityDao, SqlCartItemEntityDao>()
+    .AddSingleton<ICartItemDao, SqlCartItemDao>()
+    .AddSingleton<IImageDao, SqlImageDao>()
+    .AddSingleton<IProductDao, SqlProductDao>()
+
+    // la classe DbContext consente di gestire tramite un unico oggetto tutti i DAO
+    .AddSingleton<DbContext>()
     ;
 // ********** Fine configurazione dei servizi di applicazione **********
 

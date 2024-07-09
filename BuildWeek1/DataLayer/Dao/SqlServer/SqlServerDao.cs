@@ -45,7 +45,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         /// </summary>
         /// <param name="reader">Il DataReader da cui leggere.</param>
         /// <returns>L'entità ottenuta dalla lettura del record corrente nel DataReader.</returns>
-        protected abstract E Map(SqlDataReader reader);
+        protected abstract E RowMap(SqlDataReader reader);
         /// <summary>
         /// Si assicura che la connessione sia aperta e funzionante.
         /// </summary>
@@ -54,14 +54,6 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             if (_connection.State == ConnectionState.Broken) throw
                     new BrokenConnectionException();
             if (_connection.State != ConnectionState.Open) _connection.Open();
-        }
-        /// <summary>
-        /// Ottiene il valore dell'ultima IDENTITY generata.
-        /// </summary>
-        protected int GetLastIdentity() {
-            using var cmd = new SqlCommand("SELECT SCOPE_IDENTITY()", _connection);
-            EnsureConnectionOpened();
-            return (int)cmd.ExecuteScalar();
         }
 
         /// <summary>
@@ -89,12 +81,8 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         public virtual E Create(E entity) {
             try {
                 EnsureConnectionOpened();
-                using var trans = _connection.BeginTransaction();
                 using var cmd = PrepareInsert(entity);
-                var i = (int)cmd.ExecuteScalar();
-                if (i != 1) throw new CreateException($"Insert command affected {i} rows");
-                entity.Id = GetLastIdentity();
-                trans.Commit();
+                entity.Id = (int)cmd.ExecuteScalar();
                 return entity;
             }
             catch (DaoException) {
@@ -112,11 +100,9 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         public virtual void Delete(int id) {
             try {
                 EnsureConnectionOpened();
-                using var trans = _connection.BeginTransaction();
                 using var cmd = PrepareDelete(id);
-                var i = (int)cmd.ExecuteScalar();
+                var i = cmd.ExecuteNonQuery();
                 if (i != 1) throw new DeleteException($"Delete command affected {i} rows");
-                trans.Commit();
             }
             catch (DaoException) {
                 throw;
@@ -138,7 +124,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
                 using var reader = cmd.ExecuteReader();
                 if (reader.Read()) return null;
 
-                return Map(reader);
+                return RowMap(reader);
             }
             catch (DaoException) {
                 throw;
@@ -157,11 +143,9 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         public virtual E Update(int id, E entity) {
             try {
                 EnsureConnectionOpened();
-                using var trans = _connection.BeginTransaction();
                 using var cmd = PrepareUpdate(id, entity);
-                var i = (int)cmd.ExecuteScalar();
+                var i = cmd.ExecuteNonQuery();
                 if (i != 1) throw new UpdateException($"Insert command affected {i} rows");
-                trans.Commit();
                 return Read(id) ?? throw new UpdateException($"Unable to read entity with Id = {id} after update");
             }
             catch (DaoException) {

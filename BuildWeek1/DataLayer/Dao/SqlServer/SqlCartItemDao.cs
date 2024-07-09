@@ -6,16 +6,16 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
     /// <summary>
     /// Dao per la gestione delle righe del carrello.
     /// </summary>
-    public class SqlCartItemEntityDao : SqlServerDao<CartItemEntity>, ICartItemEntityDao
+    public class SqlCartItemDao : SqlServerDao<CartItemEntity>, ICartItemDao
     {
         private const string INSERT_COMMAND =
-            "INSERT INTO CartItems(CartId, ProductId, Quantity) VALUES(@cartId, @productId, @quantity)";
+            "INSERT OUTPUT INSERTED.Id INTO CartItems(CartId, ProductId, Quantity) VALUES(@cartId, @productId, @quantity)";
         private const string UPDATE_COMMAND = "UPDATE CartItems SET Quantity = @quantity WHERE Id = @id";
         private const string DELETE_COMMAND = "DELETE FROM CartItems WHERE Id = @id";
         private const string SELECT_BY_ID_COMMAND = "SELECT Id, CartId, ProductId, Quantity FROM CartItems WHERE Id = @id";
-        public SqlCartItemEntityDao(IConfiguration configuration) : base(configuration) { }
+        public SqlCartItemDao(IConfiguration configuration) : base(configuration) { }
 
-        protected override CartItemEntity Map(SqlDataReader reader) =>
+        protected override CartItemEntity RowMap(SqlDataReader reader) =>
             new CartItemEntity {
                 CartId = reader.GetInt32(1),
                 ProductId = reader.GetInt32(2),
