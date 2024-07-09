@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using W2.D4.BlogWebApp.Entities;
 using W2.D4.BlogWebApp.Models;
@@ -15,7 +14,7 @@ namespace W2.D4.BlogWebApp.Controllers
         private readonly IWebHostEnvironment _env;
 
         // articleService è inizializzato tramite DI
-        public HomeController(ILogger<HomeController> logger, IArticleService articleService, 
+        public HomeController(ILogger<HomeController> logger, IArticleService articleService,
             ICommentService commentService, IWebHostEnvironment env) {
             _logger = logger;
             // questa variabile consentirà di accedere al servizio all'interno della classe

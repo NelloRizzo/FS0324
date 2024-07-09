@@ -1,5 +1,4 @@
-﻿using System.Data.Common;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using W3.D4.DailyProject.Models;
 
 namespace W3.D4.DailyProject.Services

@@ -11,6 +11,6 @@ namespace W3.D4.AdoWebApp.Models
         [Required, Display(Name = "Contenuto")]
         public string Content { get; set; }
 
-        public IEnumerable<Comment> Comments { get; set; } 
+        public IEnumerable<Comment> Comments { get; set; }
     }
 }

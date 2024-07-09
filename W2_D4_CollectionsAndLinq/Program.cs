@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Security.Authentication;
-
-internal class Program
+﻿internal class Program
 {
     class MyInt
     {
@@ -97,7 +94,7 @@ internal class Program
         var olm = new SortedList<string, My>();
         olm.Add("Primo", new My { Value = 1 });
         olm.Add("Secondo", new My { Value = 2 });
-        olm.Add("Quarto", new My{ Value = 3 });
+        olm.Add("Quarto", new My { Value = 3 });
         Console.WriteLine($"Elemento con chiave 'Quattro': {olm["Quarto"]}");
 
         foreach (var i in olm) { Console.WriteLine(i); }
@@ -105,7 +102,7 @@ internal class Program
         var olmm = new SortedList<My, int>();
         olmm.Add(new My { Value = 1 }, 10);
         olmm.Add(new My { Value = -10 }, 1);
-        foreach(var i in olmm) { Console.WriteLine( i ); }
+        foreach (var i in olmm) { Console.WriteLine(i); }
     }
 
     private static void Main1(string[] args) {

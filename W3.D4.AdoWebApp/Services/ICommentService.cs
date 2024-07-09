@@ -4,7 +4,7 @@ namespace W3.D4.AdoWebApp.Services
 {
     public interface ICommentService
     {
-        void WriteComment(int articleId,  string comment);
+        void WriteComment(int articleId, string comment);
         IEnumerable<Comment> GetAllComments(int articleId);
         Comment GetComment(int commentId);
         void UpdateComment(int commentId, string comment);
