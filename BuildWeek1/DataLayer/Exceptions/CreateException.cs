@@ -1,15 +1,18 @@
 ﻿
 namespace BuildWeek1.DataLayer.Exceptions
 {
+    /// <summary>
+    /// Eccezione che può verificarsi durante l'operazione di creazione.
+    /// </summary>
     public class CreateException : DaoException
     {
-        public CreateException() {
-        }
+        /// <inheritdoc/>
+        public CreateException() { }
 
-        public CreateException(string? message) : base(message) {
-        }
+        /// <inheritdoc/>
+        public CreateException(string? message) : base(message) { }
 
-        public CreateException(string? message = "Exception creating entity", Exception? innerException = null) : base(message, innerException) {
-        }
+        /// <inheritdoc/>
+        public CreateException(string? message = "Exception creating entity", Exception? innerException = null) : base(message, innerException) { }
     }
 }
