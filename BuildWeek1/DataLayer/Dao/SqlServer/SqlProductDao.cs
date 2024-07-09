@@ -4,6 +4,9 @@ using System.Data.SqlClient;
 
 namespace BuildWeek1.DataLayer.Dao.SqlServer
 {
+    /// <summary>
+    /// DAO per la gestione dei prodotti con Sql Server.
+    /// </summary>
     public class SqlProductDao : SqlServerDao<ProductEntity>, IProductDao
     {
         private const string INSERT_COMMAND =

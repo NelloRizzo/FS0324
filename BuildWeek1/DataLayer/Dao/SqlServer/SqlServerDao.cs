@@ -20,6 +20,9 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         /// </summary>
         /// <param name="entity">Entità da inserire.</param>
         /// <returns>Il comando per l'inserimento dell'entità nel database.</returns>
+        /// <remarks>Il comando di INSERT dovrà contenere la clausola OUTPUT per la fornitura
+        /// del valore del campo chiave generato dal database. Tale comando sarà eseguito con
+        /// il metodo ExecuteScalar anziché ExecuteNonQuery.</remarks>
         protected abstract SqlCommand PrepareInsert(E entity);
         /// <summary>
         /// Prepara il comando di UPDATE.
@@ -82,6 +85,9 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             try {
                 EnsureConnectionOpened();
                 using var cmd = PrepareInsert(entity);
+                // ATTENZIONE: Il comando è eseguito come ExecuteScalar anziché ExecuteNonQuery
+                //             perché il comando di INSERT prevede la clausola OUTPUT che fornisce
+                //             il valore dell'ultimo IDENTITY assegnato all'entità in fase di salvataggio
                 entity.Id = (int)cmd.ExecuteScalar();
                 return entity;
             }
