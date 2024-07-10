@@ -1,7 +1,6 @@
 ﻿using BuildWeek1.BusinessLayer.Exceptions;
 using BuildWeek1.DataLayer;
 using BuildWeek1.DataLayer.Entities;
-using Microsoft.AspNetCore.Mvc;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.Processing;

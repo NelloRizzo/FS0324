@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace BuildWeek1.BusinessLayer.Exceptions
+﻿namespace BuildWeek1.BusinessLayer.Exceptions
 {
     public class ServiceException : Exception
     {

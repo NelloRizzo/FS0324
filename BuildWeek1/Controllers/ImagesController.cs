@@ -3,9 +3,6 @@ using BuildWeek1.DataLayer;
 using BuildWeek1.DataLayer.Entities;
 using BuildWeek1.Models;
 using Microsoft.AspNetCore.Mvc;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Png;
-using SixLabors.ImageSharp.Processing;
 
 namespace BuildWeek1.Controllers
 {

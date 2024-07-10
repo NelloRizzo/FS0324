@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace BuildWeek1.BusinessLayer
+﻿namespace BuildWeek1.BusinessLayer
 {
     /// <summary>
     /// Un servizio per la generazione di thumbnails.

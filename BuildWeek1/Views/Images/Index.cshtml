@@ -2,8 +2,6 @@
 
 @{
     ViewData["Title"] = "Galleria";
-
-    bool isAdmin = true;
 }
 
 <h1 class="text-center">Galleria</h1>
@@ -28,12 +26,10 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </div>
             </div>
-            @if (isAdmin) {
-                <div class="card-footer">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="link-warning"><i class="bi bi-pencil-fill" title="Modifica"></i></a>
-                    <a asp-action="MvcDelete" class="link-danger delete-link" asp-route-id="@item.Id"><i class="bi bi-eraser-fill" title="Elimina"></i></a>
-                </div>
-            }
+            <div class="card-footer">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="link-warning"><i class="bi bi-pencil-fill" title="Modifica"></i></a>
+                <a asp-action="MvcDelete" class="link-danger delete-link" asp-route-id="@item.Id"><i class="bi bi-eraser-fill" title="Elimina"></i></a>
+            </div>
         </div>
     }
 </div>
