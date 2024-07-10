@@ -14,6 +14,10 @@ namespace BuildWeek1.DataLayer.Dao
         /// </summary>
         DbConnection Database { get; }
         /// <summary>
+        /// Restituisce il numero totale di elementi presenti nel database.
+        /// </summary>
+        int Count();
+        /// <summary>
         /// Inserimento.
         /// </summary>
         /// <param name="entity">Dati da inserire.</param>

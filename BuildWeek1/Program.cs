@@ -1,3 +1,4 @@
+using BuildWeek1.BusinessLayer;
 using BuildWeek1.DataLayer;
 using BuildWeek1.DataLayer.Dao;
 using BuildWeek1.DataLayer.Dao.SqlServer;
@@ -19,6 +20,9 @@ builder.Services
 
     // la classe DbContext consente di gestire tramite un unico oggetto tutti i DAO
     .AddScoped<DbContext>()
+
+    // esempio di registrazione di un servizio
+    .AddTransient<IThumbnailService, ThumbnailService>()
     ;
 // ********** Fine configurazione dei servizi di applicazione **********
 

@@ -13,6 +13,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         private const string UPDATE_COMMAND = "UPDATE CartItems SET Quantity = @quantity WHERE Id = @id";
         private const string DELETE_COMMAND = "DELETE FROM CartItems WHERE Id = @id";
         private const string SELECT_BY_ID_COMMAND = "SELECT Id, CartId, ProductId, Quantity FROM CartItems WHERE Id = @id";
+        private const string SELECT_COUNT_COMMAND = "SELECT COUNT(*) FROM CartItems";
         public SqlCartItemDao(IConfiguration configuration) : base(configuration) { }
 
         protected override CartItemEntity RowMap(SqlDataReader reader) =>
@@ -49,5 +50,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             cmd.Parameters.AddWithValue("@id", id);
             return cmd;
         }
+
+        protected override SqlCommand PrepareCount() => new SqlCommand(SELECT_COUNT_COMMAND, _connection);
     }
 }

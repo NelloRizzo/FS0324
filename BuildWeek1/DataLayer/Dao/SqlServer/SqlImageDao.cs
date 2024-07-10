@@ -17,6 +17,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         private const string SELECT_BY_ID_COMMAND = "SELECT Id, ProductId, Title, Description, Content, MimeType, Width, Height, Dpi " +
             "FROM Images WHERE Id = @id";
         private const string SELECT_ALL_COMMAND = "SELECT Id, ProductId, Title, Description, Content, MimeType, Width, Height, Dpi FROM Images";
+        private const string SELECT_COUNT_COMMAND = "SELECT COUNT(*) FROM Images";
         public SqlImageDao(IConfiguration configuration) : base(configuration) { }
 
         protected override ImageEntity RowMap(SqlDataReader reader) =>
@@ -82,5 +83,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             }
             return result;
         }
+
+        protected override SqlCommand PrepareCount() => new SqlCommand(SELECT_COUNT_COMMAND, _connection);
     }
 }

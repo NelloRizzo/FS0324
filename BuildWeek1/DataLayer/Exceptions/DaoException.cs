@@ -22,6 +22,6 @@
         /// <param name="message">Messaggio di errore.</param>
         /// <param name="innerException">Eccezione interna.</param>
 
-        public DaoException(string? message, Exception? innerException) : base(message, innerException) { }
+        public DaoException(string? message = "DAO Exception", Exception? innerException = null) : base(message, innerException) { }
     }
 }

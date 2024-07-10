@@ -9,8 +9,11 @@ namespace BuildWeek1.Controllers
     {
         public ProductsController(DbContext dbContext, ILogger<MvcBaseController> logger) : base(dbContext, logger) { }
 
-        public IActionResult Index() {
-            return View(_dbContext.Products.ReadAll());
+        public IActionResult Index([FromQuery] int page = 0, [FromQuery] int pageSize = 5) {
+            var count = _dbContext.Products.Count();
+            var list = _dbContext.Products.ReadAll(page, pageSize);
+            var pager = new Pager { Action = nameof(Index), PageIndex = page, PageSize = pageSize, TotalRecords = count };
+            return View(new Page<ProductEntity> { Items = list, Pager = pager });
         }
 
         public IActionResult Create() {
@@ -43,6 +46,17 @@ namespace BuildWeek1.Controllers
             catch (Exception) {
                 return BadRequest();
             }
+        }
+
+        public IActionResult MvcDelete(int id) {
+            var product = _dbContext.Products.Read(id);
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult MvcDelete(ProductEntity model) {
+            _dbContext.Products.Delete(model.Id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -11,5 +11,7 @@ namespace BuildWeek1.DataLayer.Dao
         /// Ottiene l'elenco di tutti i prodotti.
         /// </summary>
         IEnumerable<ProductEntity> ReadAll();
+
+        IEnumerable<ProductEntity> ReadAll(int page, int pageSize);
     }
 }

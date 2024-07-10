@@ -37,6 +37,9 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         /// <param name="id">Chiave dell'entità da aggiornare.</param>
         /// <param name="entity">Dati dell'entità da aggiornare.</param>
         /// <returns>Il comando per l'aggiornamento dell'entità nel database.</returns>
+        /// <remarks>Il comando deve essere predisposto per la restituizione del valore della chiave
+        /// attraverso un'esecuzione tramite il metodo ExecuteScalar 
+        /// (usare <code>INSERT INTO Table(...) OUPUT INSERTED.Id VALUES...</code> ad esempio).</remarks>
         protected abstract SqlCommand PrepareUpdate(int id, E entity);
         /// <summary>
         /// Prepara il comando di DELETE.
@@ -50,6 +53,11 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         /// <param name="id">Chiave dell'entità da recuperare.</param>
         /// <returns>Il comando per il recupero di un'entità tramite la chiave.</returns>
         protected abstract SqlCommand PrepareSelect(int id);
+        /// <summary>
+        /// Prepara il comando per il conteggio delle entità.
+        /// </summary>
+        /// <returns>Il comando che conta le entità presenti sul database.</returns>
+        protected abstract SqlCommand PrepareCount();
         /// <summary>
         /// Converte una riga del DataReader in una istanza dell'entità gestita.
         /// </summary>
@@ -166,6 +174,20 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             }
             catch (Exception ex) {
                 throw new UpdateException(innerException: ex);
+            }
+        }
+
+        public int Count() {
+            try {
+                EnsureConnectionOpened();
+                using var cmd = PrepareCount();
+                return (int)cmd.ExecuteScalar();
+            }
+            catch (DaoException) {
+                throw;
+            }
+            catch (Exception ex) {
+                throw new DaoException(innerException: ex);
             }
         }
     }

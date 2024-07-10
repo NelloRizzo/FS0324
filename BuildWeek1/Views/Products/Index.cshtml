@@ -1,4 +1,5 @@
-﻿@model IEnumerable<BuildWeek1.DataLayer.Entities.ProductEntity>
+﻿@using BuildWeek1.DataLayer.Entities
+@model Page<ProductEntity>
 
 @{
     ViewData["Title"] = "Gestione Prodotti";
@@ -6,13 +7,15 @@
 
 <h1 class="text-center">Elenco Prodotti</h1>
 
-<p>
-    <a asp-action="Create">Nuovo Prodotto</a>
+<p class="text-center mt-2">
+    <a asp-action="Create" class="btn btn-info">Nuovo Prodotto</a>
 </p>
-<div class="d-flex flex-row p-2 flex-wrap">
-    @foreach (var item in Model) {
+
+<partial name="_Paginator" model="@Model.Pager" />
+<div class="d-flex flex-row p-2 flex-wrap justify-content-center">
+    @foreach (var item in Model.Items) {
         <div class="card m-3 flex-shrink-1">
-            <img class="card-img-top" alt="@item.Title" src="@Url.Action(action:"GetImage", controller:"Images",new { id = item.CoverId, height = 100 })" />
+            <img class="card-img-top" alt="@item.Title" src="@Url.Action(action:"Thumbnail", controller:"Images",new { id = item.CoverId, width = 150 })" />
             <div class="card-header text-center">
                 <div class="card-title">
                     <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
@@ -64,6 +67,7 @@
         Errore durante l'eliminazione del prodotto.
     </div>
 </div>
+
 @section Styles {
     <style>
         .product-title::before {
@@ -87,7 +91,7 @@
             })
             $('#delete-btn').click((e) => {
                 $.ajax({
-                    url: '@Url.Action(action: "Delete", controller: "Products")' + `/${ $('#delete-btn').data('id')}`,
+                    url: '@Url.Action(action: "Delete", controller: "Products")' + `/${$('#delete-btn').data('id')}`,
                     method: 'delete',
                     success: () => { location.reload() },
                     error: () => {

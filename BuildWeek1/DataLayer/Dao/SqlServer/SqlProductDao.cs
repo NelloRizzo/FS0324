@@ -19,6 +19,11 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         private const string DELETE_COMMAND = "DELETE FROM Products WHERE Id = @id";
         private const string SELECT_BY_ID_COMMAND = "SELECT Id, Title, Description, CoverId, Price FROM Products WHERE Id = @id";
         private const string SELECT_ALL_COMMAND = "SELECT Id, Title, Description, CoverId, Price FROM Products";
+        private const string SELECT_COUNT_COMMAND = "SELECT COUNT(*) FROM Products";
+        private const string SELECT_PAGE_COMMAND = "SELECT Id, Title, Description, CoverId, Price " +
+            "FROM Products " +
+            "ORDER BY UPPER(@field) " +
+            "OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY";
         public SqlProductDao(IConfiguration configuration) : base(configuration) { }
 
         public IEnumerable<ProductEntity> ReadAll() {
@@ -76,6 +81,28 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             cmd.Parameters.AddWithValue("@price", entity.Price);
             cmd.Parameters.AddWithValue("@id", entity.Id);
             return cmd;
+        }
+
+        protected override SqlCommand PrepareCount() => new SqlCommand(SELECT_COUNT_COMMAND, _connection);
+
+        public IEnumerable<ProductEntity> ReadAll(int page, int pageSize) {
+            var result = new List<ProductEntity>();
+            try {
+                EnsureConnectionOpened();
+                using var cmd = new SqlCommand(SELECT_PAGE_COMMAND, _connection);
+                cmd.Parameters.AddWithValue("@field", "Title");
+                cmd.Parameters.AddWithValue("@skip", page * pageSize);
+                cmd.Parameters.AddWithValue("@take", pageSize);
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read()) result.Add(RowMap(reader));
+            }
+            catch (DaoException) {
+                throw;
+            }
+            catch (Exception ex) {
+                throw new DaoException(message: $"Error reading page {page} of products paginating by {pageSize} items per page", innerException: ex);
+            }
+            return result;
         }
     }
 }
