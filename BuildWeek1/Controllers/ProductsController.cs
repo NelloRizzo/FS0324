@@ -36,8 +36,13 @@ namespace BuildWeek1.Controllers
 
         [HttpDelete]
         public IActionResult Delete(int id) {
-            _dbContext.Products.Delete(id);
-            return Json("Ok");
+            try {
+                _dbContext.Products.Delete(id);
+                return Json("Ok");
+            }
+            catch (Exception) {
+                return BadRequest();
+            }
         }
     }
 }

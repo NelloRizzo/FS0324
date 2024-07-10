@@ -57,37 +57,43 @@
 </div>
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="success-toast">
     <div class="toast-header">
-        <strong class="me-auto">Conferma Eliminazione</strong>
+        <strong class="me-auto">Eliminazione Prodotto</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <div class="toast-body alert alert-success">
-        Il prodotto è stato eliminato.
+    <div class="toast-body alert">
+        Errore durante l'eliminazione del prodotto.
     </div>
 </div>
 @section Styles {
     <style>
         .product-title::before {
-            content: '&laquo;'
+            content: '«'
         }
 
         .product-title::after {
-            content: '&raquo;'
+            content: '»'
         }
     </style>
 }
 @section Scripts {
     <script>
         $(() => {
-            $(".delete-link").click(() => {
-                $(".product-title").text($(this).data('title'))
-                $("#delete-btn").data('id') = $(this).data('id')
-                $("#delete-confirm").modal();
+            let dialog = new bootstrap.Modal($('#delete-confirm'), { keyboard: false })
+            $('.delete-link').click((e) => {
+                let item = $(e.currentTarget)
+                $('.product-title').text(item.data('title'))
+                $('#delete-btn').data('id', item.data('id'))
+                dialog.show()
             })
-            $("#delete-btn").click(() => {
+            $('#delete-btn').click((e) => {
                 $.ajax({
-                    url: @Url.Action(action: "Delete", controller: "Products") + `{ $("#delete-btn").data('id')}`,
+                    url: '@Url.Action(action: "Delete", controller: "Products")' + `/${ $('#delete-btn').data('id')}`,
                     method: 'delete',
-                    success: () => { $("#success-toast").show() }
+                    success: () => { location.reload() },
+                    error: () => {
+                        dialog.hide()
+                        $('#success-toast').toast()
+                    }
                 })
             })
         })
