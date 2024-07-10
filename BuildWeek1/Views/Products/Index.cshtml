@@ -58,7 +58,7 @@
         </div>
     </div>
 </div>
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="success-toast">
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="error-toast">
     <div class="toast-header">
         <strong class="me-auto">Eliminazione Prodotto</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -96,7 +96,7 @@
                     success: () => { location.reload() },
                     error: () => {
                         dialog.hide()
-                        $('#success-toast').toast()
+                        $('#error-toast').toast()
                     }
                 })
             })

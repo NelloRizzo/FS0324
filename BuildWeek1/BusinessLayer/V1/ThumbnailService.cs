@@ -5,18 +5,13 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.Processing;
 
-namespace BuildWeek1.BusinessLayer
+namespace BuildWeek1.BusinessLayer.V1
 {
     /// <summary>
     /// Implementazione del servizio attraverso la libreria ImageSharp.
     /// </summary>
-    public class ThumbnailService : IThumbnailService
+    public class ThumbnailService : ServiceBase, IThumbnailService
     {
-        /// <summary>
-        /// Contesto dati.
-        /// </summary>
-        private readonly DbContext _context;
-
         /// <summary>
         /// Scala l'immagine.
         /// </summary>
@@ -24,18 +19,22 @@ namespace BuildWeek1.BusinessLayer
         /// <param name="width">Larghezza desiderata.</param>
         /// <param name="height">Altezza desiderata.</param>
         /// <returns>La thumbnail dell'immagine alle dimensioni desiderate.</returns>
-        private byte[] ScaleImage(byte[] imageBytes, int? width, int? height) {
+        private byte[] ScaleImage(byte[] imageBytes, int? width, int? height)
+        {
             Image image = Image.Load(imageBytes);
-            lock (image) {
+            lock (image)
+            {
                 int newWidth = image.Width;
                 int newHeight = image.Height;
 
-                if (width.HasValue) {
+                if (width.HasValue)
+                {
                     var r = 1.0 * width.Value / image.Width;
                     newWidth = width.Value;
                     newHeight = (int)(image.Height * r);
                 }
-                if (height.HasValue) {
+                if (height.HasValue)
+                {
                     var r = 1.0 * height.Value / image.Height;
                     newHeight = height.Value;
                     newWidth = (int)(image.Width * r);
@@ -49,12 +48,18 @@ namespace BuildWeek1.BusinessLayer
             }
         }
 
-        public ThumbnailService(DbContext context) {
-            _context = context;
-        }
+        /// <summary>
+        /// Costruttore.
+        /// </summary>
+        /// <param name="context">Contesto dati.</param>
+        /// <param name="logger">Logger</param>
+        /// <remarks>Questo costruttore ha il solo compito di ottenere il datacontext e il logger service
+        /// dalla D.I. e passarli alla classe base per averli a disposizione da essa.</remarks>
+        public ThumbnailService(DbContext context, ILogger<ThumbnailService> logger) : base(context, logger) { }
 
-        public byte[] Thumbnail(int imageId, int? width, int? height) {
-            var image = _context.Images.Read(imageId) ?? throw new EntityNotFoundException { Id = imageId, EntityType = typeof(ImageEntity) };
+        public byte[] Thumbnail(int imageId, int? width, int? height)
+        {
+            var image = _dbContext.Images.Read(imageId) ?? throw new EntityNotFoundException { Id = imageId, EntityType = typeof(ImageEntity) };
             return ScaleImage(image.Content, width, height);
         }
     }
