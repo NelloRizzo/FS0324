@@ -46,6 +46,11 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Mappatura di aree applicative
+app.MapControllerRoute(
+    name: "admin",
+    pattern: "{area:exists}/{controller=AdminHome}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
