@@ -13,19 +13,14 @@ builder.Services
 
 // **********   Configurazione dei servizi di applicazione    **********
 builder.Services
-    // poiché arrivano chiamate da parte dei client per il recupero delle immagini,
-    // i DAO sono legati alla singola richiesta, in maniera da poter effettuare contemporaneamente
-    // chiamate diverse allo stesso database (in regime di concorrenza, la connessione sarebbe inutilizzabile
-    // con l'inizializzazione Singleton, perché unica e acceduta contemporaneamente da più parti)
-    .AddScoped<ICartItemDao, SqlCartItemDao>()
-    .AddScoped<IImageDao, SqlImageDao>()
-    .AddScoped<IProductDao, SqlProductDao>()
+    // registrazione dei DAO e della classe che gestisce tutto il contesto dati
+    // vedi classe DataLayer.RegisterDbContextHelpers
+    .AddDbContext()
 
-    // la classe DbContext consente di gestire tramite un unico oggetto tutti i DAO
-    .AddScoped<DbContext>()
-
-    // esempio di registrazione di un servizio
+    // registrazione dei servizi applicativi
+    // vedi classe BusinessLayer.RegisterServicesHelpers
     .AddTransient<IThumbnailService, ThumbnailService>()
+    .AddTransient<IProductService, ProductService>()
     ;
 // ********** Fine configurazione dei servizi di applicazione **********
 

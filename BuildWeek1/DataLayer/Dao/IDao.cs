@@ -14,6 +14,11 @@ namespace BuildWeek1.DataLayer.Dao
         /// </summary>
         DbConnection Database { get; }
         /// <summary>
+        /// Inizia una transazione (se non ce n'è una attiva).
+        /// </summary>
+        DbTransaction BeginTransaction();
+
+        /// <summary>
         /// Restituisce il numero totale di elementi presenti nel database.
         /// </summary>
         int Count();

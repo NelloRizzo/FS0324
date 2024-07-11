@@ -1,16 +1,16 @@
-﻿using BuildWeek1.DataLayer.Entities;
+﻿using BuildWeek1.BusinessLayer.Dto;
 
-namespace BuildWeek1.DataLayer.Dao
+namespace BuildWeek1.BusinessLayer
 {
     /// <summary>
-    /// Definizione del DAO per la gestione dei prodotti.
+    /// Servizio di gestione dei prodotti.
     /// </summary>
-    public interface IProductDao : IDao<ProductEntity>
+    public interface IProductService : ICrudService<ProductDto>
     {
         /// <summary>
         /// Ottiene l'elenco di tutti i prodotti.
         /// </summary>
-        IEnumerable<ProductEntity> ReadAll();
+        IEnumerable<ProductDto> ReadAll();
         /// <summary>
         /// Ottiene una pagina di prodotti.
         /// </summary>
@@ -18,6 +18,6 @@ namespace BuildWeek1.DataLayer.Dao
         /// <param name="pageSize">Numero di elementi per pagina.</param>
         /// <returns>L'elenco di prodotti nella pagina richiesta.</returns>
 
-        IEnumerable<ProductEntity> ReadAll(int page, int pageSize);
+        Page<ProductDto> ReadAll(int page, int pageSize);
     }
 }

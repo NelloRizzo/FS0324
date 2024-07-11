@@ -1,16 +1,9 @@
-﻿@* esempio di D.I. in una vista *@
-@inject IHttpContextAccessor ctx;
-@{
-    // determina se nella query string è presente la voce "admin"
-    // esempio: https://localhost:7111/?admin
-    var isAdmin = ctx?.HttpContext?.Request?.Query?.ContainsKey("admin") ?? false;
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Epicommerce</title>
+    <title>@ViewData["Title"] - EpiCommerce</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
@@ -34,15 +27,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @* 
-                            se l'utente è amministratore mostra il menu
-                            ovviamente è solo un esempio, senza alcuna pretesa di sicurezza!!!
-                        *@
-                        @if (isAdmin) { 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminHome" asp-action="Index">Amministrazione</a>
-                            </li>
-                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminHome" asp-action="Index">Amministrazione</a>
+                        </li>
                     </ul>
                 </div>
             </div>

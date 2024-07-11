@@ -1,4 +1,4 @@
-﻿namespace BuildWeek1.Models
+﻿namespace BuildWeek1.BusinessLayer.Dto
 {
     public class Pager
     {

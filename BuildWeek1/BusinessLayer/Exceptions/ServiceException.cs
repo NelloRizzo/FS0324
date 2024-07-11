@@ -2,7 +2,7 @@
 {
     public class ServiceException : Exception
     {
-        public ServiceException(string? message = "Service exception", Exception? innerException = null) : base(message, innerException) {
-        }
+        public ServiceException(string? message = "Service exception", Exception? innerException = null)
+            : base(message, innerException) { }
     }
 }

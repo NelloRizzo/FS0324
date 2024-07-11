@@ -8,8 +8,7 @@ namespace BuildWeek1.Areas.Admin.Controllers
     {
         public AdminHomeController(DbContext context, ILogger<AdminHomeController> logger) : base(context, logger) { }
 
-        public IActionResult Index()
-        {
+        public IActionResult Index() {
             return View();
         }
 

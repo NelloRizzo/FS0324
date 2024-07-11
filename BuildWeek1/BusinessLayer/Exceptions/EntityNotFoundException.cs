@@ -4,6 +4,7 @@
     {
         public required int Id { get; set; }
         public required Type EntityType { get; set; }
-        public EntityNotFoundException(string? message = "Entity not found", Exception? innerException = null) : base(message, innerException) { }
+        public EntityNotFoundException(string? message = "Entity not found", Exception? innerException = null)
+            : base(message, innerException) { }
     }
 }

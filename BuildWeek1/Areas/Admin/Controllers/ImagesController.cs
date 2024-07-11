@@ -10,32 +10,26 @@ namespace BuildWeek1.Areas.Admin.Controllers
     public class ImagesController : MvcBaseController
     {
         private readonly IThumbnailService _imageService;
-        public ImagesController(IThumbnailService imageService, DbContext dbContext, ILogger<MvcBaseController> logger) : base(dbContext, logger)
-        {
+        public ImagesController(IThumbnailService imageService, DbContext dbContext, ILogger<MvcBaseController> logger) : base(dbContext, logger) {
             _imageService = imageService;
         }
 
-        public IActionResult Index()
-        {
+        public IActionResult Index() {
             return View(_dbContext.Images.ReadAll().OrderBy(i => i.Title));
         }
-        public IActionResult Thumbnail(int id, [FromQuery] int? width, [FromQuery] int? height)
-        {
+        public IActionResult Thumbnail(int id, [FromQuery] int? width, [FromQuery] int? height) {
             return File(_imageService.Thumbnail(id, width, height), "image/png");
         }
 
-        public IActionResult Create()
-        {
+        public IActionResult Create() {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(ImageInputViewModel model)
-        {
+        public IActionResult Create(ImageInputViewModel model) {
             using var ms = new MemoryStream();
             model.Image.CopyTo(ms);
-            _dbContext.Images.Create(new ImageEntity
-            {
+            _dbContext.Images.Create(new ImageEntity {
                 Content = ms.ToArray(),
                 MimeType = model.Image.ContentType,
                 Description = model.Description,

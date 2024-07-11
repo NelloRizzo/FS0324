@@ -8,11 +8,17 @@ namespace BuildWeek1.Areas.Admin.Controllers
     /// </summary>
     public class MvcBaseController : Controller
     {
+        /// <summary>
+        /// Gestore dei log applicativi.
+        /// </summary>
         protected readonly ILogger<MvcBaseController> _logger;
+        /// <summary>
+        /// Contesto dati.
+        /// </summary>
+        [Obsolete("Passare alla gestione delle entità tramite services.")]
         protected readonly DbContext _dbContext;
 
-        public MvcBaseController(DbContext dbContext, ILogger<MvcBaseController> logger)
-        {
+        public MvcBaseController(DbContext dbContext, ILogger<MvcBaseController> logger) {
             _logger = logger;
             _dbContext = dbContext;
         }

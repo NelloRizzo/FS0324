@@ -16,12 +16,22 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         /// La connessione al database.
         /// </summary>
         protected readonly SqlConnection _connection;
+        /// <summary>
+        /// La transazione sulla quale si sta effettuando la modifica.
+        /// </summary>
+        private SqlTransaction? Transaction { get; set; }
 
         /// <summary>
         /// La connessione al database sottostante per consentire operazioni particolari e non previste.
         /// </summary>
         public DbConnection Database => _connection;
-
+        /// <summary>
+        /// Inizia una transazione (se non ce n'è una attiva).
+        /// </summary>
+        public DbTransaction BeginTransaction() {
+            Transaction ??= _connection.BeginTransaction();
+            return Transaction;
+        }
         /// <summary>
         /// Prepara il comando di INSERT.
         /// </summary>
@@ -87,6 +97,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         /// </summary>
         /// <see cref="IDisposable"/>
         public void Dispose() {
+            Transaction?.Dispose();
             _connection.Dispose();
             GC.SuppressFinalize(this);
         }
@@ -100,6 +111,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             try {
                 EnsureConnectionOpened();
                 using var cmd = PrepareInsert(entity);
+                cmd.Transaction = Transaction;
                 // ATTENZIONE: Il comando è eseguito come ExecuteScalar anziché ExecuteNonQuery
                 //             perché il comando di INSERT prevede la clausola OUTPUT che fornisce
                 //             il valore dell'ultimo IDENTITY assegnato all'entità in fase di salvataggio
@@ -122,6 +134,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             try {
                 EnsureConnectionOpened();
                 using var cmd = PrepareDelete(id);
+                cmd.Transaction = Transaction;
                 var i = cmd.ExecuteNonQuery();
                 if (i != 1) throw new DeleteException($"Delete command affected {i} rows");
             }
@@ -165,6 +178,7 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             try {
                 EnsureConnectionOpened();
                 using var cmd = PrepareUpdate(id, entity);
+                cmd.Transaction = Transaction;
                 var i = cmd.ExecuteNonQuery();
                 if (i != 1) throw new UpdateException($"Insert command affected {i} rows");
                 return Read(id) ?? throw new UpdateException($"Unable to read entity with Id = {id} after update");

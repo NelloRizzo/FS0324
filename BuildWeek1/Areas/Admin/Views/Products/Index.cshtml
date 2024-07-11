@@ -1,5 +1,5 @@
-﻿@using BuildWeek1.DataLayer.Entities
-@model Page<ProductEntity>
+﻿@using BuildWeek1.BusinessLayer.Dto
+@model Page<ProductDto>
 
 @{
     ViewData["Title"] = "Gestione Prodotti";
@@ -15,7 +15,7 @@
 <div class="d-flex flex-row p-2 flex-wrap justify-content-center">
     @foreach (var item in Model.Items) {
         <div class="card m-3 flex-shrink-1">
-            <img class="card-img-top" alt="@item.Title" src="@Url.Action(action:"Thumbnail", controller:"Images",new { id = item.CoverId, width = 150 })" />
+            <img class="card-img-top" alt="@item.Title" src="@Url.Action(action:"Thumbnail", controller:"Images",new { id = item.Image!.Id, width = 150 })" />
             <div class="card-header text-center">
                 <div class="card-title">
                     <h4>@Html.DisplayFor(modelItem => item.Title)</h4>

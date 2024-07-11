@@ -1,4 +1,5 @@
-﻿@model Pager
+﻿@using BuildWeek1.BusinessLayer.Dto
+@model Pager
 @{
     var next = Model.PageIndex <= Model.TotalPages ? Model.PageIndex + 1 : Model.TotalPages;
     var prev = Model.PageIndex == 0 ? 0 : Model.PageIndex - 1;

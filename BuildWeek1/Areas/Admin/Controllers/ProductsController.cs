@@ -1,4 +1,5 @@
-﻿using BuildWeek1.DataLayer;
+﻿using BuildWeek1.BusinessLayer;
+using BuildWeek1.DataLayer;
 using BuildWeek1.DataLayer.Entities;
 using BuildWeek1.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,33 +9,32 @@ namespace BuildWeek1.Areas.Admin.Controllers
     [Area("Admin")]
     public class ProductsController : MvcBaseController
     {
-        public ProductsController(DbContext dbContext, ILogger<MvcBaseController> logger) : base(dbContext, logger) { }
-
-        public IActionResult Index([FromQuery] int page = 0, [FromQuery] int pageSize = 5)
-        {
-            var count = _dbContext.Products.Count();
-            var list = _dbContext.Products.ReadAll(page, pageSize);
-            var pager = new Pager { Action = nameof(Index), PageIndex = page, PageSize = pageSize, TotalRecords = count };
-            return View(new Page<ProductEntity> { Items = list, Pager = pager });
+        private readonly IProductService _productService;
+        public ProductsController(
+            // TODO: mantenuta per compatibilità con i vecchi controllers che usano ancora il contesto dati direttamente
+            DbContext dbContext, 
+            ILogger<MvcBaseController> logger,
+            IProductService productService) : base(dbContext, logger) {
+            _productService = productService;
         }
 
-        public IActionResult Create()
-        {
+        public IActionResult Index([FromQuery] int page = 0, [FromQuery] int pageSize = 5) {
+            return View(_productService.ReadAll(page, pageSize));
+        }
+
+        public IActionResult Create() {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(ProductInputViewModel model)
-        {
+        public IActionResult Create(ProductInputViewModel model) {
             using var ms = new MemoryStream();
             model.Cover.CopyTo(ms);
-            var img = _dbContext.Images.Create(new ImageEntity
-            {
+            var img = _dbContext.Images.Create(new ImageEntity {
                 Content = ms.ToArray(),
                 MimeType = model.Cover.ContentType,
                 Title = model.Title
             });
-            _dbContext.Products.Create(new ProductEntity
-            {
+            _dbContext.Products.Create(new ProductEntity {
                 CoverId = img.Id,
                 Description = model.Description,
                 Price = model.Price,
@@ -44,28 +44,23 @@ namespace BuildWeek1.Areas.Admin.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(int id)
-        {
-            try
-            {
+        public IActionResult Delete(int id) {
+            try {
                 _dbContext.Products.Delete(id);
                 return Json("Ok");
             }
-            catch (Exception)
-            {
+            catch (Exception) {
                 return BadRequest();
             }
         }
 
-        public IActionResult MvcDelete(int id)
-        {
+        public IActionResult MvcDelete(int id) {
             var product = _dbContext.Products.Read(id);
             return View(product);
         }
 
         [HttpPost]
-        public IActionResult MvcDelete(ProductEntity model)
-        {
+        public IActionResult MvcDelete(ProductEntity model) {
             _dbContext.Products.Delete(model.Id);
             return RedirectToAction(nameof(Index));
         }
