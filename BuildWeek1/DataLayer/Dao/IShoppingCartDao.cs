@@ -19,5 +19,13 @@ namespace BuildWeek1.DataLayer.Dao
         /// </summary>
         /// <param name="retrieveClosed">Indica se recuperare anche i carrelli chiusi.</param>
         IEnumerable<ShoppingCartEntity> ReadAll(bool retrieveClosed);
+
+        /// <summary>
+        /// Recupera un prodotto in carrello.
+        /// </summary>
+        /// <param name="cartId">Chiave del carrello.</param>
+        /// <param name="productId">Chiave del prodotto.</param>
+        /// <returns>Il prodotto nel carrello.</returns>
+        ShoppingCartEntity? Read(int cartId, int productId);
     }
 }

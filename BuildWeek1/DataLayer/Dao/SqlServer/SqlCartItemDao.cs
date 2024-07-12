@@ -12,8 +12,11 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
             "INSERT INTO CartItems(CartId, ProductId, Quantity) OUTPUT INSERTED.Id VALUES(@cartId, @productId, @quantity)";
         private const string UPDATE_COMMAND = "UPDATE CartItems SET Quantity = @quantity WHERE Id = @id";
         private const string DELETE_COMMAND = "DELETE FROM CartItems WHERE Id = @id";
+        private const string DELETE_BY_CART_AND_PRODUCT_COMMAND = "DELETE FROM CartItems WHERE CartId = @cartId AND ProductId = @productId";
         private const string SELECT_BY_ID_COMMAND = "SELECT Id, CartId, ProductId, Quantity FROM CartItems WHERE Id = @id";
+        private const string SELECT_BY_CART_COMMAND = "SELECT Id, CartId, ProductId, Quantity FROM CartItems WHERE CartId = @cartId";
         private const string SELECT_COUNT_COMMAND = "SELECT COUNT(*) FROM CartItems";
+        private const string SELECT_BY_CART_AND_PRODUCT_COMMAND = "SELECT Id, CartId, ProductId, Quantity FROM CartItems WHERE CartId = @cartId AND ProductId = @productId";
         public SqlCartItemDao(IConfiguration configuration) : base(configuration) { }
 
         protected override CartItemEntity RowMap(SqlDataReader reader) =>
@@ -54,6 +57,18 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         protected override SqlCommand PrepareCount() => new SqlCommand(SELECT_COUNT_COMMAND, _connection);
 
         public IEnumerable<CartItemEntity> ReadAllByCartId(int cartId) {
+            throw new NotImplementedException();
+        }
+
+        public CartItemEntity Delete(int cartId, int productId) {
+            var cmd = new SqlCommand(DELETE_BY_CART_AND_PRODUCT_COMMAND, _connection);
+            cmd.Parameters.AddWithValue("@cartId", cartId);
+            cmd.Parameters.AddWithValue("@productId", productId);
+            cmd.ExecuteNonQuery();
+            throw new NotImplementedException();
+        }
+
+        public CartItemEntity Read(int cartId, int productId) {
             throw new NotImplementedException();
         }
     }
