@@ -12,14 +12,14 @@ namespace BuildWeek1.Areas.Admin.Controllers
         private readonly IProductService _productService;
         public ProductsController(
             // TODO: mantenuta per compatibilità con i vecchi controllers che usano ancora il contesto dati direttamente
-            DbContext dbContext, 
+            DbContext dbContext,
             ILogger<MvcBaseController> logger,
             IProductService productService) : base(dbContext, logger) {
             _productService = productService;
         }
 
         public IActionResult Index([FromQuery] int page = 0, [FromQuery] int pageSize = 5) {
-            return View(_productService.ReadAll(page, pageSize));
+            return View(_productService.GetPage(page, pageSize));
         }
 
         public IActionResult Create() {

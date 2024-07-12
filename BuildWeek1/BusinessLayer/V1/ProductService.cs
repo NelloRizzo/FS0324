@@ -1,7 +1,6 @@
 ﻿using BuildWeek1.BusinessLayer.Dto;
 using BuildWeek1.BusinessLayer.Exceptions;
 using BuildWeek1.DataLayer;
-using System.Drawing.Printing;
 
 namespace BuildWeek1.BusinessLayer.V1
 {
@@ -23,13 +22,13 @@ namespace BuildWeek1.BusinessLayer.V1
             return dto;
         }
 
-        public IEnumerable<ProductDto> ReadAll() {
+        public IEnumerable<ProductDto> GetAll() {
             var products = _dbContext.Products.ReadAll();
             return
                 products.Select(p => { var image = _dbContext.Images.Read(p.CoverId); return p.ToDto(image); });
         }
 
-        public Page<ProductDto> ReadAll(int page, int pageSize) {
+        public Page<ProductDto> GetPage(int page, int pageSize) {
             var count = _dbContext.Products.Count();
             var totalPages = count / pageSize - 1;
             if (page > totalPages) page = totalPages;
@@ -72,8 +71,12 @@ namespace BuildWeek1.BusinessLayer.V1
                     trans.Commit();
                 }
             }
+            catch(ServiceException ex) {
+                _logger.LogError(ex, "Exception saving product");
+                throw;
+            }
             catch (Exception ex) {
-                _logger.LogError(ex, "Exception saving entity");
+                _logger.LogError(ex, "Unattended exception saving product");
                 throw new PersistException(innerException: ex) { InvalidDto = dto };
             }
         }

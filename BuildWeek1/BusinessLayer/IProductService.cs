@@ -10,7 +10,7 @@ namespace BuildWeek1.BusinessLayer
         /// <summary>
         /// Ottiene l'elenco di tutti i prodotti.
         /// </summary>
-        IEnumerable<ProductDto> ReadAll();
+        IEnumerable<ProductDto> GetAll();
         /// <summary>
         /// Ottiene una pagina di prodotti.
         /// </summary>
@@ -18,6 +18,6 @@ namespace BuildWeek1.BusinessLayer
         /// <param name="pageSize">Numero di elementi per pagina.</param>
         /// <returns>L'elenco di prodotti nella pagina richiesta.</returns>
 
-        Page<ProductDto> ReadAll(int page, int pageSize);
+        Page<ProductDto> GetPage(int page, int pageSize);
     }
 }

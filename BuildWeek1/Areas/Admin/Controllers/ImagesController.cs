@@ -1,4 +1,5 @@
 ﻿using BuildWeek1.BusinessLayer;
+using BuildWeek1.BusinessLayer.Dto;
 using BuildWeek1.DataLayer;
 using BuildWeek1.DataLayer.Entities;
 using BuildWeek1.Models;
@@ -9,16 +10,19 @@ namespace BuildWeek1.Areas.Admin.Controllers
     [Area("Admin")]
     public class ImagesController : MvcBaseController
     {
-        private readonly IThumbnailService _imageService;
-        public ImagesController(IThumbnailService imageService, DbContext dbContext, ILogger<MvcBaseController> logger) : base(dbContext, logger) {
+        private readonly IThumbnailService _thumbnailService;
+        private readonly IImageService _imageService;
+        public ImagesController(IImageService imageService, IThumbnailService thumbnailService, DbContext dbContext, ILogger<MvcBaseController> logger) : base(dbContext, logger) {
+            _thumbnailService = thumbnailService;
             _imageService = imageService;
         }
 
         public IActionResult Index() {
-            return View(_dbContext.Images.ReadAll().OrderBy(i => i.Title));
+            return View(_imageService.GetAll().OrderBy(i => i.Title));
         }
         public IActionResult Thumbnail(int id, [FromQuery] int? width, [FromQuery] int? height) {
-            return File(_imageService.Thumbnail(id, width, height), "image/png");
+            var image = _imageService.Get(id) ?? throw new FileNotFoundException();
+            return File(_thumbnailService.Thumbnail(image.Content, width, height), "image/png");
         }
 
         public IActionResult Create() {
@@ -29,7 +33,7 @@ namespace BuildWeek1.Areas.Admin.Controllers
         public IActionResult Create(ImageInputViewModel model) {
             using var ms = new MemoryStream();
             model.Image.CopyTo(ms);
-            _dbContext.Images.Create(new ImageEntity {
+            _imageService.Save(new ImageDto {
                 Content = ms.ToArray(),
                 MimeType = model.Image.ContentType,
                 Description = model.Description,

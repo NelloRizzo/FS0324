@@ -11,6 +11,7 @@ namespace BuildWeek1.BusinessLayer
             services
                 .AddTransient<IThumbnailService, IThumbnailService>()
                 .AddTransient<IProductService, ProductService>()
+                .AddTransient<IImageService, ImageService>()
             ;
     }
 }
