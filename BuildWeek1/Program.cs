@@ -17,8 +17,7 @@ builder.Services
 
     // registrazione dei servizi applicativi
     // vedi classe BusinessLayer.RegisterServicesHelpers
-    .AddTransient<IThumbnailService, ThumbnailService>()
-    .AddTransient<IProductService, ProductService>()
+    .AddApplicationServices()
     ;
 // ********** Fine configurazione dei servizi di applicazione **********
 

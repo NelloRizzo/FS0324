@@ -1,5 +1,4 @@
-﻿using BuildWeek1.DataLayer;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace BuildWeek1.Areas.Admin.Controllers
 {
@@ -12,15 +11,9 @@ namespace BuildWeek1.Areas.Admin.Controllers
         /// Gestore dei log applicativi.
         /// </summary>
         protected readonly ILogger<MvcBaseController> _logger;
-        /// <summary>
-        /// Contesto dati.
-        /// </summary>
-        [Obsolete("Passare alla gestione delle entità tramite services.")]
-        protected readonly DbContext _dbContext;
 
-        public MvcBaseController(DbContext dbContext, ILogger<MvcBaseController> logger) {
+        public MvcBaseController(ILogger<MvcBaseController> logger) {
             _logger = logger;
-            _dbContext = dbContext;
         }
     }
 }

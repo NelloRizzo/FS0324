@@ -6,7 +6,7 @@ namespace BuildWeek1.BusinessLayer.V1
 {
     public class ProductService : ServiceBase, IProductService
     {
-        public ProductService(DbContext dbContext, ILogger<IServiceBase> logger)
+        public ProductService(DbContext dbContext, ILogger<ProductService> logger)
             : base(dbContext, logger) { }
 
         public ProductDto Delete(int id) {
@@ -30,8 +30,8 @@ namespace BuildWeek1.BusinessLayer.V1
 
         public Page<ProductDto> GetPage(int page, int pageSize) {
             var count = _dbContext.Products.Count();
-            var totalPages = count / pageSize - 1;
-            if (page > totalPages) page = totalPages;
+            var totalPages = count / pageSize;
+            if (page >= totalPages) page = totalPages;
             if (page < 0) page = 0;
             var pager = new Pager { PageIndex = page, PageSize = pageSize, TotalRecords = count };
 
@@ -71,7 +71,7 @@ namespace BuildWeek1.BusinessLayer.V1
                     trans.Commit();
                 }
             }
-            catch(ServiceException ex) {
+            catch (ServiceException ex) {
                 _logger.LogError(ex, "Exception saving product");
                 throw;
             }

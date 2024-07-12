@@ -6,7 +6,7 @@ namespace BuildWeek1.BusinessLayer.V1
 {
     public class ImageService : ServiceBase, IImageService
     {
-        public ImageService(DbContext dbContext, ILogger<IServiceBase> logger) : base(dbContext, logger) { }
+        public ImageService(DbContext dbContext, ILogger<ImageService> logger) : base(dbContext, logger) { }
 
         public ImageDto Delete(int id) {
             var image = _dbContext.Images.Read(id) ?? throw new EntityNotFoundException { EntityType = typeof(ImageDto), Id = id };

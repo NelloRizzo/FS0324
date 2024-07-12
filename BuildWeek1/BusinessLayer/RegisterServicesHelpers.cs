@@ -7,9 +7,9 @@ namespace BuildWeek1.BusinessLayer
         /// <summary>
         /// Registra i servizi applicativi nel sistema di Inversion of Control per la D.I.
         /// </summary>
-        public static IServiceCollection AddServices(this IServiceCollection services) =>
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services) =>
             services
-                .AddTransient<IThumbnailService, IThumbnailService>()
+                .AddTransient<IThumbnailService, ThumbnailService>()
                 .AddTransient<IProductService, ProductService>()
                 .AddTransient<IImageService, ImageService>()
             ;

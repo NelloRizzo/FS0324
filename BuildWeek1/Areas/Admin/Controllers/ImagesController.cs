@@ -1,7 +1,5 @@
 ﻿using BuildWeek1.BusinessLayer;
 using BuildWeek1.BusinessLayer.Dto;
-using BuildWeek1.DataLayer;
-using BuildWeek1.DataLayer.Entities;
 using BuildWeek1.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +10,7 @@ namespace BuildWeek1.Areas.Admin.Controllers
     {
         private readonly IThumbnailService _thumbnailService;
         private readonly IImageService _imageService;
-        public ImagesController(IImageService imageService, IThumbnailService thumbnailService, DbContext dbContext, ILogger<MvcBaseController> logger) : base(dbContext, logger) {
+        public ImagesController(IImageService imageService, IThumbnailService thumbnailService, ILogger<MvcBaseController> logger) : base(logger) {
             _thumbnailService = thumbnailService;
             _imageService = imageService;
         }
