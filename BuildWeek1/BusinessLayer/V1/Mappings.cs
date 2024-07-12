@@ -45,5 +45,17 @@ namespace BuildWeek1.BusinessLayer.V1
                 Id = image.Id,
                 Title = image.Title
             };
+
+        public static ShoppingCartDto ToDto(this ShoppingCartEntity shoppingCart) =>
+            new ShoppingCartDto { 
+                CustomerId = shoppingCart.CustomerId,
+                Closed = shoppingCart.Closed,
+                CreationDate = shoppingCart.CreationDate,
+                Id = shoppingCart.Id,
+                ShipFare = shoppingCart.ShipFare
+            };
+
+        public static CartItemDto ToDto(this CartItemEntity cartItem, ProductEntity product) =>
+            new CartItemDto { Product = product.ToDto(), Quantity = cartItem.Quantity, Id = cartItem.Id };
     }
 }

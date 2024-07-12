@@ -27,9 +27,8 @@ namespace BuildWeek1.BusinessLayer
         /// </summary>
         /// <param name="cartId">Chiave del carrello.</param>
         /// <param name="productId">Chiave del prodotto.</param>
-        /// <param name="quantity">Quantità da rimuovere.</param>
         /// <returns>Il carrello dopo la rimozione.</returns>
-        ShoppingCartDto RemoveProduct(int cartId, int productId, int quantity);
+        ShoppingCartDto RemoveProduct(int cartId, int productId);
         /// <summary>
         /// Chiude un carrello.
         /// </summary>

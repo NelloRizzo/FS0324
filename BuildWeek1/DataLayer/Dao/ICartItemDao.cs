@@ -7,7 +7,10 @@ namespace BuildWeek1.DataLayer.Dao
     /// </summary>
     public interface ICartItemDao : IDao<CartItemEntity>
     {
-        // interfaccia intenzionalmente vuota, perché al momento 
-        // i metodi sono solo quelli dell'interfaccia IDao
+        /// <summary>
+        /// Elenca i prodotti in carrello.
+        /// </summary>
+        /// <param name="cartId">Chiave del carrello.</param>
+        IEnumerable<CartItemEntity> ReadAllByCartId(int cartId);
     }
 }

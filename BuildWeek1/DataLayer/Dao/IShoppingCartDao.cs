@@ -7,7 +7,17 @@ namespace BuildWeek1.DataLayer.Dao
     /// </summary>
     public interface IShoppingCartDao : IDao<ShoppingCartEntity>
     {
-        // interfaccia intenzionalmente vuota, perché al momento 
-        // i metodi sono solo quelli dell'interfaccia IDao
+        /// <summary>
+        /// Elenca tutti i carrelli di un cliente.
+        /// </summary>
+        /// <param name="customerId">Itentificativo del cliente.</param>
+        /// <param name="retrieveClosed">Indica se recuperare anche i carrelli chiusi.</param>
+        IEnumerable<ShoppingCartEntity> ReadAllByCustomerId(string customerId, bool retrieveClosed);
+
+        /// <summary>
+        /// Elenca tutti i carrelli.
+        /// </summary>
+        /// <param name="retrieveClosed">Indica se recuperare anche i carrelli chiusi.</param>
+        IEnumerable<ShoppingCartEntity> ReadAll(bool retrieveClosed);
     }
 }
