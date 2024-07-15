@@ -12,7 +12,7 @@ namespace W7.D1.WebApp.Controllers
             return View();
         }
         [Route("mul/{first}/{second?}")]
-        public IActionResult Multiply(int first=1, int second=1) {
+        public IActionResult Multiply(int first = 1, int second = 1) {
             ViewBag.First = first;
             ViewBag.Second = second;
             return View();
