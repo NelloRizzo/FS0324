@@ -12,10 +12,6 @@
             _logger.LogInformation("Costruttore di MyService");
         }
 
-        ~MyService() {
-            _logger.LogInformation("Distruttore di MyService");
-        }
-
         public string UseService() {
             return $"Date = {_date.ToShortDateString()} - Time = {_date.ToLongTimeString()}";
         }
