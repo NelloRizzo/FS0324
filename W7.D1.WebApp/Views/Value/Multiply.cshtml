@@ -1,0 +1,12 @@
+﻿@{
+    int first = ViewBag.First;
+    int second = ViewBag.Second;
+}
+
+<div>
+    <span class="operand">@first</span>
+    <span class="operator">&times;</span>
+    <span class="operand">@second</span>
+    <span class="operator">=</span>
+    <span class="result">@(first * second)</span>
+</div>

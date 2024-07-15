@@ -1,0 +1,15 @@
+﻿@inject W7.D1.WebApp.Services.IMyService service
+@{
+    string message = ViewBag.Data;
+}
+<h1>Consumo il Servizio</h1>
+<dl>
+    <dt>
+        Ecco il risultato dell'elaborazione del servizio:
+    </dt>
+    <dd>@message</dd>
+    <dt>
+        Ecco il risultato dell'elaborazione del servizio iniettato direttamente nella pagina:
+    </dt>
+    <dd>@service.UseService()</dd>
+</dl>

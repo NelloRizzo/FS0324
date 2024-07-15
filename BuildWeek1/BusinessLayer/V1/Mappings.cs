@@ -47,7 +47,7 @@ namespace BuildWeek1.BusinessLayer.V1
             };
 
         public static ShoppingCartDto ToDto(this ShoppingCartEntity shoppingCart) =>
-            new ShoppingCartDto { 
+            new ShoppingCartDto {
                 CustomerId = shoppingCart.CustomerId,
                 Closed = shoppingCart.Closed,
                 CreationDate = shoppingCart.CreationDate,

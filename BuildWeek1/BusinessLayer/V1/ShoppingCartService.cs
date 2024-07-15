@@ -66,10 +66,10 @@ namespace BuildWeek1.BusinessLayer.V1
         }
 
         public ShoppingCartDto Get(int cartId) {
-            var cart =_dbContext.ShoppingCarts.Read(cartId)?.ToDto() ?? throw new EntityNotFoundException { EntityType = typeof(ShoppingCartDto), Id = cartId };
+            var cart = _dbContext.ShoppingCarts.Read(cartId)?.ToDto() ?? throw new EntityNotFoundException { EntityType = typeof(ShoppingCartDto), Id = cartId };
             cart.Items = _dbContext.CartItems.ReadAllByCartId(cartId).Select(c => {
                 var product = _dbContext.Products.Read(c.ProductId)!;
-               return c.ToDto(product);
+                return c.ToDto(product);
             });
             return cart;
         }

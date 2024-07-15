@@ -1,0 +1,10 @@
+﻿@{
+    int start = ViewBag.Start;
+    int count = ViewBag.Count;
+}
+
+<div class="numbers">
+    @for (var i = start; i < start + count; ++i) {
+        <span>@i</span>
+    }
+</div>
