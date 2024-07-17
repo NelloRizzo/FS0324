@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\W7.D3.DataLayer\W7.D3.DataLayer.csproj" />
+	  <ProjectReference Include="..\W7.D3.DataLayer\W7.D3.DataLayer.csproj" />
   </ItemGroup>
-
 </Project>

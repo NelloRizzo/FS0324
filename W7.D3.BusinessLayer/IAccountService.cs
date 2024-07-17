@@ -52,5 +52,12 @@ namespace W7.D3.BusinessLayer
         /// <param name="username">Username.</param>
         /// <returns>L'elenco dei ruoli ai quali è associato l'utente.</returns>
         List<string> GetUserRoles(string username);
+        /// <summary>
+        /// Controlla se un utente è assegnato ad un ruolo.
+        /// </summary>
+        /// <param name="username">Username.</param>
+        /// <param name="roleName">Nome del ruolo.</param>
+        /// <returns>Un valore booleano che indica se l'utente è assegnato al ruolo.</returns>
+        bool IsUserInRole(string username, string roleName);
     }
 }

@@ -11,7 +11,15 @@ namespace W7.D3.BusinessLayer
             this.dbContext = dbContext;
         }
         public bool AddUserToRole(string username, string roleName) {
-            throw new NotImplementedException();
+            try {
+                var user = dbContext.Users.ReadByUsername(username);
+                var role = dbContext.Roles.Read(roleName);
+                dbContext.UsersRoles.Create(user.Id, role.Id);
+                return true;
+            }
+            catch (Exception ex) {
+                return false;
+            }
         }
 
         public List<string> GetAllRoles() {
@@ -27,6 +35,10 @@ namespace W7.D3.BusinessLayer
         }
 
         public List<string> GetUserRoles(string username) {
+            throw new NotImplementedException();
+        }
+
+        public bool IsUserInRole(string username, string roleName) {
             throw new NotImplementedException();
         }
 

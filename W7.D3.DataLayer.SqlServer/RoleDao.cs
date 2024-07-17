@@ -4,15 +4,11 @@ namespace W7.D3.DataLayer.SqlServer
 {
     public class RoleDao : IRoleDao
     {
-        public RoleEntity Create(RoleEntity role) {
+        public RoleEntity Create(string roleName) {
             throw new NotImplementedException();
         }
 
-        public RoleEntity Delete(int roleId) {
-            throw new NotImplementedException();
-        }
-
-        public RoleEntity Read(int roleId) {
+        public RoleEntity Delete(int roleName) {
             throw new NotImplementedException();
         }
 
@@ -20,11 +16,7 @@ namespace W7.D3.DataLayer.SqlServer
             throw new NotImplementedException();
         }
 
-        public List<RoleEntity> ReadAll() {
-            throw new NotImplementedException();
-        }
-
-        public RoleEntity Update(int roleId, RoleEntity role) {
+        public List<string> ReadAll() {
             throw new NotImplementedException();
         }
     }
