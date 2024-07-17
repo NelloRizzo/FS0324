@@ -27,6 +27,7 @@ namespace W7.D3.DataLayer.SqlServer
         public UserEntity Create(UserEntity user) {
             try {
                 using var conn = new SqlConnection(connectionString);
+                conn.Open();
                 using var cmd = new SqlCommand(INSERT_USER, conn);
                 cmd.Parameters.AddWithValue("@username", user.Username);
                 cmd.Parameters.AddWithValue("@password", user.Password);
@@ -44,6 +45,7 @@ namespace W7.D3.DataLayer.SqlServer
                 // recupera l'entità da cancellare
                 var old = Read(userId);
                 using var conn = new SqlConnection(connectionString);
+                conn.Open();
                 using var cmd = new SqlCommand(DELETE_USER, conn);
                 cmd.Parameters.AddWithValue("@userId", userId);
                 cmd.ExecuteNonQuery();
@@ -59,6 +61,7 @@ namespace W7.D3.DataLayer.SqlServer
         public UserEntity Read(int userId) {
             try {
                 using var conn = new SqlConnection(connectionString);
+                conn.Open();
                 using var cmd = new SqlCommand(SELECT_USER_BY_ID, conn);
                 cmd.Parameters.AddWithValue("@userId", userId);
                 using var reader = cmd.ExecuteReader();
@@ -80,6 +83,7 @@ namespace W7.D3.DataLayer.SqlServer
             var result = new List<UserEntity>();
             try {
                 using var conn = new SqlConnection(connectionString);
+                conn.Open();
                 using var cmd = new SqlCommand(SELECT_ALL_USERS, conn);
                 using var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -99,6 +103,7 @@ namespace W7.D3.DataLayer.SqlServer
         public UserEntity ReadByUsername(string username) {
             try {
                 using var conn = new SqlConnection(connectionString);
+                conn.Open();
                 using var cmd = new SqlCommand(SELECT_USER_BY_USERNAME, conn);
                 cmd.Parameters.AddWithValue("@username", username);
                 using var reader = cmd.ExecuteReader();
@@ -119,6 +124,7 @@ namespace W7.D3.DataLayer.SqlServer
         public UserEntity Update(int userId, UserEntity user) {
             try {
                 using var conn = new SqlConnection(connectionString);
+                conn.Open();
                 using var cmd = new SqlCommand(UPDATE_USER, conn);
                 cmd.Parameters.AddWithValue("@password", user.Password);
                 cmd.Parameters.AddWithValue("@userId", userId);
@@ -133,6 +139,7 @@ namespace W7.D3.DataLayer.SqlServer
         public UserEntity? Login(string username, string password) {
             try {
                 using var conn = new SqlConnection(connectionString);
+                conn.Open();
                 using var cmd = new SqlCommand(LOGIN_USER, conn);
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);

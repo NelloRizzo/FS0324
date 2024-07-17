@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using W7.D3.BusinessLayer;
 using W7.D3.DataLayer;
 using W7.D3.DataLayer.SqlServer;
 
@@ -5,8 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(opt => opt.LoginPath = "/Account/Login")
+    ;
+
+builder.Services.AddAuthorization();
+
+builder.Services
     .RegisterDAOs()
     .AddScoped<DbContext>()
+    .AddScoped<IAccountService, AccountService>()
     .AddControllersWithViews();
 
 var app = builder.Build();
