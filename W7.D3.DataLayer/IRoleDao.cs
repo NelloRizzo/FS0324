@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using W7.D3.DataLayer.Data;
+﻿using W7.D3.DataLayer.Data;
 
 namespace W7.D3.DataLayer
 {

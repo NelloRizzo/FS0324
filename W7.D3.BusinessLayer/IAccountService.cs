@@ -9,7 +9,7 @@ namespace W7.D3.BusinessLayer
         /// </summary>
         /// <param name="user">Dati dell'utente da registrare.</param>
         /// <returns>Le informazioni dell'utente dopo la registrazione.</returns>
-        User Register(User user);
+        UserDto Register(UserDto user);
         /// <summary>
         /// Recupera un utente a partire dalle credenziali di accesso.
         /// </summary>
@@ -17,11 +17,11 @@ namespace W7.D3.BusinessLayer
         /// <param name="password">Password.</param>
         /// <returns>L'utente corrispondente alle credenziali o il valore <strong>null</strong>
         /// se il login non è andato a buon fine.</returns>
-        User? Login(string username, string password);
+        UserDto? Login(string username, string password);
         /// <summary>
         /// Recupera l'elenco degli utenti.
         /// </summary>
-        List<User> GetAllUsers();
+        List<UserDto> GetAllUsers();
         /// <summary>
         /// Recupera l'elenco dei ruoli applicativi.
         /// </summary>
@@ -31,7 +31,7 @@ namespace W7.D3.BusinessLayer
         /// </summary>
         /// <param name="username">Username per la ricerca dell'utente sul database.</param>
         /// <returns>L'utente corrispondente allo username.</returns>
-        User GetByUsername(string username);
+        UserDto GetByUsername(string username);
         /// <summary>
         /// Associa un utente ad un ruolo.
         /// </summary>
@@ -51,6 +51,6 @@ namespace W7.D3.BusinessLayer
         /// </summary>
         /// <param name="username">Username.</param>
         /// <returns>L'elenco dei ruoli ai quali è associato l'utente.</returns>
-        List<string> GetUserRoles(string username); 
+        List<string> GetUserRoles(string username);
     }
 }

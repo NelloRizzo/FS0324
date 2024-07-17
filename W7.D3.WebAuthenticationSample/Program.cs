@@ -1,7 +1,13 @@
+using W7.D3.DataLayer;
+using W7.D3.DataLayer.SqlServer;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services
+    .RegisterDAOs()
+    .AddScoped<DbContext>()
+    .AddControllersWithViews();
 
 var app = builder.Build();
 
