@@ -5,11 +5,8 @@ using W7.D3.DataLayer.Data;
 
 namespace W7.D3.DataLayer.SqlServer
 {
-    public class UserDao : IUserDao
+    public class UserDao : BaseDao, IUserDao
     {
-        private readonly string connectionString;
-        private readonly ILogger<UserDao> logger;
-
         private const string INSERT_USER = "INSERT INTO Users(Username, Password) OUTPUT INSERTED.Id VALUES(@username, @password)";
         private const string DELETE_USER = "DELETE FROM Users WHERE Id = @userId";
         private const string SELECT_USER_BY_ID = "SELECT Id, Username, Password FROM Users WHERE Id = @userId";
@@ -17,12 +14,7 @@ namespace W7.D3.DataLayer.SqlServer
         private const string SELECT_ALL_USERS = "SELECT Id, Username, Password FROM Users";
         private const string LOGIN_USER = "SELECT Id, Username, Password FROM Users WHERE Username = @username AND Password = @password";
         private const string UPDATE_USER = "UPDATE Users SET Password = @password WHERE Id = @userId";
-        public UserDao(IConfiguration configuration, ILogger<UserDao> logger) {
-            // il ! indica che se il risultato del metodo è null
-            // otteniamo un'eccezione
-            connectionString = configuration.GetConnectionString("AppAuthDatabase")!;
-            this.logger = logger;
-        }
+        public UserDao(IConfiguration configuration, ILogger<UserDao> logger) : base(configuration, logger) { }
 
         public UserEntity Create(UserEntity user) {
             try {

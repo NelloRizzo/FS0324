@@ -5,33 +5,27 @@ namespace W7.Project.DataLayer.SqlServer.Dao
 {
     public class ShippingDao : IShippingDao
     {
-        public ShippingEntity Get(int id)
-        {
+        public ShippingEntity Get(int id) {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ShippingEntity> GetAllByCity(string city)
-        {
+        public IEnumerable<ShippingEntity> GetAllByCity(string city) {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ShippingEntity> GetAllByCustomer(string customerCode, string shippingNumber)
-        {
+        public IEnumerable<ShippingEntity> GetAllByCustomer(string customerCode, string shippingNumber) {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ShippingEntity> GetAllByDate(DateOnly from, DateOnly to)
-        {
+        public IEnumerable<ShippingEntity> GetAllByDate(DateOnly from, DateOnly to) {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ShippingEntity> GetAllByStatus(ShippingStatus status)
-        {
+        public IEnumerable<ShippingEntity> GetAllByStatus(ShippingStatus status) {
             throw new NotImplementedException();
         }
 
-        public ShippingEntity Save(ShippingEntity shipping)
-        {
+        public ShippingEntity Save(ShippingEntity shipping) {
             throw new NotImplementedException();
         }
     }

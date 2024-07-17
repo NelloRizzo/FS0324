@@ -6,5 +6,6 @@ namespace W7.D3.DataLayer
     {
         UserRoleEntity Create(UserRoleEntity userRoleEntity);
         UserRoleEntity Delete(int userId, int roleId);
+        List<UserRoleEntity> GetAllByUserId(int userId);
     }
 }

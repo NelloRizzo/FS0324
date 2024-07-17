@@ -13,7 +13,7 @@
         /// Partita IVA.
         /// </summary>
         public required string VatCode { get; set; }
-        
+
         public override string DisplayName => Name;
     }
 }

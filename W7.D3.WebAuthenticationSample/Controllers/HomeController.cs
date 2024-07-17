@@ -13,7 +13,6 @@ namespace W7.D3.WebAuthenticationSample.Controllers
             _logger = logger;
         }
 
-        [Authorize]
         public IActionResult Index() {
             return View();
         }

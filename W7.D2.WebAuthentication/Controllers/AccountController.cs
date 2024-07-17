@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using System.Security.Cryptography.Xml;
 using W7.D2.WebAuthentication.Services;
 using W7.D2.WebAuthentication.Services.Models;
 
@@ -28,7 +27,7 @@ namespace W7.D2.WebAuthentication.Controllers
                 var claims = new List<Claim> {
                     new Claim(ClaimTypes.Name, u.Username),
                     new Claim("FriendlyName", u.FriendlyName)
-                }; 
+                };
                 u.Roles.ForEach(r => claims.Add(new Claim(ClaimTypes.Role, r)));
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 

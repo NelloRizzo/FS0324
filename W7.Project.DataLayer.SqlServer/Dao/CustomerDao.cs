@@ -167,7 +167,7 @@ namespace W7.Project.DataLayer.SqlServer.Dao
             return (int)cmd.ExecuteScalar();
         }
 
-        public CustomerEntity Register(CustomerEntity customer) {
+        public CustomerEntity Save(CustomerEntity customer) {
             try {
                 using var conn = new SqlConnection(connectionString);
                 conn.Open();
@@ -197,7 +197,7 @@ namespace W7.Project.DataLayer.SqlServer.Dao
                 return GetById(id);
             }
             catch (Exception ex) {
-                logger.LogError(ex, "Exception in {}", nameof(Register));
+                logger.LogError(ex, "Exception in {}", nameof(Save));
                 throw new DaoException(innerException: ex);
             }
         }

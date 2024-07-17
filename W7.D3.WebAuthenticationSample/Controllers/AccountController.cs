@@ -13,7 +13,8 @@ namespace W7.D3.WebAuthenticationSample.Controllers
         public AccountController(IAccountService service) {
             this.service = service;
         }
-        public IActionResult Login() {
+        public IActionResult Login([FromQuery] string returnUrl = "/") {
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
@@ -28,7 +29,8 @@ namespace W7.D3.WebAuthenticationSample.Controllers
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(identity));
             }
-            return RedirectToAction("Index", "Home");
+           
+            return Redirect(ViewData["ReturnUrl"]?.ToString() ?? Url.Action("Index", "Home")!);
         }
 
         public async Task<IActionResult> Logout() {

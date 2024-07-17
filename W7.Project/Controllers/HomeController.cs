@@ -18,7 +18,7 @@ namespace W7.Project.Controllers
 
         public IActionResult Index() {
             if (!_dbContext.CustomerDao.GetAll().Any()) {
-                _dbContext.CustomerDao.Register(new PersonEntity {
+                _dbContext.CustomerDao.Save(new PersonEntity {
                     Address = "via del Deposito",
                     City = "Paperopoli",
                     FirstName = "Paperon",
