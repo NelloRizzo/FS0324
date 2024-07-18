@@ -27,6 +27,7 @@ builder.Services
     .RegisterDAOs()
     .AddScoped<DbContext>()
     .AddScoped<IAccountService, AccountService>()
+    .AddSingleton<IMailService, SendGridMailService>()
     .AddControllersWithViews();
 
 builder.Services
