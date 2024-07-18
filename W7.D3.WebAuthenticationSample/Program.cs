@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using W7.D3.BusinessLayer;
+using W7.D3.BusinessLayer.MailServices;
 using W7.D3.BusinessLayer.PasswordEncoder;
 using W7.D3.DataLayer;
 using W7.D3.DataLayer.SqlServer;
@@ -28,6 +29,7 @@ builder.Services
     .RegisterDAOs()
     .AddScoped<DbContext>()
     .AddScoped<IAccountService, AccountService>()
+    .AddScoped<IMailService, SendGridMailService>()
     .AddScoped<IPasswordEncoder, NoOpPasswordEncoder>()
     .AddControllersWithViews();
 

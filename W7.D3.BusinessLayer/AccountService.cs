@@ -10,7 +10,10 @@ namespace W7.D3.BusinessLayer
     public class AccountService : BaseService, IAccountService
     {
         private readonly IPasswordEncoder _passwordEncoder;
-        public AccountService(DbContext dbContext, IPasswordEncoder passwordEncoder, ILogger<AccountService> logger) : base(dbContext, logger) {
+        public AccountService(DbContext dbContext,
+            IPasswordEncoder passwordEncoder,
+            ILogger<AccountService> logger) : base(dbContext, logger) {
+
             _passwordEncoder = passwordEncoder;
         }
 

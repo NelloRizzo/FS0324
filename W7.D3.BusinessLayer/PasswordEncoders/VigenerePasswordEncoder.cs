@@ -35,7 +35,7 @@ namespace W7.D3.BusinessLayer.PasswordEncoder
         }
 
         public bool IsSame(string plainText, string codedText) {
-            return Encode(plainText) == Encode(codedText);
+            return Encode(plainText) == codedText;
         }
     }
 }
