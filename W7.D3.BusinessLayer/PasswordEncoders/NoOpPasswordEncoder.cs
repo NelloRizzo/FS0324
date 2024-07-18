@@ -9,5 +9,9 @@
         {
             return password;
         }
+
+        public bool IsSame(string plainText, string codedText) {
+            return plainText == codedText;
+        }
     }
 }

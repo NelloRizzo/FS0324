@@ -15,5 +15,9 @@ namespace W7.D3.BusinessLayer.PasswordEncoder
             var enc = rsa.Encrypt(Encoding.UTF8.GetBytes(password), RSAEncryptionPadding.OaepSHA256);
             return Convert.ToBase64String(enc);
         }
+
+        public bool IsSame(string plainText, string codedText) {
+            return Encode(plainText) == codedText;
+        }
     }
 }

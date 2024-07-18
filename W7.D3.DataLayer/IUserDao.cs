@@ -42,11 +42,9 @@ namespace W7.D3.DataLayer
         /// </summary>
         List<UserEntity> ReadAll();
         /// <summary>
-        /// Valida il login di un utente.
+        /// Recupera un utente per il login.
         /// </summary>
         /// <param name="username">Username.</param>
-        /// <param name="password">Password.</param>
-        /// <returns>L'utente se il login va a buon fine.</returns>
-        UserEntity? Login(string username, string password);
+        UserEntity? Login(string username);
     }
 }

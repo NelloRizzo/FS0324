@@ -12,7 +12,7 @@ namespace W7.D3.DataLayer.SqlServer
         private const string SELECT_USER_BY_ID = "SELECT Id, Username, Password, Birthday FROM Users WHERE Id = @userId";
         private const string SELECT_USER_BY_USERNAME = "SELECT Id, Username, Password, Birthday FROM Users WHERE Username = @username";
         private const string SELECT_ALL_USERS = "SELECT Id, Username, Password, Birthday FROM Users";
-        private const string LOGIN_USER = "SELECT Id, Username, Password, Birthday FROM Users WHERE Username = @username AND Password = @password";
+        private const string LOGIN_USER = "SELECT Id, Username, Password, Birthday FROM Users WHERE Username = @username";
         private const string UPDATE_USER = "UPDATE Users SET Password = @password, Birthday = @bd WHERE Id = @userId";
         public UserDao(IConfiguration configuration, ILogger<UserDao> logger) : base(configuration, logger) { }
 
@@ -133,13 +133,12 @@ namespace W7.D3.DataLayer.SqlServer
             }
         }
 
-        public UserEntity? Login(string username, string password) {
+        public UserEntity? Login(string username) {
             try {
                 using var conn = new SqlConnection(connectionString);
                 conn.Open();
                 using var cmd = new SqlCommand(LOGIN_USER, conn);
                 cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
                 using var reader = cmd.ExecuteReader();
                 if (reader.Read())
                     return new UserEntity {
@@ -151,7 +150,7 @@ namespace W7.D3.DataLayer.SqlServer
                 return null;
             }
             catch (Exception ex) {
-                logger.LogError(ex, "Exception logging in user with credentials = ({}, {})", username, password);
+                logger.LogError(ex, "Exception retrieving user {}", username);
                 throw;
             }
         }

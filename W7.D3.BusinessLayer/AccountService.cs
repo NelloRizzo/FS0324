@@ -92,14 +92,14 @@ namespace W7.D3.BusinessLayer
         }
 
         public UserDto? Login(string username, string password) {
-            var u = dbContext.Users.Login(username, _passwordEncoder.Encode(password));
-            if (u != null)
+            var u = dbContext.Users.Login(username);
+            if (u != null && _passwordEncoder.IsSame(password, u.Password))
                 return new UserDto {
                     Id = u.Id,
-                    Password = password,
-                    Username = username,
+                    Password = u.Password,
+                    Username = u.Username,
                     Birthday = u.Birthday,
-                    Roles = dbContext.UsersRoles.ReadAllByUsername(username)
+                    Roles = dbContext.UsersRoles.ReadAllByUsername(u.Username)
                 };
             return null;
         }

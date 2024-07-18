@@ -33,5 +33,9 @@ namespace W7.D3.BusinessLayer.PasswordEncoder
             int index = 0;
             return string.Join("", password.ToUpper().Select(x => (x + worm[index++]) % 26 + 'A'));
         }
+
+        public bool IsSame(string plainText, string codedText) {
+            return Encode(plainText) == Encode(codedText);
+        }
     }
 }
