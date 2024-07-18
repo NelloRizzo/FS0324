@@ -6,7 +6,7 @@ namespace W7.D3.WebAuthenticationSample.Models
     {
         [Display(Name = "Username")]
         [Required]
-        public required string Username {  get; set; }
+        public required string Username { get; set; }
         [Display(Name = "Password")]
         [Required]
         [DataType(DataType.Password)]

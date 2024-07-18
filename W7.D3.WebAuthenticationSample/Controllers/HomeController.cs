@@ -20,7 +20,7 @@ namespace W7.D3.WebAuthenticationSample.Controllers
 
         //[Authorize(Roles = "admin")]
         //[Authorize(Policy = Policies.IsAdmin)]
-        [Authorize(Policy =Policies.AgeRequirements)]
+        [Authorize(Policy = Policies.AgeRequirements)]
         public IActionResult Privacy() {
             return View();
         }

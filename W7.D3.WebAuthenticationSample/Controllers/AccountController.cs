@@ -31,7 +31,7 @@ namespace W7.D3.WebAuthenticationSample.Controllers
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(identity));
             }
-           
+
             return Redirect(ViewData["ReturnUrl"]?.ToString() ?? Url.Action("Index", "Home")!);
         }
 

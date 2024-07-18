@@ -1,13 +1,4 @@
-﻿using SendGrid.Helpers.Mail;
-using SendGrid;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-
-namespace W7.D3.BusinessLayer
+﻿namespace W7.D3.BusinessLayer
 {
     public class SendGridMailService : IMailService
     {

@@ -1,6 +1,4 @@
-﻿using W7.D3.DataLayer.Data;
-
-namespace W7.D3.DataLayer
+﻿namespace W7.D3.DataLayer
 {
     /// <summary>
     /// DAO per le associazioni utente-ruolo.

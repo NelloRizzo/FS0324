@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
-using W7.D3.DataLayer.Data;
 
 namespace W7.D3.DataLayer.SqlServer
 {

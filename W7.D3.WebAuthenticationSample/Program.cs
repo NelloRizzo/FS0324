@@ -20,7 +20,7 @@ builder.Services
         opt.AddPolicy(Policies.IsAdmin, cfg => cfg.RequireRole("admin"));
         opt.AddPolicy(Policies.AgeRequirements, cfg => {
             cfg.AddRequirements(new MinimumAgeRequirement(18));
-            });
+        });
     });
 
 builder.Services

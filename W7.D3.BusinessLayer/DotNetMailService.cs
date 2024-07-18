@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace W7.D3.BusinessLayer
 {
@@ -18,10 +13,10 @@ namespace W7.D3.BusinessLayer
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential("nello.rizzo.test@gmail.com", "r1zz0nell0")
             };
-            using var msg = new MailMessage { 
-                From = new MailAddress("nello.rizzo.test@gmail.com", "[My Web App] - Mail Sender"), 
-                Subject = subject, 
-                Body = body 
+            using var msg = new MailMessage {
+                From = new MailAddress("nello.rizzo.test@gmail.com", "[My Web App] - Mail Sender"),
+                Subject = subject,
+                Body = body
             };
             msg.To.Add(to);
             client.Send(msg);

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace W7.D3.BusinessLayer
+﻿namespace W7.D3.BusinessLayer
 {
     public interface IMailService
     {
