@@ -9,7 +9,10 @@ namespace W7.D3.BusinessLayer
     /// </summary>
     public class AccountService : BaseService, IAccountService
     {
-        public AccountService(DbContext dbContext, ILogger<AccountService> logger) : base(dbContext, logger) { }
+        private readonly IPasswordEncoder _passwordEncoder;
+        public AccountService(DbContext dbContext, IPasswordEncoder passwordEncoder, ILogger<AccountService> logger) : base(dbContext, logger) {
+            _passwordEncoder = passwordEncoder;
+        }
 
         public bool AddUserToRole(string username, string roleName) {
             try {
@@ -89,7 +92,7 @@ namespace W7.D3.BusinessLayer
         }
 
         public UserDto? Login(string username, string password) {
-            var u = dbContext.Users.Login(username, password);
+            var u = dbContext.Users.Login(username, _passwordEncoder.Encode(password));
             if (u != null)
                 return new UserDto {
                     Id = u.Id,
@@ -104,7 +107,7 @@ namespace W7.D3.BusinessLayer
         public UserDto Register(UserDto user) {
             var u = dbContext.Users.Create(
                 new DataLayer.Data.UserEntity {
-                    Password = user.Password,
+                    Password = _passwordEncoder.Encode(user.Password),
                     Username = user.Username
                 });
             return new UserDto { Id = u.Id, Password = u.Password, Username = u.Username, Birthday = u.Birthday };
