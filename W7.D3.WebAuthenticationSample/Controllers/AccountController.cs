@@ -23,8 +23,10 @@ namespace W7.D3.WebAuthenticationSample.Controllers
             var u = service.Login(model.Username, model.Password);
             if (u != null) {
                 var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, u.Username)
+                    new Claim(ClaimTypes.Name, u.Username),
+                    new Claim(Claims.Birthday, u.Birthday.ToShortDateString())
                 };
+                u.Roles.ForEach(r => claims.Add(new Claim(ClaimTypes.Role, r)));
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(identity));

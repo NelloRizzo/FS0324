@@ -18,6 +18,10 @@
         /// </summary>
         public required string Password { get; set; }
         /// <summary>
+        /// Data di nascita.
+        /// </summary>
+        public required DateOnly Birthday { get; set; }
+        /// <summary>
         /// Ruoli applicativi ai quali l'utente è associato.
         /// </summary>
         public List<string> Roles { get; set; } = [];

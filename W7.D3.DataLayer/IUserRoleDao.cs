@@ -23,6 +23,6 @@ namespace W7.D3.DataLayer
         /// Recupera tutti i ruoli di un utente.
         /// </summary>
         /// <param name="username">Il nome dell'utente.</param>
-        List<string> GetAllByUserId(string username);
+        List<string> ReadAllByUsername(string username);
     }
 }

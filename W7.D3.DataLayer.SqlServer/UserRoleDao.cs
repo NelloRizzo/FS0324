@@ -10,9 +10,9 @@ namespace W7.D3.DataLayer.SqlServer
         public UserRoleDao(IConfiguration configuration, ILogger<UserDao> logger) : base(configuration, logger) { }
 
         private const string INSERT_USERROLE = "INSERT INTO UsersRoles(UserId, RoleId) VALUES(@userId, @roleId)";
-        private const string DELETE_USERROLE = "DELETE FROM UserRoles WHERE UserId = @userId AND RoleId = @roleId";
+        private const string DELETE_USERROLE = "DELETE FROM UsersRoles WHERE UserId = @userId AND RoleId = @roleId";
         private const string SELECT_BY_USERNAME = "SELECT ro.Name " +
-            "FROM UserRole ur " +
+            "FROM UsersRoles ur " +
             "   JOIN Roles ro ON ur.RoleId = ro.Id " +
             "   JOIN Users us ON ur.UserId = us.Id " +
             "WHERE us.Username = @username";
@@ -46,7 +46,7 @@ namespace W7.D3.DataLayer.SqlServer
             }
         }
 
-        public List<string> GetAllByUserId(string username) {
+        public List<string> ReadAllByUsername(string username) {
             var result = new List<string>();
             try {
                 using var conn = new SqlConnection(connectionString);

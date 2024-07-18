@@ -2,6 +2,9 @@
 
 namespace W7.D3.BusinessLayer
 {
+    /// <summary>
+    /// Servizi di gestione degli account.
+    /// </summary>
     public interface IAccountService
     {
         /// <summary>

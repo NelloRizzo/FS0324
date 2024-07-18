@@ -1,15 +1,16 @@
-﻿using W7.D3.BusinessLayer.Data;
+﻿using Microsoft.Extensions.Logging;
+using W7.D3.BusinessLayer.Data;
 using W7.D3.DataLayer;
 
 namespace W7.D3.BusinessLayer
 {
-    public class AccountService : IAccountService
+    /// <summary>
+    /// Implementazione corrente del servizio di gestione degli account.
+    /// </summary>
+    public class AccountService : BaseService, IAccountService
     {
-        private readonly DbContext dbContext;
+        public AccountService(DbContext dbContext, ILogger<AccountService> logger) : base(dbContext, logger) { }
 
-        public AccountService(DbContext dbContext) {
-            this.dbContext = dbContext;
-        }
         public bool AddUserToRole(string username, string roleName) {
             try {
                 var user = dbContext.Users.ReadByUsername(username);
@@ -18,34 +19,85 @@ namespace W7.D3.BusinessLayer
                 return true;
             }
             catch (Exception ex) {
+                logger.LogError(ex, "Exception adding user {} to role {}", username, roleName);
                 return false;
             }
         }
 
         public List<string> GetAllRoles() {
-            throw new NotImplementedException();
+            try {
+                return dbContext.Roles.ReadAll();
+            }
+            catch (Exception ex) {
+                logger.LogError(ex, "Exception retrieving all roles");
+                return [];
+            }
         }
 
         public List<UserDto> GetAllUsers() {
-            throw new NotImplementedException();
+            try {
+                var users = dbContext.Users.ReadAll();
+                return users.Select(u => new UserDto {
+                    Password = u.Password,
+                    Username = u.Username,
+                    Birthday = u.Birthday,
+                    Id = u.Id,
+                    Roles = dbContext.UsersRoles.ReadAllByUsername(u.Username)
+                }).ToList();
+            }
+            catch (Exception ex) {
+                logger.LogError(ex, "Exception retrieving all users");
+                return [];
+            }
         }
 
         public UserDto GetByUsername(string username) {
-            throw new NotImplementedException();
+            try {
+                var u = dbContext.Users.ReadByUsername(username);
+                return new UserDto {
+                    Password = u.Password,
+                    Username = u.Username,
+                    Birthday = u.Birthday,
+                    Id = u.Id,
+                    Roles = dbContext.UsersRoles.ReadAllByUsername(username)
+                };
+            }
+            catch (Exception ex) {
+                logger.LogError(ex, "Exception retrieving all users");
+                throw;
+            }
         }
 
         public List<string> GetUserRoles(string username) {
-            throw new NotImplementedException();
+            try {
+                return dbContext.UsersRoles.ReadAllByUsername(username);
+            }
+            catch (Exception ex) {
+                logger.LogError(ex, "Exception retrieving roles for user {}", username);
+                throw;
+            }
         }
 
         public bool IsUserInRole(string username, string roleName) {
-            throw new NotImplementedException();
+            try {
+                return GetUserRoles(username).Contains(roleName);
+            }
+            catch (Exception ex) {
+                logger.LogError(ex, "Exception checking if user {} is in role {}", username, roleName);
+                throw;
+            }
         }
 
         public UserDto? Login(string username, string password) {
             var u = dbContext.Users.Login(username, password);
             if (u != null)
-                return new UserDto { Id = u.Id, Password = password, Username = username };
+                return new UserDto {
+                    Id = u.Id,
+                    Password = password,
+                    Username = username,
+                    Birthday = u.Birthday,
+                    Roles = dbContext.UsersRoles.ReadAllByUsername(username)
+                };
             return null;
         }
 
@@ -55,11 +107,20 @@ namespace W7.D3.BusinessLayer
                     Password = user.Password,
                     Username = user.Username
                 });
-            return new UserDto { Id = u.Id, Password = u.Password, Username = u.Username };
+            return new UserDto { Id = u.Id, Password = u.Password, Username = u.Username, Birthday = u.Birthday };
         }
 
         public bool RemoveUserFromRole(string username, string roleName) {
-            throw new NotImplementedException();
+            try {
+                var user = dbContext.Users.ReadByUsername(username);
+                var role = dbContext.Roles.Read(roleName);
+                dbContext.UsersRoles.Delete(user.Id, role.Id);
+                return true;
+            }
+            catch (Exception ex) {
+                logger.LogError(ex, "Exception checking if user {} is in role {}", username, roleName);
+                return false;
+            }
         }
     }
 }

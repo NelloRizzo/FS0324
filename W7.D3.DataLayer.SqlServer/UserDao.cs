@@ -7,13 +7,13 @@ namespace W7.D3.DataLayer.SqlServer
 {
     public class UserDao : BaseDao, IUserDao
     {
-        private const string INSERT_USER = "INSERT INTO Users(Username, Password) OUTPUT INSERTED.Id VALUES(@username, @password)";
+        private const string INSERT_USER = "INSERT INTO Users(Username, Password, Birthday) OUTPUT INSERTED.Id VALUES(@username, @password, @bd)";
         private const string DELETE_USER = "DELETE FROM Users WHERE Id = @userId";
-        private const string SELECT_USER_BY_ID = "SELECT Id, Username, Password FROM Users WHERE Id = @userId";
-        private const string SELECT_USER_BY_USERNAME = "SELECT Id, Username, Password FROM Users WHERE Username = @username";
-        private const string SELECT_ALL_USERS = "SELECT Id, Username, Password FROM Users";
-        private const string LOGIN_USER = "SELECT Id, Username, Password FROM Users WHERE Username = @username AND Password = @password";
-        private const string UPDATE_USER = "UPDATE Users SET Password = @password WHERE Id = @userId";
+        private const string SELECT_USER_BY_ID = "SELECT Id, Username, Password, Birthday FROM Users WHERE Id = @userId";
+        private const string SELECT_USER_BY_USERNAME = "SELECT Id, Username, Password, Birthday FROM Users WHERE Username = @username";
+        private const string SELECT_ALL_USERS = "SELECT Id, Username, Password, Birthday FROM Users";
+        private const string LOGIN_USER = "SELECT Id, Username, Password, Birthday FROM Users WHERE Username = @username AND Password = @password";
+        private const string UPDATE_USER = "UPDATE Users SET Password = @password, Birthday = @bd WHERE Id = @userId";
         public UserDao(IConfiguration configuration, ILogger<UserDao> logger) : base(configuration, logger) { }
 
         public UserEntity Create(UserEntity user) {
@@ -23,6 +23,7 @@ namespace W7.D3.DataLayer.SqlServer
                 using var cmd = new SqlCommand(INSERT_USER, conn);
                 cmd.Parameters.AddWithValue("@username", user.Username);
                 cmd.Parameters.AddWithValue("@password", user.Password);
+                cmd.Parameters.AddWithValue("@bd", user.Birthday.ToDateTime(TimeOnly.MinValue));
                 user.Id = (int)cmd.ExecuteScalar();
                 return user;
             }
@@ -61,7 +62,8 @@ namespace W7.D3.DataLayer.SqlServer
                     return new UserEntity {
                         Id = reader.GetInt32(0),
                         Username = reader.GetString(1),
-                        Password = reader.GetString(2)
+                        Password = reader.GetString(2),
+                        Birthday = DateOnly.FromDateTime(reader.GetDateTime(3))
                     };
                 throw new Exception("User not found");
             }
@@ -82,7 +84,8 @@ namespace W7.D3.DataLayer.SqlServer
                     result.Add(new UserEntity {
                         Id = reader.GetInt32(0),
                         Username = reader.GetString(1),
-                        Password = reader.GetString(2)
+                        Password = reader.GetString(2),
+                        Birthday = DateOnly.FromDateTime(reader.GetDateTime(3))
                     });
                 return result;
             }
@@ -103,7 +106,8 @@ namespace W7.D3.DataLayer.SqlServer
                     return new UserEntity {
                         Id = reader.GetInt32(0),
                         Username = reader.GetString(1),
-                        Password = reader.GetString(2)
+                        Password = reader.GetString(2),
+                        Birthday = DateOnly.FromDateTime(reader.GetDateTime(3))
                     };
                 throw new Exception("User not found");
             }
@@ -120,6 +124,7 @@ namespace W7.D3.DataLayer.SqlServer
                 using var cmd = new SqlCommand(UPDATE_USER, conn);
                 cmd.Parameters.AddWithValue("@password", user.Password);
                 cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@bd", user.Birthday.ToDateTime(TimeOnly.MinValue));
                 return Read(userId);
             }
             catch (Exception ex) {
@@ -140,7 +145,8 @@ namespace W7.D3.DataLayer.SqlServer
                     return new UserEntity {
                         Id = reader.GetInt32(0),
                         Username = reader.GetString(1),
-                        Password = reader.GetString(2)
+                        Password = reader.GetString(2),
+                        Birthday = DateOnly.FromDateTime(reader.GetDateTime(3))
                     };
                 return null;
             }

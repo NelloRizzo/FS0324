@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using W7.D3.BusinessLayer;
 using W7.D3.DataLayer;
 using W7.D3.DataLayer.SqlServer;
+using W7.D3.WebAuthenticationSample;
+using W7.D3.WebAuthenticationSample.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,13 +14,24 @@ builder.Services
     .AddCookie(opt => opt.LoginPath = "/Account/Login")
     ;
 
-builder.Services.AddAuthorization();
+builder.Services
+    .AddAuthorization(opt => {
+        opt.AddPolicy(Policies.LoggedIn, cfg => cfg.RequireAuthenticatedUser());
+        opt.AddPolicy(Policies.IsAdmin, cfg => cfg.RequireRole("admin"));
+        opt.AddPolicy(Policies.AgeRequirements, cfg => {
+            cfg.AddRequirements(new MinimumAgeRequirement(18));
+            });
+    });
 
 builder.Services
     .RegisterDAOs()
     .AddScoped<DbContext>()
     .AddScoped<IAccountService, AccountService>()
     .AddControllersWithViews();
+
+builder.Services
+    .AddSingleton<IAuthorizationHandler, MinimumAgeHandler>()
+    ;
 
 var app = builder.Build();
 

@@ -17,5 +17,9 @@
         /// Password.
         /// </summary>
         public required string Password { get; set; }
+        /// <summary>
+        /// Data di nascita.
+        /// </summary>
+        public DateOnly Birthday { get; set; }
     }
 }
