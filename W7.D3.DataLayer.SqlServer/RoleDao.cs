@@ -1,4 +1,5 @@
-﻿using W7.D3.DataLayer.Data;
+﻿using W7.D3.DataLayer.Dao.Users;
+using W7.D3.DataLayer.Data.Users;
 
 namespace W7.D3.DataLayer.SqlServer
 {

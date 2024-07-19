@@ -16,7 +16,6 @@ namespace W7.D3.WebAuthenticationSample.Controllers
             _mailService = mailService;
         }
 
-        [AllowAnonymous]
         public IActionResult Index() {
             return View();
         }
@@ -33,6 +32,7 @@ namespace W7.D3.WebAuthenticationSample.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SendMail(EmailModel model) {
             _mailService.SendMail(model.Sender, model.Subject, model.Body);
             return RedirectToAction("Index");

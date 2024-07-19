@@ -1,4 +1,7 @@
-﻿namespace W7.D3.DataLayer
+﻿using W7.D3.DataLayer.Dao;
+using W7.D3.DataLayer.Dao.Users;
+
+namespace W7.D3.DataLayer
 {
     /// <summary>
     /// Rappresenta tutto il contesto dati dell'applicazione consentendo
@@ -6,14 +9,20 @@
     /// </summary>
     public class DbContext
     {
+        public ICustomerDao Customers { get; set; }
         public IRoleDao Roles { get; set; }
         public IUserRoleDao UsersRoles { get; set; }
         public IUserDao Users { get; set; }
 
-        public DbContext(IRoleDao roleDao, IUserDao userDao, IUserRoleDao userRoleDao) {
+        public DbContext(
+            IRoleDao roleDao,
+            IUserDao userDao,
+            IUserRoleDao userRoleDao,
+            ICustomerDao customerDao) {
             Roles = roleDao;
             Users = userDao;
             UsersRoles = userRoleDao;
+            Customers = customerDao;
         }
     }
 }

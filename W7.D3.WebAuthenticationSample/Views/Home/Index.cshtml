@@ -1,8 +1,22 @@
-﻿@{
+﻿@model SearchModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4 site-title">Track your Pack</h1>
+    <p>Ricerca la tua spedizione</p>
 </div>
+<form asp-action="Search" asp-controller="Shipping">
+    @Html.AntiForgeryToken()
+    <div class="d-flex justify-content-around flex-column">
+        <div class="input-group flex-row align-baseline p-2">
+            <label class="form-label p-2" asp-for="ShippingNumber"></label>
+            <input class="form-control p-2" asp-for="ShippingNumber" />
+        </div>
+        <div class="input-group flex-row p-2">
+            <label class="form-label p-2" asp-for="FiscalData"></label>
+            <input class="form-control p-2" asp-for="FiscalData" />
+        </div>
+    </div>
+</form>

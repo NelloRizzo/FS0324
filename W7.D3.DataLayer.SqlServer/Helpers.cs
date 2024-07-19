@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using W7.D3.DataLayer.Dao;
+using W7.D3.DataLayer.Dao.Users;
 
 namespace W7.D3.DataLayer.SqlServer
 {
@@ -13,6 +15,7 @@ namespace W7.D3.DataLayer.SqlServer
                 .AddScoped<IUserDao, UserDao>()
                 .AddScoped<IRoleDao, RoleDao>()
                 .AddScoped<IUserRoleDao, UserRoleDao>()
+                .AddScoped<ICustomerDao, CustomerDao>()
                 ;
         }
     }

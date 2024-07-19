@@ -1,0 +1,12 @@
+﻿@using W7.D3.BusinessLayer.Data
+@model CompanyDto
+
+<div class="card company">
+    <div class="card-header">
+        
+        <h1><i class="bi bi-building-fill"></i> @Model.Name</h1>
+    </div>
+    <div class="card-body">
+        <span class="label">Partita IVA:</span> <span class="fw-bold">@Model.VatCode</span>
+    </div>
+</div>

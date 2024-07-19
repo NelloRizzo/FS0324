@@ -1,0 +1,19 @@
+﻿@model IEnumerable<W7.D3.BusinessLayer.Data.CustomerDto>
+
+@{
+    ViewData["Title"] = "Elenco Clienti";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="CreatePerson" class="btn btn-info">Nuovo Privato</a>
+    <a asp-action="CreateCompany" class="btn btn-info">Nuova Azienda</a>
+</p>
+<div class="d-flex justify-content-around">
+    @foreach (var item in Model) {
+        <div class="flex-grow-1 p-2">
+            @Html.DisplayFor(i => item, item.GetType().Name)
+        </div>
+    }
+</div>

@@ -1,0 +1,11 @@
+﻿@using W7.D3.BusinessLayer.Data
+@model PersonDto
+
+<div class="card person">
+    <div class="card-header"><h1>
+        <i class="bi bi-person-fill"></i>
+        @Model.FirstName @Model.LastName</h1></div>
+    <div class="card-body">
+        <span class="label">Codice Fiscale:</span> <span class="fw-bold">@Model.FiscalCode</span>
+    </div>
+</div>
