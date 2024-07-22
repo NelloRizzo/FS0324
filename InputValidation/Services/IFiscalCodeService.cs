@@ -6,6 +6,6 @@ namespace InputValidation.Services
     {
         public string GenerateFiscalCode(PersonalDataDto data);
 
-        public bool ValidateFiscalCode(string fiscalCode);  
+        public bool ValidateFiscalCode(string fiscalCode);
     }
 }

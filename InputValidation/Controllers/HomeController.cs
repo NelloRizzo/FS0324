@@ -14,7 +14,7 @@ namespace InputValidation.Controllers
         public HomeController(ILogger<HomeController> logger, ICityService cityService, IFiscalCodeService fiscalCodeService) {
             _logger = logger;
             _cityService = cityService;
-            _fiscalCodeService = fiscalCodeService;   
+            _fiscalCodeService = fiscalCodeService;
         }
 
         public IActionResult Index() {
