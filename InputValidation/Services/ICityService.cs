@@ -12,7 +12,7 @@ namespace InputValidation
         /// <summary>
         /// Restituisce tutte le province.
         /// </summary>
-        public IEnumerable<CityDto> GetProvinces();
+        public IEnumerable<ProvinceDto> GetProvinces();
         /// <summary>
         /// Restituisce i dati di una città a partire dal nome.
         /// </summary>
