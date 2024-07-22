@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using InputValidation.Configuration;
+using System.ComponentModel.DataAnnotations;
 
 namespace InputValidation.Models
 {
@@ -18,6 +19,7 @@ namespace InputValidation.Models
         [Display(Name = "Sesso")]
         public char Gender { get; set; }
         [Display(Name = "Città di nascita"), Required(ErrorMessage = "Immettere la città di nascita")]
-        public required string BirthCity { get; set; }
+        [CityExists(ErrorMessage = "Quale città dovrebbe essere «{0}»?")]
+        public required string BirthOfCity { get; set; }
     }
 }

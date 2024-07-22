@@ -1,7 +1,15 @@
+using InputValidation;
+using InputValidation.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services
+    .AddSingleton<ICityService, CsvCityService>()
+    .AddSingleton<IFiscalCodeService, FiscalCodeService>()
+    ;
 
 var app = builder.Build();
 

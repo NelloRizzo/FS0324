@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\CsvData\comuniitaliani.csv" />
+  </ItemGroup>
+
 </Project>

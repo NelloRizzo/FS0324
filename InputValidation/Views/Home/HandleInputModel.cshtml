@@ -1,0 +1,9 @@
+﻿@model InputModel
+
+<form asp-action="HandleInputModel">
+    @Html.AntiForgeryToken()
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <button>Invia</button>
+</form>
