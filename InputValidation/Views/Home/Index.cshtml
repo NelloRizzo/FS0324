@@ -4,5 +4,41 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Questo è il primo paragrafo</p>
+    <p class="p2">Questo è il secondo paragrafo</p>
+    <p id="p3">Questo è il terzo paragrafo</p>
+    <button type="button">Click</button><br />
+    <img id="gallery" />
 </div>
+
+
+@section Scripts {
+    <script>
+        $(() => {
+            $("p").addClass("alert alert-success")
+            $("#p3").removeClass("alert-success").addClass("alert-danger")
+            $("p.p2").addClass("p-5")
+            $("p").click((e) => {
+                let text = $(e.target).text()
+                let t = ''
+                for (let i = 0; i < text.length; ++i)
+                    t += text[text.length - i - 1]
+                $(e.target).text(t)
+            })
+
+            $("p").mouseenter((e) => $(e.target).addClass('fw-bold'))
+            $("p").mouseleave((e) => $(e.target).removeClass('fw-bold'))
+
+            $("button").click(() =>
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/photos',
+                    method: 'get',
+                    success: (data) => {
+                        let url = $(data)[0].url
+                        $("#gallery").prop("src", url)
+                    }
+                })
+            )
+        })
+    </script>
+}

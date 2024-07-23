@@ -19,7 +19,7 @@ namespace InputValidation.Models
         [Display(Name = "Sesso")]
         public char Gender { get; set; }
         [Display(Name = "Città di nascita"), Required(ErrorMessage = "Immettere la città di nascita")]
-        [CityExists(ErrorMessage = "Quale città dovrebbe essere «{0}»?")]
-        public required string BirthOfCity { get; set; }
+        //[CityExists(ErrorMessage = "Quale città dovrebbe essere «{0}»?")]
+        public required int BirthOfCity { get; set; }
     }
 }

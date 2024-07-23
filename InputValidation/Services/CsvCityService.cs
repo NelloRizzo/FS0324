@@ -29,6 +29,8 @@ namespace InputValidation.Services
             // where fa passare solo gli elementi che soddisfano il predicato (lambda) passato come parametro
             _cityList.Where(c => c.Province.Acronym == acronym);
 
+        public CityDto GetCityById(int id) => _cityList.Single(c => c.Id == id);
+
         public CityDto GetCityByName(string cityName) =>
             // first recupera la prima occorrenza che soddisfa il predicato
             _cityList.First(c => c.Name.Equals(cityName, StringComparison.InvariantCultureIgnoreCase));

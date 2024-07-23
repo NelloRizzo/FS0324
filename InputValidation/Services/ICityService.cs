@@ -18,5 +18,10 @@ namespace InputValidation
         /// </summary>
         /// <param name="cityName">Nome della città.</param>
         public CityDto GetCityByName(string cityName);
+        /// <summary>
+        /// Restituisce i dati di una città a partire dall'Id.
+        /// </summary>
+        /// <param name="id">Nome della città.</param>
+        public CityDto GetCityById(int id);
     }
 }

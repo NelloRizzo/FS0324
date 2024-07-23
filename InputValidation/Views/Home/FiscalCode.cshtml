@@ -38,7 +38,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="BirthOfCity" class="control-label"></label>
-                <input asp-for="BirthOfCity" class="form-control" />
+                <div class="row">
+                    <div class="col-5">
+                        <select id="provinces" class="form-select"></select>
+                    </div>
+                    <div class="col-7">
+                        <select asp-for="BirthOfCity" id="cities" class="form-select"></select>
+                    </div>
+                </div>
                 <span asp-validation-for="BirthOfCity" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -48,8 +55,7 @@
     </div>
 </div>
 
-@if (ViewBag.FiscalCode != null)
-{
+@if (ViewBag.FiscalCode != null) {
     <div class="alert alert-success">
         @ViewBag.FiscalCode
     </div>
@@ -59,4 +65,33 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        function loadCities() {
+            let province = $("#provinces").val()
+            $.ajax({
+                url: '@Url.Action("GetCities", "Home")',
+                method: 'get',
+                data: { 'province': `${province}` },
+                success: (data) => {
+                    $("#cities").empty()
+                    $(data).each((_, c) => {
+                        $('<option>').text(c.name).val(c.id).appendTo($("#cities"))
+                    })
+                }
+            })
+        }
+        $(() => {
+            $.ajax({
+                url: '@Url.Action("GetProvinces", "Home")',
+                method: 'get',
+                success: (data) => {
+                    $(data).each((_, p) => {
+                        $('<option>').text(p.name).val(p.acronym).appendTo($("#provinces"))
+                    })
+                    loadCities()
+                }
+            })
+            $("#provinces").change(() => loadCities())
+        })
+    </script>
 }

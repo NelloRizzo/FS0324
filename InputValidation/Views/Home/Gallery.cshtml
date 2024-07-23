@@ -1,0 +1,22 @@
+﻿@{
+    string images = ViewBag.Images;
+}
+
+<h1>Slide Show</h1>
+<img id="slide" />
+
+@section Scripts {
+    <script>
+        let images = @Html.Raw(images)
+        let current = 0
+        function change() {
+            $("#slide").prop("src", `/images/${images[current]}`)
+            current++
+            if (current >= images.length) current = 0
+            setTimeout(() => change(), 1000)
+        }
+        $(() => {
+            change()
+        })
+    </script>
+}
