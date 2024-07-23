@@ -30,6 +30,7 @@ namespace InputValidation.Controllers
             return View();
         }
         public IActionResult FiscalCode() {
+            _logger.LogInformation("Sto visualizzando il form per il calcolo del codice fiscale");
             return View();
         }
 
@@ -59,6 +60,7 @@ namespace InputValidation.Controllers
                     ViewBag.FiscalCode = fc;
                 }
                 catch (Exception ex) {
+                    _logger.LogError(ex, "Eccezione durante l'elaborazione del metodo {}", nameof(FiscalCode));
                     ModelState.AddModelError("unattended_exception", "Si è verificato un problema nel calcolo");
                 }
             }

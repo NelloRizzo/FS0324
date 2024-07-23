@@ -5,8 +5,10 @@ namespace InputValidation.Services
     public class CsvCityService : ICityService
     {
         private readonly List<CityDto> _cityList = [];
+        private readonly ILogger<CsvCityService> _logger;
 
-        public CsvCityService(IWebHostEnvironment env) {
+        public CsvCityService(IWebHostEnvironment env, ILogger<CsvCityService> logger) {
+            _logger = logger;
             var filename = Path.Combine(env.WebRootPath, @"CsvData\comuniitaliani.csv");
             File.ReadAllLines(filename, System.Text.Encoding.Default) // leggo tutte le righe del file
                 .Skip(1) // scarto la prima riga di intestazione
@@ -22,7 +24,10 @@ namespace InputValidation.Services
                         Acronym = fields[14],
                     }
                 }).ToList() // trasformo in lista
-                .ForEach(c => _cityList.Add(c)); // agggiungo tutte le città alla lista delle città
+                .ForEach(c => {
+                    _logger.LogDebug("Sto gestendo la città {}", c.Name);
+                    _cityList.Add(c);
+                }); // agggiungo tutte le città alla lista delle città
         }
 
         public IEnumerable<CityDto> GetByProvince(string acronym) =>
