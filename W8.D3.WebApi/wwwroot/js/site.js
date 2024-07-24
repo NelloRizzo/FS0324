@@ -39,6 +39,7 @@ function getContacts() {
                     })
                 })
             })
-        }
+        },
+        error: (e) => console.log(e)
     })
 }
