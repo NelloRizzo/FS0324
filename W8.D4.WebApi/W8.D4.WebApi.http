@@ -1,0 +1,6 @@
+@W8.D4.WebApi_HostAddress = http://localhost:5189
+
+GET {{W8.D4.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

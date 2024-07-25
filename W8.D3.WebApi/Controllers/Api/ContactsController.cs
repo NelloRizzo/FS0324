@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using W8.D3.WebApi.Controllers.Api.Models;
 
@@ -30,6 +31,7 @@ namespace W8.D3.WebApi.Controllers.Api
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody] Contact contact) {
             try {
                 var id = _contacts.Select(c => c.Id).DefaultIfEmpty(0).Max();
