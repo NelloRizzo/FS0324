@@ -10,9 +10,9 @@ namespace W2_D1_Collections
         }
     }
 
-    internal class Program
+    public class Program
     {
-        static void Main1(string[] args) {
+        static void Main(string[] args) {
             Console.WriteLine("Hello, World!");
 
             W2_D1_Collections.Program p1 = new W2_D1_Collections.Program();

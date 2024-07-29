@@ -19,6 +19,10 @@ namespace BuildWeek1.DataLayer.Dao.SqlServer
         private const string SELECT_COUNT_COMMAND = "SELECT COUNT(*) FROM ShoppingCarts";
         public SqlServerShoppingCartDao(IConfiguration configuration) : base(configuration) { }
 
+        public ShoppingCartEntity? Read(int cartId, int productId) {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<ShoppingCartEntity> ReadAll(bool retrieveClosed) {
             var result = new List<ShoppingCartEntity>();
             try {
