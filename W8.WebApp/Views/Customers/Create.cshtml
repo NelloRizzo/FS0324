@@ -1,0 +1,102 @@
+﻿@using W8.WebApp.Controllers.Api
+@model CustomerViewModel
+
+@{
+    ViewData["Title"] = "Registrazione Clente";
+}
+
+<h1>Registrazione Cliente</h1>
+
+<h4>Anagrafica Cliente</h4>
+<hr />
+<div class="row">
+    <div class="col-sm-10">
+        <form asp-action="Create" autocomplete="off">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <div class="input-group">
+                    <select asp-for="Province" class="form-select me-2" id="province"></select>
+                    <select asp-for="City" autocomplete="off" list="cities" id="city" class="form-select w-75"></select>
+                </div>
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FiscalCode" class="control-label"></label>
+                <input asp-for="FiscalCode" class="form-control" />
+                <span asp-validation-for="FiscalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Indietro</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        const baseUrl = '/api/cities'
+        const citiesUrl = `${baseUrl}`
+        const provincesUrl = `${baseUrl}/provinces`
+
+        function loadCities() {
+            let province = $('#province').val()
+            $.ajax({
+                url: `${citiesUrl}/${province}`,
+                method: 'get',
+                success: (list) => {
+                    $('#city').empty()
+                    $(list).each((_, c) => {
+                        $('<option>').text(c.name).appendTo('#city')
+                    })
+                },
+                error: (e) => console.log(e)
+            })
+        }
+
+        $(() => {
+            $.ajax({
+                url: provincesUrl,
+                method: 'get',
+                success: (list) => {
+                    $(list).each((_, p) => {
+                        $('<option>').val(p.acronym).text(p.acronym).appendTo('#province')
+                    })
+                    loadCities()
+                },
+                error: (e) => console.log(e)
+            })
+            $('#province').change(() => loadCities())
+        })
+    </script>
+}

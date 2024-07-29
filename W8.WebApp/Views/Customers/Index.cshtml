@@ -1,0 +1,61 @@
+﻿@using W8.Services.Dto
+@using W8.Services.Dto.Utils
+@model Page<CustomerDto>
+
+@{
+    ViewData["Title"] = R.Views.Customers.Index.PageTitle;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">@R.Views.Customers.Index.NewCustomerButtonLabel</a>
+</p>
+@if (Model.Content.Any()) {
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cognome</th>
+                <th>Nome</th>
+                <th>Città</th>
+                <th>Telefono</th>
+                <th>Cellulare</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Content) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                        (@Html.DisplayFor(modelItem => item.Province))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mobile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else {
+    <div class="row"><div class="col alert alert-warning">Nessun cliente in archivio</div></div>
+}

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -54,7 +53,7 @@ namespace W8.D3.WebApi.Controllers.Api
         [Authorize]
         public IActionResult TestToken() {
             var rnd = new Random();
-            return Ok(Enumerable.Range(1, rnd.Next(100)).Select(n => new { Count = n, Value =  rnd.Next(100) }));
+            return Ok(Enumerable.Range(1, rnd.Next(100)).Select(n => new { Count = n, Value = rnd.Next(100) }));
         }
     }
 }

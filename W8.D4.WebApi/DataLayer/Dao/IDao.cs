@@ -1,6 +1,4 @@
-﻿using W8.D4.WebApi.DataLayer.Entities;
-
-namespace W8.D4.WebApi.DataLayer.Dao
+﻿namespace W8.D4.WebApi.DataLayer.Dao
 {
     /// <summary>
     /// CRUD per tutte le entità.

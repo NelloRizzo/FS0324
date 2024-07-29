@@ -8,7 +8,7 @@
         /// <summary>
         /// Id dell'utente.
         /// </summary>
-        public int UserId {  get; set; }
+        public int UserId { get; set; }
         /// <summary>
         /// Username.
         /// </summary>
@@ -16,7 +16,7 @@
         /// <summary>
         /// Token per l'autenticazione.
         /// </summary>
-        public required string Token {  get; set; }
+        public required string Token { get; set; }
         /// <summary>
         /// Data di scadenza del token.
         /// </summary>

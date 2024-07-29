@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using W8.D4.WebApi.Controllers.Models;
 using W8.D4.WebApi.DataLayer;
@@ -43,9 +42,9 @@ namespace W8.D4.WebApi.Controllers
             });
             // Created deve restiture un link nello header Location per il recupero dell'elemento creato
             return CreatedAtAction( // oltre a restituire 210 Created
-                // crea un riferimento al metodo per il richiamo dell'articolo
+                                    // crea un riferimento al metodo per il richiamo dell'articolo
                 actionName: nameof(Read), // action che legge l'articolo
-                routeValues: new {id = article.Id}, // parametri passati alla action
+                routeValues: new { id = article.Id }, // parametri passati alla action
                 article // questo oggetto viene invece passato come corpo della Response
             );
         }

@@ -8,13 +8,13 @@ namespace W8.D4.WebApi.DataLayer
     public class DataContext
     {
         public IArticleDao Articles { get; }
-        public ICommentDao Comments{ get; }
-        public IAuthorDao Authors{ get; }
+        public ICommentDao Comments { get; }
+        public IAuthorDao Authors { get; }
 
         public DataContext(IArticleDao articles, ICommentDao comments, IAuthorDao authors) {
             Articles = articles;
             Comments = comments;
             Authors = authors;
-        }   
+        }
     }
 }

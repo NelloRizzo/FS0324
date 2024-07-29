@@ -60,7 +60,7 @@ namespace W8.D4.WebApi.DataLayer.Dao.SqlServer
                 while (reader.Read()) {
                     result.Add(new ArticleEntity {
                         Id = reader.GetInt32(0),
-                        Title = reader.GetString(1),   
+                        Title = reader.GetString(1),
                         Content = reader.GetString(2),
                         AuthorId = reader.GetInt32(3),
                         PublicationDate = reader.GetDateTime(4),
