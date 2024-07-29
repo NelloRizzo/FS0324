@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using W9.InTheOven.Models;
@@ -11,7 +12,7 @@ namespace W9.InTheOven.Controllers
         public HomeController(ILogger<HomeController> logger) {
             _logger = logger;
         }
-
+        [Authorize]
         public IActionResult Index() {
             return View();
         }
