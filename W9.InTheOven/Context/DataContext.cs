@@ -6,7 +6,7 @@ namespace W9.InTheOven.Context
     /// <summary>
     /// Contesto dati.
     /// </summary>
-    public class DataContext : DbContext
+    public class DataContext(DbContextOptions<DataContext> opt) : DbContext(opt)
     {
         /// <summary>
         /// Prodotti.
@@ -28,7 +28,5 @@ namespace W9.InTheOven.Context
         /// Ordini.
         /// </summary>
         public virtual DbSet<Order> Orders { get; set; }
-
-        public DataContext(DbContextOptions<DataContext> opt) : base(opt) { }
     }
 }

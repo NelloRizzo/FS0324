@@ -2,12 +2,21 @@
 
 namespace W9.InTheOven.Models
 {
+    /// <summary>
+    /// View model per il login.
+    /// </summary>
     public class LoginModel
     {
+        /// <summary>
+        /// Email.
+        /// </summary>
         [Required]
         [EmailAddress]
         [StringLength(80)]
-        public required string Email {  get; set; }
+        public required string Email { get; set; }
+        /// <summary>
+        /// Password.
+        /// </summary>
         [Required]
         [StringLength(20)]
         [DataType(DataType.Password)]
