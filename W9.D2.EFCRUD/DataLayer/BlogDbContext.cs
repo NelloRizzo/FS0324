@@ -14,25 +14,11 @@ namespace W9.D2.EFCRUD.DataLayer
             Enumerable.Range(1, count)
                 // Select -> trasforma un'informazione di input (i), in un altro tipo (Author)
                 .Select(i => new Author {
-                    Id = i, Email = $"email{i}@test.com", FriendlyName = $"Friendly name {i}", Password = "password"
-                });
-        private static IEnumerable<Article> GetArticles(int count, Author[] authors) {
-            return Enumerable.Range(1, count)
-                .Select(i => new Article {
-                    Author = authors[Random.Shared.Next(authors.Length)],
-                    Body = $"Corpo dell'articolo n. {i}",
-                    Title = $"Titolo {i}",
-                    PublishedAt = DateTime.Now,
                     Id = i,
-                    Comments = Enumerable.Range(1, Random.Shared.Next(10))
-                        .Select(n => new Comment {
-                            Author = authors[Random.Shared.Next(authors.Length)],
-                            Body = $"Commento n. {n} all'articolo n. {i}",
-                            PublishedAt= DateTime.Now,
-                            Id = n,
-                        })
+                    Email = Faker.Internet.Email(),
+                    FriendlyName = Faker.Name.FullName(),
+                    Password = "password"
                 });
-        }
 
         /// <summary>
         /// Viene eseguito quando viene richiamato il comando update-database
@@ -42,11 +28,12 @@ namespace W9.D2.EFCRUD.DataLayer
             base.OnModelCreating(modelBuilder);
 
             // genera un numero casuale di autori
-            var authors = GetAuthors(Random.Shared.Next(10));
+            var authors = GetAuthors(100);
 
             modelBuilder.Entity<Author>() // gestisce l'entità Author
-                // popola la tabella con l'elenco di autori generato casualmente
+                                          // popola la tabella con l'elenco di autori generato casualmente
                 .HasData(authors);
+
         }
     }
 }

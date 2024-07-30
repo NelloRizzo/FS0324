@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace W9.D2.EFCRUD.Migrations
 {
     /// <inheritdoc />
-    public partial class InitManagement : Migration
+    public partial class StartManagement : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,7 @@ namespace W9.D2.EFCRUD.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FriendlyName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    FriendlyName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
@@ -92,9 +92,9 @@ namespace W9.D2.EFCRUD.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Body = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: false),
+                    AuthorId = table.Column<int>(type: "int", nullable: false),
                     PublishedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ArticleId = table.Column<int>(type: "int", nullable: true),
-                    AuthorId = table.Column<int>(type: "int", nullable: true)
+                    ArticleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -108,7 +108,8 @@ namespace W9.D2.EFCRUD.Migrations
                         name: "FK_Comment_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -194,9 +195,106 @@ namespace W9.D2.EFCRUD.Migrations
                 columns: new[] { "Id", "Email", "FriendlyName", "Password" },
                 values: new object[,]
                 {
-                    { 1, "email1@test.com", "Friendly name 1", "password" },
-                    { 2, "email2@test.com", "Friendly name 2", "password" },
-                    { 3, "email3@test.com", "Friendly name 3", "password" }
+                    { 1, "tommie@mayert.ca", "Madison Beahan", "password" },
+                    { 2, "arnold@starkemmerich.info", "Prof. Zella Nolan", "password" },
+                    { 3, "dax_predovic@tillman.us", "Gabe McGlynn", "password" },
+                    { 4, "chyna@huels.name", "Mr. Rubye Willms", "password" },
+                    { 5, "lance.dicki@schamberger.us", "Mr. Agustina Kreiger", "password" },
+                    { 6, "jermaine.mclaughlin@kunde.name", "Rahul Wyman", "password" },
+                    { 7, "olin@erdmanreichel.uk", "Katlyn Cummerata", "password" },
+                    { 8, "bartholome@littlekautzer.us", "Eloisa Kirlin", "password" },
+                    { 9, "joannie@kutch.uk", "Jarret Lynch", "password" },
+                    { 10, "brendan@kuhlman.us", "Kari Bradtke", "password" },
+                    { 11, "sabryna.rolfson@pfeffermonahan.co.uk", "Wellington Ratke", "password" },
+                    { 12, "scot.haag@strosin.name", "Heath Kshlerin", "password" },
+                    { 13, "colt_lynch@russel.ca", "Mr. Kamron Amara Turcotte", "password" },
+                    { 14, "kurt@sauer.co.uk", "Lorenza Rempel", "password" },
+                    { 15, "fredy@bodemcclure.us", "America Becker", "password" },
+                    { 16, "caroline@oconnerfahey.ca", "Mr. Josiane Shanahan", "password" },
+                    { 17, "marcelina_skiles@hegmann.name", "Luther Farrell", "password" },
+                    { 18, "rudy@dubuqueshanahan.co.uk", "Ms. Alexandro Franz Towne MD", "password" },
+                    { 19, "tierra.parker@cronin.info", "Cyrus Veum", "password" },
+                    { 20, "kelsi@keeling.co.uk", "Cyril Schinner", "password" },
+                    { 21, "gabriel.haley@quigleyhickle.uk", "Dr. Isaias Schinner DVM", "password" },
+                    { 22, "morton_renner@voncartwright.ca", "Mrs. Cruz Cremin IV", "password" },
+                    { 23, "francesca_schuster@daniel.co.uk", "Dr. Spencer Rath", "password" },
+                    { 24, "sammy_funk@armstrong.com", "Ansel Braun", "password" },
+                    { 25, "phoebe_lakin@reichel.name", "Prof. Pearline Volkman", "password" },
+                    { 26, "orion@considineschamberger.biz", "Dr. Roma Keebler", "password" },
+                    { 27, "alysson@daugherty.info", "Dr. Marta Emard I", "password" },
+                    { 28, "jude.heidenreich@ruecker.name", "Scotty Ledner", "password" },
+                    { 29, "leila.schmeler@mertz.com", "Mrs. Delta Schuyler Buckridge", "password" },
+                    { 30, "jarrod.satterfield@schumm.info", "Griffin Bednar", "password" },
+                    { 31, "helga_mcclure@bruen.biz", "Clementine Heaney", "password" },
+                    { 32, "monique.anderson@rueckerhilll.ca", "Prof. Layla King", "password" },
+                    { 33, "xavier@gislason.info", "Hilton Okuneva", "password" },
+                    { 34, "gerard@kuhic.co.uk", "Stefanie Crona", "password" },
+                    { 35, "johnathon@mcglynncrist.name", "Jerel Hoeger", "password" },
+                    { 36, "layla@greenholtpadberg.ca", "Cara Darrick McDermott DVM", "password" },
+                    { 37, "dalton.waters@rau.ca", "Jaquan Gaylord", "password" },
+                    { 38, "candace@zboncak.com", "Emelie Wiegand", "password" },
+                    { 39, "angeline_bradtke@carroll.uk", "Richie Herman", "password" },
+                    { 40, "freeman@abernathyondricka.info", "Mrs. Ashton Konopelski", "password" },
+                    { 41, "mertie.watsica@gibson.ca", "Euna Morar", "password" },
+                    { 42, "reilly_legros@hane.uk", "Ms. Grayson Aiden Sawayn", "password" },
+                    { 43, "trudie@pfannerstill.ca", "Jaren Frami", "password" },
+                    { 44, "adelle_rogahn@klockomiller.biz", "Mr. Travon Nia Mann", "password" },
+                    { 45, "rebecca@orn.us", "Dr. Cristina Senger", "password" },
+                    { 46, "zelda.wisozk@hilll.us", "Samanta Fahey", "password" },
+                    { 47, "rhiannon.rodriguez@cartwright.ca", "Mr. Tyrell Kirsten Hand", "password" },
+                    { 48, "barney@stehr.biz", "Mrs. Else Feest MD", "password" },
+                    { 49, "dario_skiles@towne.name", "Daphne Beahan MD", "password" },
+                    { 50, "lyla_roob@dach.biz", "Coy Wintheiser", "password" },
+                    { 51, "imogene@hauck.info", "Bret Crist", "password" },
+                    { 52, "betty@considine.biz", "Jewel Rosenbaum", "password" },
+                    { 53, "taylor@murray.us", "Mrs. Johanna Witting", "password" },
+                    { 54, "devan@daugherty.co.uk", "Ms. Zackery Bergnaum Jr.", "password" },
+                    { 55, "fanny@rueckerdavis.uk", "Carmella Halvorson", "password" },
+                    { 56, "reid.feeney@gloverernser.us", "Mr. Anne Efrain Nolan", "password" },
+                    { 57, "marilie@ward.biz", "Loraine Wintheiser", "password" },
+                    { 58, "florida@marquardtarmstrong.biz", "Cassidy Hauck", "password" },
+                    { 59, "rachael@simonis.co.uk", "Abigale Marques McLaughlin PhD", "password" },
+                    { 60, "oleta@cassin.name", "Felipa Lehner", "password" },
+                    { 61, "paxton@howe.com", "Mr. Sierra Goodwin", "password" },
+                    { 62, "haskell.crist@moorestracke.info", "Mr. Bianka Jaylen Weber", "password" },
+                    { 63, "margarete@langoshschulist.name", "Mr. Cleora Reta Murazik DVM", "password" },
+                    { 64, "donnell@aufderhar.info", "Lamar Kling", "password" },
+                    { 65, "dawn.bayer@rempel.ca", "Ms. Diana Jeramie Roberts", "password" },
+                    { 66, "filomena.brown@wilderman.ca", "Mr. Ernesto Nakia Bernier", "password" },
+                    { 67, "erling.weimann@king.us", "Mrs. Mabel Goldner", "password" },
+                    { 68, "laurel_murray@hegmann.biz", "Mireya Pollich", "password" },
+                    { 69, "zoila.gleason@leffler.uk", "Dr. Malcolm Lou Smith MD", "password" },
+                    { 70, "urban@dietrichstroman.uk", "Sarah Ernser", "password" },
+                    { 71, "skylar@haaghahn.ca", "Michale Hammes", "password" },
+                    { 72, "mathilde@dickinson.ca", "Orin Zemlak", "password" },
+                    { 73, "doyle@corwin.name", "Ms. Henri Jewess", "password" },
+                    { 74, "brenden.pacocha@terry.name", "Viola Ettie Schuppe I", "password" },
+                    { 75, "keshaun@hoeger.ca", "Noemi Gerda Windler III", "password" },
+                    { 76, "alexa@nicolas.info", "Augusta Kihn", "password" },
+                    { 77, "emmet@schmitt.com", "Ms. Justice Irwin Botsford", "password" },
+                    { 78, "tressa.howell@gutmannabbott.info", "Hellen Renner", "password" },
+                    { 79, "mason.rutherford@fahey.us", "Mr. Jacinthe Marvin V", "password" },
+                    { 80, "guy_jaskolski@wisozk.info", "Noe Rice", "password" },
+                    { 81, "madie_ortiz@green.biz", "Pauline Raynor", "password" },
+                    { 82, "pedro.hansen@kunde.info", "Ms. Monserrat Franz Harris", "password" },
+                    { 83, "elwin_okuneva@bashirian.name", "Prof. Pietro Langosh", "password" },
+                    { 84, "christ@jakubowski.uk", "Fredrick Becker", "password" },
+                    { 85, "marcel@eichmannzulauf.com", "Katrina Strosin", "password" },
+                    { 86, "trinity_heidenreich@stoltenbergkoch.com", "Wava Parisian", "password" },
+                    { 87, "kianna@schulistgoyette.ca", "Juston Brekke I", "password" },
+                    { 88, "rosina@flatley.biz", "Cordia Kris", "password" },
+                    { 89, "roxanne_brekke@donnellygoldner.com", "Zackary Leffler", "password" },
+                    { 90, "nicola@brakus.info", "Sherwood Joel Moen DDS", "password" },
+                    { 91, "michaela@johnstonmonahan.name", "Angelo Rath", "password" },
+                    { 92, "elvie_mckenzie@schmeler.com", "Obie Powlowski I", "password" },
+                    { 93, "patricia.cole@upton.biz", "Ms. Nolan Baumbach II", "password" },
+                    { 94, "gregg@prosaccocasper.us", "Prof. Enoch Lenora Reynolds V", "password" },
+                    { 95, "kelley@lockman.name", "Johann Hudson", "password" },
+                    { 96, "sandra.cartwright@padbergkemmer.ca", "Ludwig McGlynn", "password" },
+                    { 97, "vesta@kilbackking.us", "Dr. Ryan Dustin Tromp", "password" },
+                    { 98, "jovani_mraz@bergstrom.biz", "Hermina Langworth", "password" },
+                    { 99, "aiyana_vandervort@greenfelder.ca", "Antoinette Watsica", "password" },
+                    { 100, "solon@hettinger.name", "Shyann Walker", "password" }
                 });
 
             migrationBuilder.CreateIndex(

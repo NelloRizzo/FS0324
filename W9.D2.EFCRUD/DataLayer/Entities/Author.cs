@@ -9,14 +9,15 @@ namespace W9.D2.EFCRUD.DataLayer.Entities
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id {  get; set; }
-        [MaxLength(30)]
+        [MaxLength(128)]
         public required string FriendlyName {  get; set; }
         [Required, MaxLength(80)]
         public required string Email {  get; set; }
         [Required, MaxLength(20)]
         public required string Password {  get; set; }
-        public IEnumerable<Article> Articles { get; set; } = [];
-        public IEnumerable<Comment> Comments { get; set; } = [];
-        public IEnumerable<Picture> Pictures { get; set; } = [];
+        [InverseProperty(nameof(Article.Author))]
+        public virtual List<Article> Articles { get; set; } = [];
+        public virtual IEnumerable<Comment> Comments { get; set; } = [];
+        public virtual IEnumerable<Picture> Pictures { get; set; } = [];
     }
 }

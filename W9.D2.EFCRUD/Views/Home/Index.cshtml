@@ -1,8 +1,65 @@
-﻿@{
+﻿@model IndexViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to My Blog</h1>
 </div>
+
+<div class="row">
+    <div class="col-6">
+        <form method="get">
+            <input name="contains" value="@ViewBag.Contains" />
+            <button>Cerca</button>
+        </form>
+    </div>
+    <div class="col-6">
+        <form asp-action="CreateAuthor">
+            @Html.AntiForgeryToken()
+            <div class="input-group">
+                <label asp-for="FriendlyName" class="form-label"></label>
+                <input asp-for="FriendlyName" class="form-control" />
+                <span asp-validation-for="FriendlyName"></span>
+            </div>
+            <div class="input-group">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="input-group">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div class="input-group">
+                <label asp-for="Confirmation" class="form-label"></label>
+                <input asp-for="Confirmation" class="form-control" />
+                <span asp-validation-for="Confirmation"></span>
+            </div>
+            <div class="input-group mt-1">
+                <button class="btn btn-primary">Aggiungi</button>
+            </div>
+        </form>
+    </div>
+</div>
+@if (Model.Authors.Any()) {
+    <ul>
+        @foreach (var author in Model.Authors) {
+            <li>
+                @author
+                <a asp-action="DeleteAuthor" asp-route-id="@author" class="btn btn-sm btn-danger">Elimina</a>
+                <a asp-action="Articles" asp-route-id="@author" class="btn btn-sm btn-info">Articoli</a>
+            </li>
+        }
+    </ul>
+}
+else {
+    <div class="alert alert-warning">Nessun dato</div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

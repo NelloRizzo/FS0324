@@ -17,6 +17,6 @@ namespace W9.D2.EFCRUD.DataLayer.Entities
         public required byte[] Content { get; set; }
         public int OriginalWidth { get; set; }
         public int OriginalHeight { get; set; }
-        public IEnumerable<Tag> Tags { get; set; } = [];
+        public virtual IEnumerable<Tag> Tags { get; set; } = [];
     }
 }

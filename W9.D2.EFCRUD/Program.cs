@@ -7,7 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("SqlServer")!;
-builder.Services.AddDbContext<BlogDbContext>(opt => opt.UseSqlServer(connectionString));
+builder.Services
+    .AddDbContext<BlogDbContext>(opt =>
+        opt.UseSqlServer(connectionString).UseLazyLoadingProxies()
+    );
 
 var app = builder.Build();
 
