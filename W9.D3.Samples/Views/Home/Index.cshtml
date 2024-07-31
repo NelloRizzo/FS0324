@@ -1,0 +1,36 @@
+﻿@using W9.D3.Samples.DataLayer.Entities
+@model IEnumerable<Contact>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">My Contacts</h1>
+</div>
+
+<div class="text-center">
+    <a asp-action="Index" asp-route-type="1" class="link-primary">Persone</a> | 
+    <a asp-action="Index" asp-route-type="2" class="link-primary">Aziende</a> |
+    <a asp-action="Index" asp-route-type="3" class="link-primary">Tutto</a>
+</div>
+
+<a asp-action="AddPerson" class="btn btn-info">Aggiungi Persona</a>
+<a asp-action="AddCompany" class="btn btn-info">Aggiungi Azienda</a>
+
+@if (Model?.Any() ?? false) {
+    <ul>
+        @foreach (var contact in Model) {
+            <li>
+                @if (contact is Person p) {
+                    <span>@p.FirstName @p.LastName</span>
+                }
+                else if (contact is Company c) {
+                    <span>@c.Name</span>
+                }
+            </li>
+        }
+    </ul>
+}
+else {
+    <div class="alert alert-warning">Ancora non hai registrato alcun contatto.</div>
+}

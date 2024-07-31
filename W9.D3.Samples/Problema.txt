@@ -1,0 +1,45 @@
+﻿Un'azienda ha la necessità di <catalogare> i propri [contatti].
+Ogni [reparto] avrà la possibilità di <gestire> dei contatti (has-a) di [tipo] diverso: "privati"
+accessibili solo al reparto o "pubblici" accessibili a tutti
+i reparti.
+Ogni contatto potrà essere (is-a) un'[azienda] o un [privato].
+Ogni contatto potrà avere (has-a) più [recapiti] di tipo diverso.
+Inizialmente si prevede di <gestire> solo [numeri di telefono] ed [email],
+ma in futuro potrà essere necessario aggiungere altre tipologie di recapiti.
+
+Cosa si intende per "azienda"? Cosa si intende per "privato"? 
+Cosa si intende per "numero di telefono"? Cosa si intende per "email"?
+
+***** Concetti *****
+
+Contatto  <--+------- Azienda (Denominazione - alfanumerico)
+  1| Tipo    |
+   |         +------- Privato (Nome - alfa, Cognome - alfa)
+   |	     |
+   |	     + ..............
+  n|   
+Recapito  <--+------- Numero di telefono (Prefisso Internazionale - alfa, Numero telefono - alfa)
+             | 
+			 +------- Email (indirizzo email - alfa)
+             |
+			 + ..............
+
+Reparto
+	Denominazione - alfa
+
+***** Azioni *****
+	- METODI DI SERVIZIO -
+
+	Gestire i contatti
+		CRUD sui contatti
+		{ Aggiungere di una persona, Aggiungere un'azienda,
+		Modificare una persona, Modificare un'azienda, Cancellare un contatto,
+		Elencare i contatti (di un determinato tipo) }
+
+	Gestire i recapiti
+		CRUD sui recapiti
+		{ Aggiungere un numero di telefono, Aggiungere un'email, Modificare un numero di telefono,
+		Modificare un'email, Cancellare un recapito, Elencare i recapiti di un contatto }
+
+	Gestire i reparti
+		CRUD sui reparti
